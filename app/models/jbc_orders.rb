@@ -31,8 +31,8 @@ class JbcOrders < ActiveRecord::Base
 		  	new_hash[cn] = hash[cn]
 		  end
 		  order = JbcOrders.new(new_hash.symbolize_keys)
-		  order.state = NEW
-		  order.updated_by = 'System'
+		  order.state = NEW if order.state.blank?
+		  order.updated_by = 'System' if order.updated_by.blank?
 	  	if order.save
 	  		saved += 1
 	  	end
