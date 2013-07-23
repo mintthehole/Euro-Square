@@ -68,7 +68,7 @@ class HomeController < ApplicationController
   end
 
   def view_jbc_order
-    @order = JbcOrders.find_by_id(params[:id])
+    @order = JbcOrders.where(:id => params[:id]).first
   	render :view_jbc_order, :layout => 'jbc'
   end
 
@@ -96,7 +96,7 @@ class HomeController < ApplicationController
   end
 
   def close_jbc_order
-    @order = JbcOrders.find_by_id(params[:id])
+    @order = JbcOrders.where(:id => params[:id]).first
     @order.state = JbcOrders::CLOSE
     @order.save
     redirect_to "/view_jbc_order?id=#{@order.id}",  :notice => "Order Sucessfully Closed"
