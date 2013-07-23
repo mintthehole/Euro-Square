@@ -1,0 +1,36 @@
+<h3 class="page-title">
+JBC order Detail
+</h3>
+<ul class="breadcrumb">
+<li><a href="/jbc"> JBC order Details</a> &nbsp;&nbsp;&nbsp;
+<a href="/jbc_mailers"> JBC Mailers</a>
+</li>
+</ul>
+<div class="widget">
+	<div class="widget-title">
+		<h4><i class="icon-shopping-cart"></i><%= "Mailers"%></h4>
+	</div>
+	<div class="widget-body" style="min-height:380px;">
+		<table class="table table-striped table-bordered table-advance table-hover">
+				<% JbcOrders::STATES.each do |state| %>
+					<tr>
+						<% if state == 'New' %>
+							<th>New (Thanks Mailer Not Sent)</th>
+						<% else %>
+							<th><%= state %></th>
+						<% end %>
+						<td><%= link_to JbcOrders.get_count(state), "/jbc?state=#{state}" %></td>
+					</tr>
+				<% end %>
+				<tr>
+					<td>Total</td>
+					<td><%= JbcOrders.count %></td>
+				</tr>
+			</table>
+			<br/>
+			<%= link_to "Send Thanks Mailer to Indian Citizens", "/send_jbc_mailer?state=#{JbcOrders::NEW}&country=India", :class=>"btn btn-medium btn-success" %> &nbsp;&nbsp;
+			<%= link_to "Send Thanks Mailer to Other Citizens", "/send_jbc_mailer?state=#{JbcOrders::NEW}&country=Other", :class=>"btn btn-medium btn-success" %> &nbsp;&nbsp;
+			<%= link_to "Send Dvd Release Mailer to Indian Citizens", "#", :class=>"btn btn-medium btn-success" %>
+			<%= link_to "Send Dvd Release Mailer to Other Citizens", "#", :class=>"btn btn-medium btn-success" %>
+	</div>
+</div>

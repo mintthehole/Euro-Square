@@ -1,0 +1,82 @@
+<h3 class="page-title">
+JBC order Detail
+</h3>
+<ul class="breadcrumb">
+<li><a href="/jbc"> JBC order Details</a> &nbsp;&nbsp;&nbsp;
+<a href="/jbc_mailers"> JBC Mailers</a>
+</li>
+</ul>
+<section class="round">
+  <% flash.each do |key, value| %>
+    <div style="margin-top: 20px; padding: 0pt 0.7em;"> 
+      <p>
+        <span style="float: left; margin-right: 0.3em;"></span>         
+        <strong><%= content_tag(:div, value, :class => "alert alert-notice") %></strong>
+        <% if defined?(flush_flash) and flush_flash == true %>
+          <% flash.clear %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</section>
+<div class="widget">
+	<div class="widget-title">
+		<h4><i class="icon-shopping-cart"></i><%= "@order From #{@order.try(:name)}"%></h4>
+	</div>
+	<div class="widget-body" style="min-height:380px;">
+		<div class='span6'>
+			<table class="table table-striped table-bordered table-advance table-hover">
+				<tr>
+					<th>Name</th>
+					<td><%= @order.name %></td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td><%= @order.email %></td>
+				</tr>
+				<tr>
+					<th>Phone Number</th>
+					<td><%= @order.phone_number || '-' %></td>
+				</tr>
+				<tr>
+					<th>No of Copies</th>
+					<td><%= @order.number_of_copies %></td>
+				</tr>
+				<tr>
+					<th>State</th>
+					<td><%= @order.state %></td>
+				</tr>
+				<tr>
+					<th>order Date</th>
+					<td><%= @order.order_date %></td>
+				</tr>			
+				<tr>
+					<th>Address</th>
+					<td><%= @order.addres %></td>
+				</tr>																	
+			</table>
+		</div>
+		<div class="span6 well" style="text-align:center">
+		<% unless @order.state == JbcOrders::CLOSE %>
+				<%= link_to "Close order", "/close_jbc_order?id=#{@order.id}", :class=>"btn btn-medium btn-success" %>
+				<br/>
+				<br/>
+				
+				<%= link_to "Amount Recievd", "#", :class=>"btn btn-medium btn-success" %>
+				<br/>
+				<br/>
+				<%= link_to "Dvd Dispatched", "#", :class=>"btn btn-medium btn-success" %>
+		<% else %>
+			<b>Order Closed.</b>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+		        	
+		        	
+		        	
+		        	
+		        	
+		        	
+		        	

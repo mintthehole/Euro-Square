@@ -1,0 +1,49 @@
+<h3 class="page-title">
+Upload			<small>exporter csv</small>
+</h3>
+<ul class="breadcrumb">
+<li>
+	<i class="icon-home"></i>
+	<a href="index.html">Home</a> 
+	<i class="icon-angle-right"></i>
+</li>
+<li><a href="#">Upload</a></li>
+
+</ul>
+<section class="round">
+  <% flash.each do |key, value| %>
+    <div style="margin-top: 20px; padding: 0pt 0.7em;"> 
+      <p>
+        <span style="float: left; margin-right: 0.3em;"></span>					
+        <strong><%= content_tag(:div, value, :class => "alert alert-notice") %></strong>
+        <% if defined?(flush_flash) and flush_flash == true %>
+          <% flash.clear %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</section>
+<div class = "form-horizontal">
+<%= form_tag("/upload_path", :multipart => true) do -%>
+	<div class="control-group ">
+    <label class="control-label">What you want to Upload</label>
+    <div class="controls">
+       <%= select_tag :upload_type, options_for_select(Shipper::UPLOAD_TYPES,params[:upload_type])%>
+    </div>
+  </div>
+  <label class="control-label">Select CSV<span class="required">*</span> file</label>
+  <div class="controls">
+  	<%= file_field(:attachment, :file, :class => 'file_input') %><br>
+  </div>
+  <br/>
+  <div class="help-inline">
+    * CSV File - In the excel file, save as csv file and upload the file.<br/>
+    For Exporter the header should be <b>Name,Address_1,Address_2,City,Zip_Code,Contact_Person,Email,Phone</b> need not be in same order
+  </div>
+  <br/>
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit"><i class="icon-ok"></i> Upload</button>
+    <button class="btn" type="button">Cancel</button>
+ </div>
+  <% end -%>  
+</div>

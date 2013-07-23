@@ -1,0 +1,62 @@
+	<!DOCTYPE html>
+<html>
+<head>
+  <title>EuroExim</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	 <div id="logo" class="center"> <a href="http://www.euroeximindia.com/" target="_blank">
+	  <img src="/assets/logo.png" alt="Web Asian Systems logo" class="center"></a> 
+	  <div style="float:right">
+	   <h4> Euro Exim = Managing Cargo With Care</h4>
+	  </div>
+	</div>
+	 <div id="login">
+	 	    <div class="control-group error">
+      <div class="controls">
+        <div class="help-inline">
+	  	    <% flash.each do |key, value| %>
+				    <div style="margin-top: 20px; padding: 0pt 0.7em;"> 
+				      <p>
+				        <span style="float: left; margin-right: 0.3em;"></span>					
+				        <strong><%= content_tag(:div, value) %></strong>
+				        <% if defined?(flush_flash) and flush_flash == true %>
+				          <% flash.clear %>
+				        <% end %>
+				      </p>
+				    </div>
+		  		<% end %>
+		  			<% if resource.errors.any? %>
+			  		 <% resource.errors.full_messages.each do |error| %>
+			  		 	<strong><%= content_tag(:div, error) %></strong>
+			  		 <% end %>
+			  		<% end %>
+        </div>
+      </div>
+    </div>
+
+		<%= yield %>
+	</div>
+  <div id="login-copyright">
+    2013 © Euro Exim Inida. All Rights Reserved <br><br>
+
+  <!-- END COPYRIGHT -->
+  <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+  <!-- END CORE PLUGINS -->
+  <!-- BEGIN PAGE LEVEL SCRIPTS -->
+  <!-- END PAGE LEVEL SCRIPTS --> 
+  <script>
+    jQuery(document).ready(function() {     
+      // initiate layout and plugins
+      App.init();
+      Login.init();
+    });
+  </script>
+  <!-- END JAVASCRIPTS -->
+
+
+</div>	
+</body>
+</html>

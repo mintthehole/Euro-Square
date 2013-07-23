@@ -1,0 +1,33 @@
+<h3 class="page-title">
+Upload      <small>Jbc csv</small>
+</h3>
+<ul class="breadcrumb">
+<li><a href="#">Upload</a></li>
+
+</ul>
+<section class="round">
+  <% flash.each do |key, value| %>
+    <div style="margin-top: 20px; padding: 0pt 0.7em;"> 
+      <p>
+        <span style="float: left; margin-right: 0.3em;"></span>         
+        <strong><%= content_tag(:div, value, :class => "alert alert-notice") %></strong>
+        <% if defined?(flush_flash) and flush_flash == true %>
+          <% flash.clear %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</section>
+<div class = "form-horizontal">
+<%= form_tag("/jbc_dvd_upload_path", :multipart => true) do -%>
+  <label class="control-label">Select CSV<span class="required">*</span> file</label>
+  <div class="controls">
+  	<%= file_field(:attachment, :file, :class => 'file_input') %><br>
+  </div>
+  <br/>
+  <br/>
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit"><i class="icon-ok"></i> Upload</button>
+ </div>
+  <% end -%>  
+</div>

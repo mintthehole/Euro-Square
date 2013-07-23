@@ -1,0 +1,156 @@
+	<!DOCTYPE html>
+<html>
+<head>
+  <title>EuroExim</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+<!--   <%= stylesheet_link_tag    "bootstrap.min.css", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap-responsive.min.css", :media => "all" %>
+  <%= stylesheet_link_tag    "style.css", :media => "all" %>
+  <%= stylesheet_link_tag    "style-responsive.css", :media => "all" %>
+  <%= stylesheet_link_tag    "default.css", :media => "all" %>
+  <%= stylesheet_link_tag    "uniform.default.css", :media => "all" %> -->
+
+  <!-- %link{:href => "assets/plugins/bootstrap/css/bootstrap.min.css", :rel => "stylesheet"}/
+%link{:href => "assets/plugins/bootstrap/css/bootstrap-responsive.min.css", :rel => "stylesheet"}/
+%link{:href => "assets/plugins/font-awesome/css/font-awesome.css", :rel => "stylesheet"}/
+%link{:href => "assets/css/style.css", :rel => "stylesheet"}/
+%link{:href => "assets/css/style-responsive.css", :rel => "stylesheet"}/
+%link#style_color{:href => "assets/css/themes/default.css", :rel => "stylesheet"}/
+%link{:href => "assets/plugins/uniform/css/uniform.default.css", :rel => "stylesheet", :type => "text/css"}/ -->
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery-1.8.3.min" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<body class="fixed-top">
+	<!-- BEGIN HEADER -->
+	<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+		<!-- BEGIN TOP NAVIGATION BAR -->
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<!-- BEGIN LOGO -->
+				<a class="brand" href="/index">
+				<img src="assets/logo.png" alt="WebAsianSystems" />
+				</a>
+				<!-- END LOGO -->
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+				<a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="arrow"></span>
+				</a>          
+				<!-- END RESPONSIVE MENU TOGGLER -->				
+				<div class="top-nav">
+					<ul class="nav pull-right" id="top_menu">
+						<li class="divider-vertical hidden-phone hidden-tablet"></li>
+						<!-- BEGIN USER LOGIN DROPDOWN -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-user"></i>
+							<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+
+								<li class="divider"></li>
+								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+							</ul>
+						</li>
+						<!-- END USER LOGIN DROPDOWN -->
+					</ul>
+					<!-- END TOP NAVIGATION MENU -->	
+				</div>
+			</div>
+		</div>
+		<!-- END TOP NAVIGATION BAR -->
+	</div>
+	<!-- END HEADER -->
+	<!-- BEGIN CONTAINER -->
+	<div id="container" class="row-fluid">
+		<!-- BEGIN SIDEBAR -->
+		<div id="sidebar" class="nav-collapse collapse">
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			<div class="sidebar-toggler hidden-phone"></div>
+			<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+			<div class="navbar-inverse">
+				<form class="navbar-search visible-phone">
+					<input type="text" class="search-query" placeholder="Search" />
+				</form>
+			</div>
+			<!-- END RESPONSIVE QUICK SEARCH FORM -->
+			<!-- BEGIN SIDEBAR MENU -->        	
+			<ul>
+				<li class="<%= active_class('index') %>">
+					<%= link_to 'index' do -%>
+						<i class="icon-home"></i> 
+						<span class="title">Dashboard</span>
+					<% end -%>
+				</li>
+				<li class="<%= active_class('upload_epxorters') %>">
+					<%= link_to 'upload_epxorters' do -%>
+						<i class="icon-table"></i> 
+						<span class="title">Upload</span>
+					<% end -%>
+				</li>
+				<li class="<%= active_class('exporter_details') %>">
+					<%= link_to '/exporter_details' do -%>
+						<i class="icon-th-list"></i> 
+						<span class="title">Exporter Details</span>
+					<% end -%>
+				</li>						
+				<li class="<%= active_class('exporter_export_details') %>">
+					<%= link_to '/exporter_export_details' do -%>
+						<i class="icon-th-list"></i> 
+						<span class="title">Exporter Export Details</span>
+					<% end -%>
+				</li>					
+				<li class="<%= active_class('report') %>">
+					<%= link_to '/report' do -%>
+						<i class="icon-bar-chart"></i> 
+						<span class="title">Report</span>
+					<% end -%>
+				</li>				
+			</ul>
+			<!-- END SIDEBAR MENU -->
+		</div>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN PAGE -->
+		<div id="body">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div id="page" class="dashboard">
+							<%= yield %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE -->
+	</div>
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	<div id="footer">
+		2013 &copy; Euro Exim.
+		<div class="span pull-right">
+			<span class="go-top"><i class="icon-arrow-up"></i></span>
+		</div>
+	</div>							
+	<script>
+		jQuery(document).ready(function() {		
+			App.init(); // initlayout and core plugins
+			Index.init();
+			Index.initJQVMAP(); // init index page's custom scripts
+			Index.initKnowElements(); // init circle stats(knob elements)
+			Index.initPeityElements(); // init pierty elements
+			Index.initCalendar(); // init index page's custom scripts
+			Index.initCharts(); // init index page's custom scripts
+			Index.initChat();
+			Index.initDashboardDaterange();
+			Index.initIntro();
+		});
+	</script>
+</body>
+</html>

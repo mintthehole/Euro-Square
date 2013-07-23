@@ -1,0 +1,98 @@
+<h3 class="page-title">
+JBC Order Details			
+</h3>
+<ul class="breadcrumb">
+<li><a href="#"> JBC Order Details</a> &nbsp;&nbsp;&nbsp;
+<a href="/jbc_mailers"> JBC Mailers</a>
+<span style="margin-left:650px;">
+<b><%=	"Number of Orders : #{@orders.count} out of #{@orders.total_entries}" %></b>
+&nbsp;&nbsp;&nbsp;
+<b><%=	"Total Number of Copies : #{@sum}" %></b>
+</span>
+</li>
+</ul>
+<div id="search">
+<%= form_tag("/jbc", :method => :get) do %>
+	<div class="span3 field">
+		<label>Email</label>
+		<%= text_field_tag :email, params[:email] %>
+	</div>
+	<div class="span3 field">
+		<label> Name</label>
+		<%= text_field_tag :name, params[:name]%>
+	</div>
+	<div class="span3 field">
+		<label>State</label>
+		<%= select_tag :state, options_for_select(JbcOrders::STATES, params[:state]), :prompt => "All" %>
+	</div>
+	<br><br>
+	<div>
+		<%= submit_tag "Search", :class=>"btn btn-primary"	%>
+	</div>
+<% end %>
+</div>
+
+<% unless @orders.empty? %>
+<div class="widget">
+	<div class="widget-title">
+		<h4><i class="icon-shopping-cart"></i>
+		<% if params[:state].blank? %>
+			All Orders
+		<% else %>
+			<%= "#{params[:state].titlecase} Orders" %>
+		<% end %>
+		</h4>
+	</div>
+	<div class="widget-body">
+	<b><%= will_paginate @orders %></b>
+		<table class="table table-striped table-bordered table-advance table-hover">
+		    <thead>
+		      <tr>
+		        <th><i class="icon-user"></i> <span class="hidden-phone ">Name</span></th>
+		        <th>Email</th>
+		        <th>Phone Number</th>
+		        <th> Number of Copies</th>
+		        <th>State</th>
+		        <th>Order Date</th>
+		        <th>Address</th>
+		        <th>Country</th>
+		        <th>City</th>
+		        <th>View</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <% @orders.each do |order| %>
+		        <tr>
+		        	<td><%= order.name %></td>
+		        	<td><%= order.email %></td>
+		        	<td><%= order.phone_number || '-' %></td>
+		        	<td><%= order.number_of_copies %></td>
+		        	<td><%= order.state %></td>
+		        	<td><%= order.order_date %></td>
+		        	<td><%= order.addres %></td>
+		        	<%= form_tag("/update_country")  do %>
+			          <td>
+		          		<%= select_tag :country, options_for_select([['Select',''],['India','India'],['Other','Other']],order.country), :style => 'width:100px;' %>
+			          </td>
+			          <td>
+		          		<%= select_tag :city, options_for_select(build_cities,order.city), :prompt => "Select" %>
+		          		<div id="#{order.id}">
+		          			<%= hidden_field_tag :page, params[:page] %>
+		          			<%= hidden_field_tag :email, params[:email] %>
+		          			<%= hidden_field_tag :name, params[:name] %>
+		          			<%= hidden_field_tag :state, params[:state] %>
+		          			<%= hidden_field_tag :id, order.id %>
+		          			<%= submit_tag "Update", :id => order.id, :class => "update_country btn btn-small btn-warning" %>
+		          		</div>
+			          </td>		          
+			        <% end %>
+		          <td><%= link_to "View", "view_jbc_order?id=#{order.id}", :class=>"btn btn-mini hidden-phone hidden-tablet" %></td>
+		        </tr>
+		      <% end %>     
+		    </tbody>
+		  </table>
+		</div>
+	</div>
+<% else %>
+ No data Found
+<% end -%>
