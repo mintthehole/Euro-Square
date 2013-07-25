@@ -63,7 +63,7 @@ class HomeController < ApplicationController
   end
 
   def update_country
-  	order = JbcOrders.find_by_id(params[:id])
+  	order = JbcOrders.where(:id => params[:id]).first
   	order.country = params[:country]
   	order.city = params[:city]
   	order.save
