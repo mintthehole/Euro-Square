@@ -62,6 +62,7 @@ JBC Order Details
 		      </tr>
 		    </thead>
 		    <tbody>
+		    	- cities = build_cities
 		      <% @orders.each do |order| %>
 		        <tr>
 		        	<td><%= order.name %></td>
@@ -76,7 +77,7 @@ JBC Order Details
 		          		<%= select_tag :country, options_for_select([['Select',''],['India','India'],['Other','Other']],order.country), :style => 'width:100px;' %>
 			          </td>
 			          <td>
-		          		<%= select_tag :city, options_for_select(build_cities,order.city), :prompt => "Select" %>
+		          		<%= select_tag :city, options_for_select(cities,order.city), :prompt => "Select" %>
 		          		<div id="#{order.id}">
 		          			<%= hidden_field_tag :page, params[:page] %>
 		          			<%= hidden_field_tag :email, params[:email] %>
