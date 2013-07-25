@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718152336) do
+ActiveRecord::Schema.define(:version => 20130725152059) do
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "jbc_orders", :force => true do |t|
     t.string   "name"
@@ -27,6 +34,14 @@ ActiveRecord::Schema.define(:version => 20130718152336) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "options", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "city_id"
+  end
+
   create_table "shipper_export_details", :force => true do |t|
     t.string   "sector"
     t.string   "country"
@@ -41,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20130718152336) do
     t.float    "gr_wt"
     t.integer  "quantity"
     t.string   "units"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "shippers", :force => true do |t|
@@ -54,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20130718152336) do
     t.string   "contact_person"
     t.string   "email"
     t.integer  "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -69,8 +84,8 @@ ActiveRecord::Schema.define(:version => 20130718152336) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

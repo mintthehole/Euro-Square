@@ -7,18 +7,20 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'rake', '0.8.7'
-# gem 'activerecord-mysql2-adapter'
+
 gem 'activeadmin'
 gem "devise", "1.5.0"
 gem "i18n","~> 0.4" 
 gem 'capistrano'
 gem "bcrypt-ruby"
+gem 'nested_form'
 gem 'will_paginate',:git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', :platforms => :ruby
-
+  # gem 'activerecord-mysql2-adapter'
+  gem 'mysql2'
   gem 'uglifier', '>= 1.0.3'
 end
 # Use unicorn as the web server

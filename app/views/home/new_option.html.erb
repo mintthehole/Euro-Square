@@ -1,0 +1,19 @@
+<%= javascript_include_tag 'http://code.jquery.com/jquery-1.7.1.min.js'%>
+<h3 class="page-title">
+JBC Delievry Options - Select City
+</h3>
+<ul class="breadcrumb">
+<li><a href="#"> JBC Order Details</a> &nbsp;&nbsp;&nbsp;
+<a href="/jbc_mailers"> JBC Mailers</a> &nbsp;&nbsp;&nbsp;
+<a href="/delivery_options"> Delivery Options</a>
+</li>
+</ul>
+
+<div id="search">
+<h4><%=  "Select City to Add Delivery Option" %></h4>
+<%= form_tag '/option_create'  do  %>
+	<%= select_tag :city, options_for_select(build_delivery_cities), :prompt => "Select" %>
+	<br/>
+	<%= submit_tag "Create New Option" %>
+<% end %>
+</div>

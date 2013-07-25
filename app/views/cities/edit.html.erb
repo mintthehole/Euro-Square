@@ -1,0 +1,25 @@
+<%= javascript_include_tag 'http://code.jquery.com/jquery-1.7.1.min.js'%>
+<h3 class="page-title">
+JBC Delievry Options - Add New Option for City 
+</h3>
+<ul class="breadcrumb">
+<li><a href="#"> JBC Order Details</a> &nbsp;&nbsp;&nbsp;
+<a href="/jbc_mailers"> JBC Mailers</a> &nbsp;&nbsp;&nbsp;
+<a href="/delivery_options"> Delivery Options</a>
+</li>
+</ul>
+
+<div id="search">
+<h4><%=  "New Option for City #{@city.name}" %></h4>
+<%= nested_form_for @city do |f| %>
+	<%= f.fields_for :options do |f1| %>
+		<%= f1.text_field :name, :placeholder => 'name' %>
+		<br/>
+		<%= f1.text_area :address, :placeholder => 'Address', :style => 'height:200px;' %>
+	<% end %>
+	<%= f.link_to_add "Add Option", :options, :class => ["btn-small", "btn-info"] %>
+	<br/>
+	<br/>
+	<%= f.submit "Save" %>
+<% end %>
+</div>

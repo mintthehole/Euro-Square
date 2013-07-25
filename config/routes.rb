@@ -1,10 +1,11 @@
 EuroExim::Application.routes.draw do
+  
    devise_for :users do
-   get "users/sign_in", :to => "devise/sessions#new"
-   get "users/sign_out", :to => "devise/sessions#destroy"
- end
+     get "users/sign_in", :to => "devise/sessions#new"
+     get "users/sign_out", :to => "devise/sessions#destroy"
+  end
   # get "home/index"
-
+  resources :cities
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

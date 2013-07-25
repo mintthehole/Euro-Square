@@ -1,8 +1,11 @@
 class HomeController < ApplicationController
 	before_filter :authenticate_user!, :except => :index
+  layout 'jbc'
 	def index
 		unless current_user
 			redirect_to "/users/sign_in"
+    else
+      redirect_to "/jbc"
 		end
 	end
   def upload_epxorters
@@ -107,6 +110,23 @@ class HomeController < ApplicationController
   	no = 0
   	total,no = JbcOrders.upload(params[:attachment][:file].tempfile)
   	redirect_to "/jbc", :notice => "Sucessfully Uploaded #{no} out of #{total}"
+  end
+
+  def delivery_options
+    @cities = City.all
+  end
+
+  def new_option
+    @city = City.first
+  end
+
+  def option_create
+    @city = City.where(:id => params[:city]).first
+    if @city
+      redirect_to edit_city_path(@city)
+    else
+      redirect_to "/new_option"
+    end
   end
 
 end
