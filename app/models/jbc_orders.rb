@@ -6,6 +6,7 @@ class JbcOrders < ActiveRecord::Base
 	STATES = [
 		NEW = 'New',
 		THANK = "Thanks Mail & Ac Details Sent",
+		COST = 'Cost Details Sent',
 		RELEASED = "Release Notification",
 		PAYMENT = "Payment Recieved",
 		DISPATCH = 'Dispatched',

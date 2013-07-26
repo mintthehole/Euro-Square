@@ -81,7 +81,9 @@ class HomeController < ApplicationController
 
   def send_jbc_mailer
     state = params[:state]
-    orders = JbcOrders.where(:state => state, :country => params[:country])
+    conditions = ['state in (?) and country = ?', [JbcOrders::NEW,JbcOrders::THANK],params[:country]]
+    orders = JbcOrders.where(conditions)
+    p orders.count
     orders.each do |order|
       begin
         if state == JbcOrders::NEW
@@ -89,7 +91,7 @@ class HomeController < ApplicationController
         else
           p "send other mailer"
         end
-        order.state = JbcOrders::THANK
+        order.state = "Cost Details Sent"
         order.save
       rescue Exception => e
         order.state = "#{state} Mail sending Failed"

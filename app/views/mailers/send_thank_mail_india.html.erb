@@ -13,16 +13,39 @@
 <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="10" style="font-family:arial,helvetica,sans-serif;margin:4px;min-height:300px;border:1px solid #ccc" width="588">
 <tbody>
 <tr>
+<% cities = ["Mumbai","Pune","New Delhi","Visakhapatnam","Hyderabad","Bangalore","Chennai","Coimbatore","Tiruchirappalli","Tirunelveli","Erode","Madurai","Salem","Thoothukudi","Ooty","Nagercoil","Vellore","Tirupur"] %>
+
 <td style="vertical-align:top;line-height:19px;font-size:12px;min-height:40px;" valign="top">
 Dear <b><%= @order.name %></b><br />
 <br/>
-Greetings from JBC. Thank you very much for your interest in this DVD. We are glad to inform you that this Youth Special DVD <b>"LOVE, SEX & MARRIAGE"</b> will be released on July 28th. We will dispatch your copy immediately after that by Courier. We request you to introduce this DVD to your friends, Churches and known prayer groups.
+Greetings from JBC. Thank you very much for your interest in this DVD. We are glad to inform you that this Youth Special DVD <b>"LOVE, SEX & MARRIAGE"</b> will be released on July 28th. 
 <br/>
+<br/>
+The cost of this DVD is <b>INR 75</b> and courier Charges INR 20 (for 3 dvds).
+<br/>
+<br/>
+Also You can get this DVD in major christian book stores in the following cities
+<div style ="margin-left:20px;">
+	<% cities.each_with_index do |city,i| %>
+			<% if i != 0 %>
+			,
+			<% end %>
+			<% if city == @order.city %>
+				<b><%= city %></b>
+			<% else %>
+				<%= city %>
+			<% end %>
+
+	<% end %>
+</div>
+<br/>
+If you are Comfortable in getting this dvd in a christian book store, You are welcome to do so. In that Case intimate us to Cancel your Order.
+<br/>
+<br/>
+We request you to introduce this DVD to your friends, Churches and known prayer groups.
 <br/>
 We have attached our bank details for your reference. <b>Please do revert us once you make the payment.</b>
-<br/>
-<br/>
-Also this DVD will be available in most of the Christian Book stores and if your nearby Christian book store is not aware about this, Please introduce this DVD to them or Write to us about the book store.
+
 <br>
 <br/>
 Please keep in touch with us in. www.facebook.com/jbcdvd
