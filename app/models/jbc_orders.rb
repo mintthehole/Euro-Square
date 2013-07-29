@@ -1,8 +1,9 @@
 class JbcOrders < ActiveRecord::Base
 	require 'csv'
-  attr_accessible :addres, :city, :country, :email, :name, :number_of_copies, :order_date, :phone_number, :state, :updated_by
+  attr_accessible :addres, :city, :country, :email, :name, :number_of_copies, :order_date, :phone_number, :state, :updated_by, :amount
   validates :email, :presence => true
   validates :email, :uniqueness => true, :on => :create
+  after_save :send_mail
 	STATES = [
 		NEW = 'New',
 		THANK = "Thanks Mail & Ac Details Sent",
@@ -12,6 +13,18 @@ class JbcOrders < ActiveRecord::Base
 		DISPATCH = 'Dispatched',
 		CLOSE = "Closed"
 	]	
+
+	def amount_recived?
+		state == PAYMENT
+	end
+
+	def send_mail
+		if self.state == PAYMENT
+			JbcMailer.send_payment_mailer(self).deliver
+		elsif self.state == DISPATCH
+			JbcMailer.send_dispatch_mailser(self).deliver
+		end
+	end
 
 	def self.upload(file)
 		columns = JbcOrders.column_names
@@ -39,6 +52,10 @@ class JbcOrders < ActiveRecord::Base
 	  	end
 		end
 		return total , saved
+	end
+	
+	def self.get_city_count(city)
+		JbcOrders.count(:all, :conditions => ['city = ? ',city])
 	end
 
 	def self.get_count(state)

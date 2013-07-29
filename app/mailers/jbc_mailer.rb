@@ -8,4 +8,16 @@ class JbcMailer < ActionMailer::Base
     mail(:to => order.try(:email), :subject => 'LOVE, SEX & MARRIAGE',
         :cc => 'orders@jbcword.com')
   end
+
+  def send_payment_mailer(order)
+  	@order = order
+    mail(:to => order.try(:email), :subject => 'LOVE, SEX & MARRIAGE',
+        :cc => 'orders@jbcword.com')
+  end
+
+  def send_dispatch_mailser(order)
+  	@order = order
+    mail(:to => order.try(:email), :subject => 'LOVE, SEX & MARRIAGE',
+        :cc => 'orders@jbcword.com')
+  end
 end

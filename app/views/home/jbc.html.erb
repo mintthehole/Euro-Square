@@ -2,13 +2,13 @@
 JBC Order Details			
 </h3>
 <ul class="breadcrumb">
-<li><a href="#"> JBC Order Details</a> &nbsp;&nbsp;&nbsp;
+<li><a href="/jbc"> JBC Order Details</a> &nbsp;&nbsp;&nbsp;
 <a href="/jbc_mailers"> JBC Mailers</a> &nbsp;&nbsp;&nbsp;
 <a href="/delivery_options"> Delivery Options</a> &nbsp;&nbsp;&nbsp;
 <a href="/city_view"> City View</a>
-<span style="margin-left:650px;">
+<span style="margin-left:500px;">
 <b><%=	"Number of Orders : #{@orders.count} out of #{@orders.total_entries}" %></b>
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
 <b><%=	"Total Number of Copies : #{@sum}" %></b>
 </span>
 </li>
@@ -42,6 +42,11 @@ JBC Order Details
 			All Orders
 		<% else %>
 			<%= "#{params[:state].titlecase} Orders" %>
+		<% end %>
+		<% unless params[:city].blank? %>
+			<%= "City : #{params[:city]}" %>
+		<% else %>
+			<%= "City : All" %>
 		<% end %>
 		</h4>
 	</div>

@@ -15,6 +15,10 @@ class HomeController < ApplicationController
   def report
   end
 
+  def city_view
+
+  end
+
   def exporter_details
   	@exporters = Shipper.all
   end
@@ -54,6 +58,10 @@ class HomeController < ApplicationController
   		conditions[0] << " and state = ?"
   		conditions << params[:state]
   	end
+    if params[:city]
+      conditions[0] << " and city = ?"
+      conditions << params[:city]
+    end
   	@orders = JbcOrders.paginate(:per_page => 15, :page => page_no, :conditions => conditions)
     @sum = JbcOrders.sum('number_of_copies')
   	render :jbc, :layout => 'jbc'
@@ -80,6 +88,7 @@ class HomeController < ApplicationController
   end
 
   def send_jbc_mailer
+    p ppp
     state = params[:state]
     conditions = ['state in (?) and country = ?', [JbcOrders::NEW,JbcOrders::THANK],params[:country]]
     orders = JbcOrders.where(conditions)
@@ -100,11 +109,15 @@ class HomeController < ApplicationController
     redirect_to '/jbc_mailers'
   end
 
-  def close_jbc_order
+  def jbc_order_state_change
     @order = JbcOrders.where(:id => params[:id]).first
-    @order.state = JbcOrders::CLOSE
-    @order.save
-    redirect_to "/view_jbc_order?id=#{@order.id}",  :notice => "Order Sucessfully Closed"
+    @order.state = params[:state]
+    @order.amount = params[:amount]
+    if @order.save
+      redirect_to "/view_jbc_order?id=#{@order.id}",  :notice => "Order Sucessfully upfated to state #{params[:state]}"
+    else
+      render 'view_jbc_order'
+    end
   end
 
   def jbc_dvd_upload_path

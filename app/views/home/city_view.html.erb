@@ -1,0 +1,31 @@
+<h3 class="page-title">
+JBC order Detail
+</h3>
+<ul class="breadcrumb">
+<li><a href="/jbc"> JBC order Details</a> &nbsp;&nbsp;&nbsp;
+<a href="/jbc_mailers"> JBC Mailers</a> &nbsp;&nbsp;&nbsp;
+<a href="/delivery_options"> Delivery Options</a> &nbsp;&nbsp;&nbsp;
+<a href="/city_view">City View</a> &nbsp;&nbsp;&nbsp;
+</li>
+</ul>
+<div class="widget">
+	<div class="widget-title">
+		<h4><i class="icon-shopping-cart"></i><%= "Mailers"%></h4>
+	</div>
+	<div class="widget-body" style="min-height:380px;">
+		<table class="table table-striped table-bordered table-advance table-hover">
+				<% cities = JbcOrders.all.collect(&:city).uniq %>
+				<% cities.each do |city| %>
+					<tr>
+						<td><%= city %></td>
+						<td><%= link_to JbcOrders.get_city_count(city), "/jbc?city=#{city}" %></td>
+					</tr>
+				<% end %>
+				<tr>
+					<td>Total</td>
+					<td><%= JbcOrders.count %></td>
+				</tr>
+			</table>
+			<br/>
+	</div>
+</div>

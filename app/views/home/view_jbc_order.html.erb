@@ -3,7 +3,9 @@ JBC order Detail
 </h3>
 <ul class="breadcrumb">
 <li><a href="/jbc"> JBC order Details</a> &nbsp;&nbsp;&nbsp;
-<a href="/jbc_mailers"> JBC Mailers</a>
+<a href="/jbc_mailers"> JBC Mailers</a> &nbsp;&nbsp;&nbsp;
+<a href="/delivery_options"> Delivery Options</a> &nbsp;&nbsp;&nbsp;
+<a href="/city_view">City View</a> &nbsp;&nbsp;&nbsp;
 </li>
 </ul>
 <section class="round">
@@ -19,9 +21,22 @@ JBC order Detail
     </div>
   <% end %>
 </section>
+<span style="font-size: 13px;">
+  <% if @order && if @order.errors.any? %>
+    <div id="error_explanation">
+    <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <b> <li><%= msg %></li></b>
+      <% end %>
+      </ul>
+      </div>
+    <% end %>
+    <br>
+  <% end %>
+</span>
 <div class="widget">
 	<div class="widget-title">
-		<h4><i class="icon-shopping-cart"></i><%= "@order From #{@order.try(:name)}"%></h4>
+		<h4><i class="icon-shopping-cart"></i><%= "Order From #{@order.try(:name)}"%></h4>
 	</div>
 	<div class="widget-body" style="min-height:380px;">
 		<div class='span6'>
@@ -44,7 +59,7 @@ JBC order Detail
 				</tr>
 				<tr>
 					<th>State</th>
-					<td><%= @order.state %></td>
+					<td><b><%= @order.state %></b></td>
 				</tr>
 				<tr>
 					<th>order Date</th>
@@ -58,14 +73,18 @@ JBC order Detail
 		</div>
 		<div class="span6 well" style="text-align:center">
 		<% unless @order.state == JbcOrders::CLOSE %>
-				<%= link_to "Close order", "/close_jbc_order?id=#{@order.id}", :class=>"btn btn-medium btn-success" %>
+				<%= link_to "Close order", "/jbc_order_state_change?id=#{@order.id}&state=#{JbcOrders::CLOSE}", :class=>"btn btn-medium btn-success", :onclick=>"return confirm('Are you sure to do this?. This will send a mail to customer')" %>
 				<br/>
 				<br/>
-				
-				<%= link_to "Amount Recievd", "#", :class=>"btn btn-medium btn-success" %>
+			<% if @order.state != JbcOrders::DISPATCH  && @order.state != JbcOrders::PAYMENT %>
+				<%= link_to "Amount Recievd", "/jbc_order_state_change?id=#{@order.id}&state=#{JbcOrders::PAYMENT}", :class=>"btn btn-medium btn-success", :onclick=>"return confirm('Are you sure to do this?. This will send a mail to customer')" %>
 				<br/>
 				<br/>
-				<%= link_to "Dvd Dispatched", "#", :class=>"btn btn-medium btn-success" %>
+			<% elsif @order.state == JbcOrders::PAYMENT %>
+				<%= link_to "Dvd Dispatched", "/jbc_order_state_change?id=#{@order.id}&state=#{JbcOrders::DISPATCH}", :class=>"btn btn-medium btn-success", :onclick=>"return confirm('Are you sure to do this?. This will send a mail to customer')" %>
+			<% else %>
+
+			<% end %>
 		<% else %>
 			<b>Order Closed.</b>
 		<% end %>
