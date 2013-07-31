@@ -7,6 +7,7 @@ class JbcOrders < ActiveRecord::Base
 	STATES = [
 		NEW = 'New',
 		THANK = "Thanks Mail & Ac Details Sent",
+		FOREIGN = 'Foriegn Mail Sent',
 		COST = 'Cost Details Sent',
 		RELEASED = "Release Notification",
 		PAYMENT = "Payment Recieved",
@@ -24,6 +25,34 @@ class JbcOrders < ActiveRecord::Base
 		elsif self.state == DISPATCH
 			JbcMailer.send_dispatch_mailser(self).deliver
 		end
+	end
+
+	def send_other_mailers
+    conditions = ['state in (?) and country = ?', [JbcOrders::NEW],'Other']
+    orders = JbcOrders.where(conditions)
+    orders.each do |order|
+      begin
+        JbcMailer.send_thank_mail_other(order).deliver
+        order.state = FOREIGN
+        order.save
+      rescue Exception => e
+        order.state = "#{state} Mail sending Failed"
+      end
+    end
+	end
+
+	def send_inda_mailer
+    conditions = ['state in (?) and country = ?', [JbcOrders::NEW,JbcOrders::THANK],'India']
+    orders = JbcOrders.where(conditions)
+    orders.each do |order|
+      begin
+        JbcMailer.send_thank_mail_india(order).deliver
+        order.state = COST
+        order.save
+      rescue Exception => e
+        order.state = "#{state} Mail sending Failed"
+      end
+    end
 	end
 
 	def self.upload(file)

@@ -88,11 +88,9 @@ class HomeController < ApplicationController
   end
 
   def send_jbc_mailer
-    p ppp
     state = params[:state]
     conditions = ['state in (?) and country = ?', [JbcOrders::NEW,JbcOrders::THANK],params[:country]]
     orders = JbcOrders.where(conditions)
-    p orders.count
     orders.each do |order|
       begin
         if state == JbcOrders::NEW
