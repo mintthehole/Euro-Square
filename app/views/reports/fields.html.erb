@@ -1,0 +1,15 @@
+<h3>Listing Field Names of Reports. Copy the machine field names</h3>
+
+<table class="table table-striped table-bordered table-advance table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Machine Field Name</th>
+  </tr>
+
+<% Report.column_names.each do |attr1| %>
+  <tr>
+    <td><%= attr1.tr("_"," ").titlecase %></td>
+    <td><%= attr1 %></td>
+  </tr>
+<% end %>
+</table>

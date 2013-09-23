@@ -19,8 +19,6 @@
 %link{:href => "assets/plugins/uniform/css/uniform.default.css", :rel => "stylesheet", :type => "text/css"}/ -->
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery-1.8.3.min" %>
-  <%= javascript_include_tag "loader" %>
-  <%= javascript_include_tag "bootstrap.min" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -108,19 +106,5 @@
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
 	</div>							
-	<script>
-		jQuery(document).ready(function() {		
-			App.init(); // initlayout and core plugins
-			Index.init();
-			Index.initJQVMAP(); // init index page's custom scripts
-			Index.initKnowElements(); // init circle stats(knob elements)
-			Index.initPeityElements(); // init pierty elements
-			Index.initCalendar(); // init index page's custom scripts
-			Index.initCharts(); // init index page's custom scripts
-			Index.initChat();
-			Index.initDashboardDaterange();
-			Index.initIntro();
-		});
-	</script>
 </body>
 </html>

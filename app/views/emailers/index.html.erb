@@ -1,0 +1,25 @@
+<h3>Listing emailers</h3>
+
+<table class="table table-striped table-bordered table-advance table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Stage</th>
+    <th>Subject</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @emailers.each do |emailer| %>
+  <tr>
+    <td><%= emailer.name %></td>
+    <td><%= emailer.stage %></td>
+    <td><%= emailer.subject %></td>
+    <td><%= link_to 'Show', emailer %></td>
+    <td><%= link_to 'Edit', edit_emailer_path(emailer) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add New Emailer ?', new_emailer_path %>

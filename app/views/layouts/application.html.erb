@@ -1,7 +1,7 @@
 	<!DOCTYPE html>
 <html>
 <head>
-  <title>EuroExim</title>
+  <title>Euro Exim</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
 <!--   <%= stylesheet_link_tag    "bootstrap.min.css", :media => "all" %>
   <%= stylesheet_link_tag    "bootstrap-responsive.min.css", :media => "all" %>
@@ -19,8 +19,10 @@
 %link{:href => "assets/plugins/uniform/css/uniform.default.css", :rel => "stylesheet", :type => "text/css"}/ -->
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery-1.8.3.min" %>
-  <%= javascript_include_tag "bootstrap.min" %>
+  <%= javascript_include_tag 'http://code.jquery.com/jquery-1.7.1.min.js'%>
+  <%= filepicker_js_include_tag %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 <body class="fixed-top">
@@ -31,7 +33,7 @@
 			<div class="container-fluid">
 				<!-- BEGIN LOGO -->
 				<a class="brand" href="/index">
-				<img src="assets/logo.png" alt="WebAsianSystems" />
+				<img src="/assets/logo.png" alt="WebAsianSystems" />
 				</a>
 				<!-- END LOGO -->
 				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -82,34 +84,34 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->        	
 			<ul>
-				<li class="<%= active_class('index') %>">
-					<%= link_to 'index' do -%>
+				<li class="<%= active_class('') %>">
+					<%= link_to root_path do -%>
 						<i class="icon-home"></i> 
 						<span class="title">Dashboard</span>
 					<% end -%>
 				</li>
 				<li class="<%= active_class('upload_epxorters') %>">
-					<%= link_to 'upload_epxorters' do -%>
+					<%= link_to '/upload_epxorters' do -%>
 						<i class="icon-table"></i> 
-						<span class="title">Upload</span>
+						<span class="title">Upload Report</span>
 					<% end -%>
 				</li>
-				<li class="<%= active_class('exporter_details') %>">
-					<%= link_to '/exporter_details' do -%>
+				<li class="<%= active_class(reports_path) %>">
+					<%= link_to reports_path do -%>
 						<i class="icon-th-list"></i> 
-						<span class="title">Exporter Details</span>
+						<span class="title">Report Details</span>
 					<% end -%>
 				</li>						
-				<li class="<%= active_class('exporter_export_details') %>">
+<!-- 				<li class="<%= active_class('exporter_export_details') %>">
 					<%= link_to '/exporter_export_details' do -%>
 						<i class="icon-th-list"></i> 
 						<span class="title">Exporter Export Details</span>
 					<% end -%>
-				</li>					
-				<li class="<%= active_class('report') %>">
-					<%= link_to '/report' do -%>
+				</li>					 -->
+				<li class="<%= active_class(emailers_path) %>">
+					<%= link_to emailers_path do -%>
 						<i class="icon-bar-chart"></i> 
-						<span class="title">Report</span>
+						<span class="title">Emailer</span>
 					<% end -%>
 				</li>				
 			</ul>
@@ -138,19 +140,6 @@
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
 	</div>							
-	<script>
-		jQuery(document).ready(function() {		
-			App.init(); // initlayout and core plugins
-			Index.init();
-			Index.initJQVMAP(); // init index page's custom scripts
-			Index.initKnowElements(); // init circle stats(knob elements)
-			Index.initPeityElements(); // init pierty elements
-			Index.initCalendar(); // init index page's custom scripts
-			Index.initCharts(); // init index page's custom scripts
-			Index.initChat();
-			Index.initDashboardDaterange();
-			Index.initIntro();
-		});
-	</script>
+
 </body>
 </html>

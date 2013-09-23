@@ -1,11 +1,16 @@
 EuroExim::Application.routes.draw do
-  
+  resources :emailers
+
+
    devise_for :users do
      get "users/sign_in", :to => "devise/sessions#new"
      get "users/sign_out", :to => "devise/sessions#destroy"
   end
   # get "home/index"
+  match '/reports/fields'
   resources :cities
+  resources :reports
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

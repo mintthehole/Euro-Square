@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  stage: 1
+  subject: MyText
+  cc: MyString
+  bcc: MyString
+  header: MyText
+  body: MyText
+  footer: MyText
+
+two:
+  name: MyString
+  stage: 1
+  subject: MyText
+  cc: MyString
+  bcc: MyString
+  header: MyText
+  body: MyText
+  footer: MyText

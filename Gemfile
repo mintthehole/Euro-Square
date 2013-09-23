@@ -5,9 +5,11 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-gem 'rake', '0.8.7'
 
+
+
+gem 'rake', '0.8.7'
+gem 'filepicker-rails'
 gem 'activeadmin'
 gem "devise", "1.5.0"
 gem "i18n","~> 0.4" 
@@ -20,8 +22,14 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', :platforms => :ruby
   # gem 'activerecord-mysql2-adapter'
-  gem 'mysql2'
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+	gem 'sqlite3'
+end
+group :production do
+	gem 'pg'
 end
 # Use unicorn as the web server
 # gem 'unicorn'

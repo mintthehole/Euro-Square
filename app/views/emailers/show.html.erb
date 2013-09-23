@@ -1,0 +1,186 @@
+<style>
+body{
+      font-style:calibri;
+      font-size:14px;
+}
+table, tr, td
+{
+
+}
+.td3{
+  border:solid silver 1.0pt;padding:0cm 0cm 0cm 0cm;min-height:30.5pt;
+}
+.td1{
+  width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;min-height:20.1pt;
+}
+.td2{
+  width:162.0pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;min-height:20.1pt;
+}
+
+b{
+  color :#045F7A;
+}
+p{
+     margin-left:50px;
+}
+.frst{
+       margin-left:50px; 
+}
+.infor 
+   {
+    text-transform: capitalize;
+    color:#045F7A;
+    }
+.secd
+{
+   Margin-left: 50px;
+   text-decoration:underline;
+   }
+.table1
+{  margin-top:25px;
+   margin-Left:70px;
+}
+.table2
+{  margin-top:50px;
+   
+}
+#fr2{
+   background-color:#DDD9C3;
+   width:100px;
+}
+#fr{
+   background-color:#31849B;
+   width:100px;
+   color:white;
+}
+table td{
+          width: 250px;
+          text-align: center;
+}
+.rw{
+   font-family: calibri;
+   font-size:25px;
+   background-color:#31849B;
+   color:#215868;
+   vertical-align: bottom;
+    font-weight:bold;
+}
+.rw2{
+  font-family: calibri;
+   font-size:14px;
+   background-color:#215868;
+   color:white;
+
+}
+.rw3{
+  font-family: calibri;
+   font-size:14px;
+   background-color:#C4BC96;
+   width: 259px;
+}
+.rw4{
+  font-family: calibri;
+   font-size:14px;
+   background-color:#EEECE1;
+}
+</style>
+<p id="notice"><%= notice %></p>
+<h3 class="form-section">Basic Info</h3>
+<div style="margin-left:20px;">
+<div class="row-fluid">
+  <div class="span6 ">
+     <div class="control-group">
+        <span class="control-label"><b>Name</b></span>
+        <span class="controls">
+           <%= @emailer.name %>
+        </span>
+     </div>
+  </div>
+  <!--/span-->
+  <div class="span6 ">
+     <div class="control-group">
+        <span class="control-label"><b>Stage</b></span>
+        <span class="controls">
+           <%= @emailer.stage %>
+        </span>
+     </div>
+  </div>
+  <!--/span-->
+</div>
+<!--/row-->
+<div class="row-fluid">
+  <div class="span12 ">
+     <div class="control-group">
+        <span class="control-label"><b>Subject</b></span>
+        <span class="controls">
+          <%= @emailer.subject %>
+        </span>
+     </div>
+  </div>
+</div>
+<!--/row-->        
+<div class="row-fluid">
+  <div class="span6 ">
+     <div class="control-group">
+        <span class="control-label"><b>CCs</b></span>
+        <span class="controls">
+          <%= @emailer.cc %>
+        </span>
+     </div>
+  </div>
+  <!--/span-->
+  <div class="span6 ">
+     <div class="control-group">
+        <span class="control-label"><b>Bccs</b></span>
+        <span class="controls">                                                
+          <%= @emailer.bcc %>
+        </span>
+     </div>
+  </div>
+</div>
+</div>
+<h3 class="form-section">Email</h3>
+<div class='well'>
+  <img src=<%= @emailer.header%> height="50%" width="100%">
+  <br/><br/>
+  <%= @emailer.body.html_safe %>
+  <% if @emailer.emailer_horizontals.any? %>
+    <div class="table1">
+      <table>
+        <tr id="fr" >
+        <% @emailer.emailer_horizontals.each do |eh| %>
+          <td height = '40' class="td3"><%= eh.top %> </td>
+        <% end %>
+        </tr>
+        <tr id="fr2" >
+          <% @emailer.emailer_horizontals.each do |eh| %>
+            <td height = '40' class="td3"><%= eh.bottom %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+    <div class="table1">
+      <table class="table2">
+        <tr>
+          <td  class="rw" rowspan=<%= 20%> >
+          <div align="center" style="text-align:center" class="MsoNormal"><b><span style="font-size:24.0pt;color:#215868">SHIPMENT</span></b><span style="font-size:24.0pt;color:#92cddc"> </span><span style="font-size:24.0pt;color:#1f497d"><u></u><u></u></span></div>
+          <br/>
+          <div align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></div>
+          </td>
+        </tr>
+        <% @emailer.email_tables.each do |et| %>
+          <tr>
+           <td width='216' height = '50' class="rw2 td1"><%= et.left.titlecase %></td>
+           <td width="314" class="rw3 td2"><%= et.right.titlecase %></td>
+         </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+  <br/>
+  <div class='frst'>
+    <%= footer('field_name','field_name') %>
+  </div>
+</div>
+<%= link_to 'Edit', edit_emailer_path(@emailer) %> |
+<%= link_to 'Back', emailers_path %>
