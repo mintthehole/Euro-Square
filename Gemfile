@@ -7,8 +7,8 @@ gem 'rails', '3.2.13'
 
 
 
-
-gem 'rake', '0.8.7'
+gem "has_magic_columns"
+gem 'rake' , '>= 0.9.2'
 gem 'filepicker-rails'
 gem 'activeadmin'
 gem "devise", "1.5.0"
@@ -17,6 +17,8 @@ gem 'capistrano'
 gem "bcrypt-ruby"
 gem 'nested_form'
 gem 'will_paginate',:git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
+gem 'active_scaffold', '3.3.3'
+gem 'jquery-rails'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -29,7 +31,7 @@ group :development do
 	gem 'sqlite3'
 end
 group :production do
-	gem 'pg'
+	# gem 'pg'
 end
 # Use unicorn as the web server
 # gem 'unicorn'

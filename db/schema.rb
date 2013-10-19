@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921111948) do
+ActiveRecord::Schema.define(:version => 20131019155230) do
+
+  create_table "booking_orders", :force => true do |t|
+    t.string   "business_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "bookings", :force => true do |t|
+    t.string   "business_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "booking_order_id"
+  end
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -65,6 +82,48 @@ ActiveRecord::Schema.define(:version => 20130921111948) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.float    "amount"
+  end
+
+  create_table "magic_attribute_relationships", :force => true do |t|
+    t.integer "magic_attribute_id"
+    t.integer "owner_id"
+    t.string  "owner_type"
+  end
+
+  create_table "magic_attributes", :force => true do |t|
+    t.integer  "magic_column_id"
+    t.integer  "magic_option_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magic_column_relationships", :force => true do |t|
+    t.integer  "magic_column_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magic_columns", :force => true do |t|
+    t.string   "name"
+    t.string   "pretty_name"
+    t.string   "datatype",      :default => "string"
+    t.string   "default"
+    t.boolean  "is_required",   :default => false
+    t.boolean  "include_blank", :default => false
+    t.boolean  "allow_other",   :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magic_options", :force => true do |t|
+    t.integer  "magic_column_id"
+    t.string   "value"
+    t.string   "synonym"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "options", :force => true do |t|

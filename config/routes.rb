@@ -1,4 +1,11 @@
 EuroExim::Application.routes.draw do
+  resources :bookings do as_routes end
+  resources :cities do as_routes end
+  resources :bookings
+
+
+  resources :booking_orders
+
   resources :emailers
 
 
@@ -8,8 +15,8 @@ EuroExim::Application.routes.draw do
   end
   # get "home/index"
   match '/reports/fields'
-  resources :cities
   resources :reports
+  match '/add_booking' => 'booking_orders#booking'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,41 @@
+<div id="search">
+<h4><%=  "Add Header to the table" %></h4>
+<%= nested_form_for @booking_order  do |f| %>
+	<%= f.fields_for :magic_columns do |builder| %>
+		<% id1 = builder.object.id || 'new_magic_columns' %>
+		<div class="row span12">
+			<div class="span3">
+				<%= builder.label :header_name %>
+				<%= builder.text_field :pretty_name, :class => 'pretty_name', :id => id1.to_s %>
+			</div>
+
+			<div class="span3">
+				<%= builder.label :machine_name %>
+				<%= builder.text_field :name, :readonly => true, :class => 'header_name', :id => "header_name_"+id1.to_s %>
+			</div>
+
+			<div class="span3">
+				<%= builder.label :data_type %>
+				<%= builder.select :datatype, options_for_select([['Date','date'],['Other','string']],[builder.object.datatype]), :include_blank => "Select" %>
+			</div>
+			<div class="span3">
+				<%= builder.label "Is Requried on Create" %>
+				<%= builder.select :is_required, options_for_select([['Yes',true],['No',false]],[builder.object.is_required]), :include_blank => "Please Select" %>
+			</div>
+		</div>
+	<% end %>
+	<%= f.link_to_add "Add Header", :magic_columns, :class => ["btn-small", "btn-info"]		%>
+	<br>
+	<br>
+	<%= f.submit "Save" %>
+<% end %>
+</div>
+<script>
+  jQuery(document).ready(function() {       
+	 	$('.pretty_name').live('keyup',function(event){
+	 		var id = $(this).attr('id');
+	 		var str = $(this).val(); 
+		  $('#header_name_'+id).val(str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_').toLowerCase());
+		});
+  });
+</script>   

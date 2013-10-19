@@ -1,231 +1,185 @@
-                         <%= nested_form_for(@emailer) do |f| %>
-                           <div class="tab-pane " id="tab_2">
-                              <div class="widget">
-                                 <div class="widget-title">
-                                    <h4><i class="icon-reorder"></i>Mailer Form</h4>
-                                    <span class="tools">
-                                     </span>
-                                 </div>
-                                 <div class="widget-body form">
-                                    <!-- BEGIN FORM-->
-                                    <form action="#" class="form-horizontal">
-                                      <div class='pull-right'>
-                                        <b><%= link_to 'Report Field Names', '/reports/fields', :target =>'_blank' %></b>
-                                      </div>
-                                       <h3 class="form-section">Basic Info</h3>
-                                        <div style="margin-left:20px;">
-                                         <div class="row-fluid">
-                                            <div class="span6 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Name</label>
-                                                  <div class="controls">
-                                                     <%= f.text_field :name, :class=>"span12", :placeholder=>"Name" %>
-                                                     <span class="help-block">Name of the Mailer for your refernce</span>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="span6 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Stage</label>
-                                                  <div class="controls">
-                                                     <%= f.text_field :stage, :class=>"span12", :placeholder=>"Satge" %>
-                                                     <span class="help-block">is the first or 2nd... or 3rd.... mail</span>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                            <!--/span-->
-                                         </div>
-                                         <!--/row-->
-                                         <div class="row-fluid">
-                                            <div class="span12 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Subject</label>
-                                                  <div class="controls">
-                                                    <%= f.text_field :subject, :class=>"span12", :placeholder=>"Subject of Email" %>
-                                                    <span class="help-block">Example EURO EXIM - Mother Loading Confirmaion for #{from} to #{to}. #{address}  - from, to, address are the Column Names in the report. CHeck Column names?
-                                                    </span>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                         </div>
-                                         <!--/row-->        
-                                         <div class="row-fluid">
-                                            <div class="span6 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">CCs</label>
-                                                  <div class="controls">
-                                                    <%= f.text_field :cc, :class=>"span12", :placeholder=>"12@123.com,test@12.com" %>
-                                                    <span class="help-block">comma separate Email Ids
-                                                    </span>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="span6 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Bccs</label>
-                                                  <div class="controls">                                                
-                                                    <%= f.text_field :bcc, :class=>"span12", :placeholder=>"12@123.com,test@12.com" %>
-                                                    <span class="help-block">comma separate Email Ids
-                                                    </span>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                          </div>
-                                        <!--/row-->        
-                                         <div class="row-fluid">
-                                            <div class="span12 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Header Image</label>
-                                                  <div class="controls">
-                                                    <% if f.object.header %>
-                                                      <%= link_to "Existing Image link", f.object.header, :target =>'_blank' %>
-                                                    <% end %>
-                                                    <br>
-                                                    <%= f.filepicker_field :header %>
-                                                    
-                                                    <span class="help-block">Upload a Header Image
-                                                    </span>
-                                                  </div>
-                                               </div>
-                                            </div>
-
-                                            
-                                            <!--/span-->
-                                         </div>
-                                        </div>
-                                       <!--/row-->                               
-                                       <h3 class="form-section">Body</h3>
-                                       <div style="margin-left:20px;">
-                                         <div class="row-fluid">
-                                            <div class="span12 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Text</label>
-                                                  <div class="controls">
-                                                     <%= f.text_area :body, :class => 'span12', :style => 'height:150px;', :value => get_header(f.object.body) %>
-                                                     <span class="help-block">Change filed_name give the field name,  replace SUBJECT with the subject
-                                                    </span>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                         </div>
-                                          <div class="row-fluid">
-                                            <div class="span12 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Horizontal Table for your mail</label>
-                                                   <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #{filed_name}.
-                                                  <div class="controls">
-                                                  <%= f.fields_for :emailer_horizontals do |builder| %>
-                                                    <%= builder.text_field :top, :placeholder => 'Text....' %>
-                                                    <%= builder.text_field :bottom, :placeholder => 'Field Name' %>
-                                                    <%= builder.link_to_remove "Remove" %>
-                                                  <% end %>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                            <%= f.link_to_add "Add Horizontal Table Head and Value?", :emailer_horizontals, :class => ["btn-small", "btn-info"]   %>
-                                         </div>
-                                         <br/>
-                                          <div class="row-fluid">
-                                            <div class="span12 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Vertical Table for your mail</label>
-                                                   <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #{filed_name}.
-                                                   <br>
-                                                   For Gray Backround <b><%= "<gray>text or field_name</gray>"%></b>
-                                                   <br>
-                                                   For green background <b><%= "<green>text or field_name</green>"%></b>
-                                                   <br>
-                                                   To highlight a field <b><%= "<highlight>text or field_name</highlight>"%></b>
-                                                    </span>
-                                                  <div class="controls">
-                                                  <%= f.fields_for :email_tables do |builder| %>
-                                                    <%= builder.text_field :left, :placeholder => 'Text....' %>
-                                                    <%= builder.text_field :right, :placeholder => 'Field Name' %>
-                                                    <%= builder.link_to_remove "Remove" %>
-                                                  <% end %>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                            <%= f.link_to_add "Add Table Fields?", :email_tables, :class => ["btn-small", "btn-info"]   %>
-                                         </div>
-                                          
-                                          
-                                      </div>
-
-                                       <h3 class="form-section">Footer</h3>
-                                       <div style="margin-left:20px;">
-                                         <div class="row-fluid">
-                                            <div class="span12 ">
-                                               <div class="control-group">
-                                                  <label class="control-label">Text</label>
-                                                  <div class="controls">
-                                                     <%= f.text_area :footer, :class => 'span12', :style => 'height:100px;', :placeholder => 'Footer' %>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                         </div>
-                                        </div>                                        
-                                       <!--/row-->
-                                       <div class="form-actions">
-                                          <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Save</button>
-                                          <button type="button" class="btn">Cancel</button>
-                                       </div>
-                                    </form>
-                                    <!-- END FORM-->                
-                                 </div>
-                              </div>
-                           </div>
-                          <% end %>
+<%= filepicker_js_include_tag %>
 <%= nested_form_for(@emailer) do |f| %>
-  <% if @emailer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@emailer.errors.count, "error") %> prohibited this emailer from being saved:</h2>
+ <div class="tab-pane " id="tab_2">
+    <div class="widget">
+       <div class="widget-title">
+          <h4><i class="icon-reorder"></i>Mailer Form</h4>
+          <span class="tools">
+           </span>
+       </div>
+       <div class="widget-body form">
+          <!-- BEGIN FORM-->
+          <form action="#" class="form-horizontal">
+            <div class='pull-right'>
+              <b><%= link_to 'Report Field Names', '/reports/fields', :target =>'_blank' %></b>
+            </div>
+             <h3 class="form-section">Basic Info</h3>
+              <div style="margin-left:20px;">
+               <div class="row-fluid">
+                  <div class="span6 ">
+                     <div class="control-group">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                           <%= f.text_field :name, :class=>"span12", :placeholder=>"Name" %>
+                           <span class="help-block">Name of the Mailer for your refernce</span>
+                        </div>
+                     </div>
+                  </div>
+                  <!--/span-->
+                  <div class="span6 ">
+                     <div class="control-group">
+                        <label class="control-label">Stage</label>
+                        <div class="controls">
+                           <%= f.text_field :stage, :class=>"span12", :placeholder=>"Satge" %>
+                           <span class="help-block">is the first or 2nd... or 3rd.... mail</span>
+                        </div>
+                     </div>
+                  </div>
+                  <!--/span-->
+               </div>
+               <!--/row-->
+               <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Subject</label>
+                        <div class="controls">
+                          <%= f.text_field :subject, :class=>"span12", :placeholder=>"Subject of Email" %>
+                          <span class="help-block">Example EURO EXIM - Mother Loading Confirmaion for #{from} to #{to}. #{address}  - from, to, address are the Column Names in the report. CHeck Column names?
+                          </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!--/row-->        
+               <div class="row-fluid">
+                  <div class="span6 ">
+                     <div class="control-group">
+                        <label class="control-label">CCs</label>
+                        <div class="controls">
+                          <%= f.text_field :cc, :class=>"span12", :placeholder=>"12@123.com,test@12.com" %>
+                          <span class="help-block">comma separate Email Ids
+                          </span>
+                        </div>
+                     </div>
+                  </div>
+                  <!--/span-->
+                  <div class="span6 ">
+                     <div class="control-group">
+                        <label class="control-label">Bccs</label>
+                        <div class="controls">                                                
+                          <%= f.text_field :bcc, :class=>"span12", :placeholder=>"12@123.com,test@12.com" %>
+                          <span class="help-block">comma separate Email Ids
+                          </span>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+              <!--/row-->        
+               <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Header Image</label>
+                        <div class="controls">
+                          <% if f.object.header %>
+                            <%= link_to "Existing Image link", f.object.header, :target =>'_blank' %>
+                          <% end %>
+                          <br>
+                          <%= f.filepicker_field :header %>
+                          
+                          <span class="help-block">Upload a Header Image
+                          </span>
+                        </div>
+                     </div>
+                  </div>
 
-      <ul>
-      <% @emailer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                  
+                  <!--/span-->
+               </div>
+              </div>
+             <!--/row-->                               
+             <h3 class="form-section">Body</h3>
+             <div style="margin-left:20px;">
+               <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Text</label>
+                        <div class="controls">
+                           <%= f.text_area :body, :class => 'span12', :style => 'height:150px;', :value => get_header(f.object.body) %>
+                           <span class="help-block">Change filed_name give the field name,  replace SUBJECT with the subject
+                          </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Horizontal Table for your mail</label>
+                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #{filed_name}.
+                        <div class="controls">
+                        <%= f.fields_for :emailer_horizontals do |builder| %>
+                          <%= builder.text_field :top, :placeholder => 'Text....' %>
+                          <%= builder.text_field :bottom, :placeholder => 'Field Name' %>
+                          <%= builder.link_to_remove "Remove" %>
+                        <% end %>
+                        </div>
+                     </div>
+                  </div>
+                  <%= f.link_to_add "Add Horizontal Table Head and Value?", :emailer_horizontals, :class => ["btn-small", "btn-info"]   %>
+               </div>
+               <br/>
+                <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Vertical Table for your mail</label>
+                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #{filed_name}.
+                         <br>
+                         For Gray Backround <b><%= "<gray>text or field_name</gray>"%></b>
+                         <br>
+                         For green background <b><%= "<green>text or field_name</green>"%></b>
+                         <br>
+                         To highlight a field <b><%= "<highlight>text or field_name</highlight>"%></b>
+                          </span>
+                        <div class="controls">
+                        <%= f.fields_for :email_tables do |builder| %>
+                          <%= builder.text_field :left, :placeholder => 'Text....' %>
+                          <%= builder.text_field :right, :placeholder => 'Field Name' %>
+                          <%= builder.link_to_remove "Remove" %>
+                        <% end %>
+                        </div>
+                     </div>
+                  </div>
+                  <%= f.link_to_add "Add Table Fields?", :email_tables, :class => ["btn-small", "btn-info"]   %>
+               </div>
+                
+                
+            </div>
+
+             <h3 class="form-section">Footer</h3>
+             <div style="margin-left:20px;">
+               <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Text</label>
+                        <div class="controls">
+                           <%= f.text_area :footer, :class => 'span12', :style => 'height:100px;', :placeholder => 'Footer' %>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+              </div>                                        
+             <!--/row-->
+             <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Save</button>
+                <button type="button" class="btn">Cancel</button>
+             </div>
+          </form>
+          <!-- END FORM-->                
+       </div>
     </div>
-  <% end %>
-
-<!--   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :stage %><br />
-    <%= f.number_field :stage %>
-  </div> -->
-<!--   <div class="field">
-    <%= f.label :subject %><br />
-    <%= f.text_area :subject %>
-  </div>
-  <div class="field">
-    <%= f.label :cc %><br />
-    <%= f.text_field :cc %>
-  </div>
-  <div class="field">
-    <%= f.label :bcc %><br />
-    <%= f.text_field :bcc %>
-  </div>
-  <div class="field">
-    <%= f.label :header %><br />
-    <%= f.text_area :header %>
-  </div> -->
-  <!-- <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-   -->
-
-<!--   <div class="field">
-    <%= f.label :footer %><br />
-    <%= f.text_area :footer %>
-  </div> -->
+ </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
