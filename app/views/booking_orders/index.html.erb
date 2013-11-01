@@ -52,9 +52,9 @@
 	      			<% class1 = 'even' %>
 	      		<% end %>
 	      		<% order.email_id %>
-	      	  <tr class="<%= class1 %>">
+	      	  <tr class="<%= class1 %>" id="<%= order.id %>">
 	      	  	<% @headers.each do |head| %>
-                <td class=" ">
+                <td class=" " >
                 	<%= order[head.to_s] || " " %>
                 </td>
               <% end %>
@@ -69,7 +69,9 @@
 	  <% end %>
 	</div>
 </div>
-
+<div style='display:none' class='select_test'>
+  <%= select_tag :state, options_for_select(build_customer)%>
+</div>
    <script type="text/javascript" src="/jquery_004.js"></script>
    <script type="text/javascript" src="/DT_bootstrap.js"></script>
    <script src="/table-editable.js"></script>    

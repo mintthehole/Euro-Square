@@ -26,9 +26,9 @@ Upload			<small>exporter csv</small>
 <div class = "form-horizontal">
 <%= form_tag("/upload_path", :multipart => true) do -%>
 	<div class="control-group ">
-    <label class="control-label">What you want to Upload</label>
+    <b>Upload the exporter(customer) details</b>
     <div class="controls">
-       <%= select_tag :upload_type, options_for_select(Shipper::UPLOAD_TYPES,params[:upload_type])%>
+       <%= hidden_field_tag :upload_type, Shipper::EXPORTER %>
     </div>
   </div>
   <label class="control-label">Select CSV<span class="required">*</span> file</label>

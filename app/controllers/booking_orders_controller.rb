@@ -18,20 +18,20 @@ class BookingOrdersController < ApplicationController
 	def booking
 		@booking_order = BookingOrder.first
 		headers = @booking_order.get_header
-		booking = Booking.new
-		booking.booking_order = @booking_order
-		booking.save
-		booking.reload
+		unless params[:id].blank?
+			booking = Booking.find_by_id(params[:id])
+		else
+			booking = Booking.new
+			booking.booking_order = @booking_order
+		end
 		headers.each_with_index do |head,i|
-			p head.name
 			booking[head.name] = params[:values][i]
 		end
-		p booking
 		if booking.save
 			render :text => 'true'
 		else
 			p booking.errors
-			p ppp
+			render :text => booking.errors
 		end
 	end
 end

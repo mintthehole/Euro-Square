@@ -340,3 +340,10 @@
 // 	});	
 // }
 
+// $('#sample_editable_1_new').live
+
+// $('#sample_editable_1_new').live('click',function(event){
+//   event.preventDefault();
+//   $('.more_neighborhood').show();
+//   $('.more').hide();
+// });

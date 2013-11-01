@@ -18,8 +18,10 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
+                jqTds[0].innerHTML = $('.select_test').html();
 
-                for (var i = 0, iLen = jqTds.length - 2; i < iLen; i++) {
+                $("#state").val( aData[0] ).attr('selected',true);
+                for (var i = 1, iLen = jqTds.length - 2; i < iLen; i++) {
                     jqTds[i].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[i] + '">';
                 }
                 var no = jqTds.length - 2;
@@ -27,23 +29,39 @@ var TableEditable = function () {
                 jqTds[no+1].innerHTML = '<a class="cancel" href="">Cancel</a>';
             }
 
-            function saveRow(oTable, nRow) {
+            function newRow(oTable, nRow) {
+                var aData = oTable.fnGetData(nRow);
+                var jqTds = $('>td', nRow);
+                jqTds[0].innerHTML = $('.select_test').html();
+                
+                for (var i = 1, iLen = jqTds.length - 2; i < iLen; i++) {
+                    jqTds[i].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[i] + '">';
+                }
+                var no = jqTds.length - 2;
+                jqTds[no].innerHTML = '<a class="edit" href="">Save</a>';
+                jqTds[no+1].innerHTML = '<a class="cancel" data-mode="new" href="">Cancel</a>';
+            }
+
+            function saveRow(oTable, nRow,id) {
+                var test = $('select',nRow);
                 var jqInputs = $('input', nRow);
                 var booking = [];
+                booking.push(test[0].value);
                 for (var i = 0, iLen = jqInputs.length; i < iLen; i++) {
                     booking.push(jqInputs[i].value);
                 }
                 $.ajax({
                    type: "POST",
                    data: {values:booking},
-                   url: "/add_booking",
+                   url: "/add_booking?id="+id,
                    success: function(data){
+                        oTable.fnUpdate(test[0].value, nRow, 0, false);
                         for (var i = 0, iLen = jqInputs.length; i < iLen; i++) {
-                            oTable.fnUpdate(jqInputs[i].value, nRow, i, false);
+                            oTable.fnUpdate(jqInputs[i].value, nRow, i+1, false);
                         }
                         var len = jqInputs.length;
-                        oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, len, false);
-                        oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, len+1, false);
+                        oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, len+1, false);
+                        oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, len+2, false);
                         oTable.fnDraw();
                    }
                   });
@@ -99,8 +117,9 @@ var TableEditable = function () {
                 total_rows.push('<a class="cancel" data-mode="new" href="">Cancel</a>');
                 var aiNew = oTable.fnAddData(total_rows);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
-                editRow(oTable, nRow);
+                newRow(oTable, nRow);
                 nEditing = nRow;
+                $(this).attr("disabled", "disabled");
             });
 
             $('#sample_editable_1 a.delete').live('click', function (e) {
@@ -120,10 +139,12 @@ var TableEditable = function () {
                 if ($(this).attr("data-mode") == "new") {
                     var nRow = $(this).parents('tr')[0];
                     oTable.fnDeleteRow(nRow);
+                    
                 } else {
                     restoreRow(oTable, nEditing);
                     nEditing = null;
                 }
+                $('#sample_editable_1_new').removeAttr("disabled", "");
             });
 
             $('#sample_editable_1 a.edit').live('click', function (e) {
@@ -131,21 +152,24 @@ var TableEditable = function () {
 
                 /* Get the row as a parent of the link that was clicked on */
                 var nRow = $(this).parents('tr')[0];
-
+                var id = nRow.id;
                 if (nEditing !== null && nEditing != nRow) {
                     /* Currently editing - but not this row - restore the old before continuing to edit mode */
                     restoreRow(oTable, nEditing);
                     editRow(oTable, nRow);
                     nEditing = nRow;
+                    $('#sample_editable_1_new').attr("disabled", "");
                 } else if (nEditing == nRow && this.innerHTML == "Save") {
                     /* Editing this row and want to save it */
-                    saveRow(oTable, nEditing);
+                    saveRow(oTable, nEditing,id);
                     nEditing = null;
+                    $('#sample_editable_1_new').removeAttr("disabled", "disabled");
                     // alert("Updated! Do not forget to do some ajax to sync with backend :)");
                 } else {
                     /* No edit in progress - let's start one */
                     editRow(oTable, nRow);
                     nEditing = nRow;
+                    $('#sample_editable_1_new').attr("disabled", "disabled`");
                 }
             });
         }
