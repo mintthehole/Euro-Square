@@ -13,7 +13,7 @@ class EuroEximMailer < ActionMailer::Base
 
 	def send_sales_escalation_email(sales_entry)
 		@sales_entry = sales_entry
-		mail(:to => 'selvamj@euroeximindia.com,crm@euroeximindia.com,ns@euroeximindia.com', :subject =>"Escaltion of Sales Entry by #{@sales_entry.user.name} a/c #{@sales_entry.shipper_name}",
+		mail(:to => ['selvamj@euroeximindia.com','crm@euroeximindia.com','ns@euroeximindia.com'], :subject =>"Escaltion of Sales Entry by #{@sales_entry.user.name} a/c #{@sales_entry.shipper_name}",
         :cc => 'js@euroeximindia.com')
 
 	end
