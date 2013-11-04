@@ -55,3 +55,5 @@ end
 #   gem 'webrat'
 # end
 
+gem 'ckeditor', '4.0.6'
+gem "paperclip"

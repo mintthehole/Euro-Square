@@ -1,0 +1,35 @@
+<h1>Listing Sales Call Entries</h1>
+
+<table class='table'>
+  <tr>
+    <th>Date</th>
+    <th>Shipper name</th>
+    <th>Pic</th>
+    <th>Point discussed</th>
+    <th>My observation</th>
+    <th>Enquiry recieved</th>
+    <th>Escalation</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sales_call_entries.each do |sales_call_entry| %>
+  <tr>
+    <td><%= sales_call_entry.date %></td>
+    <td><%= sales_call_entry.shipper_name %></td>
+    <td><%= sales_call_entry.pic %></td>
+    <td><%= sales_call_entry.point_discussed %></td>
+    <td><%= sales_call_entry.my_observation %></td>
+    <td><%= sales_call_entry.enquiry_recieved %></td>
+    <td><%= sales_call_entry.escalation %></td>
+    <td><%= link_to 'Show', sales_call_entry %></td>
+    <td><%= link_to 'Edit', edit_sales_call_entry_path(sales_call_entry) %></td>
+    <td><%= link_to 'Destroy', sales_call_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sales call entry', new_sales_call_entry_path %>

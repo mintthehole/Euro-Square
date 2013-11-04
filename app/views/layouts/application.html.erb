@@ -84,42 +84,62 @@
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 			<!-- BEGIN SIDEBAR MENU -->        	
 			<ul>
-				<li class="<%= active_class('') %>">
-					<%= link_to root_path do -%>
+				<li class="<%= active_class('/index') %>">
+					<%= link_to '/index' do -%>
 						<i class="icon-home"></i> 
 						<span class="title">Dashboard</span>
 					<% end -%>
 				</li>
-				<li class="<%= active_class('upload_epxorters') %>">
-					<%= link_to '/upload_epxorters' do -%>
-						<i class="icon-table"></i> 
-						<span class="title">Upload Report</span>
-					<% end -%>
-				</li>
-				<li class="<%= active_class(reports_path) %>">
-					<%= link_to reports_path do -%>
-						<i class="icon-th-list"></i> 
-						<span class="title">Report Details</span>
-					<% end -%>
-				</li>						
+				<% if current_user.admin? %>
+					<li class="<%= active_class('upload_epxorters') %>">
+						<%= link_to '/upload_epxorters' do -%>
+							<i class="icon-table"></i> 
+							<span class="title">Upload Customer</span>
+						<% end -%>
+					</li>
+					<li class="<%= active_class(customers_path) %>">
+						<%= link_to customers_path do -%>
+							<i class="icon-th-list"></i> 
+							<span class="title">Customer Details</span>
+						<% end -%>
+					</li>		
+				<% end %>
+				<% if current_user.admin? || current_user.operation? %>
+					<li class="<%= active_class('/booking_orders') %>">
+						<%= link_to '/booking_orders' do -%>
+							<i class="icon-th-list"></i> 
+							<span class="title">Bookings</span>
+						<% end -%>
+					</li>	
+				<% end %>
+				<% if current_user.admin? || current_user.sales? %>
+					<li class="<%= active_class(sales_call_entries_path) %>">
+						<%= link_to sales_call_entries_path do -%>
+							<i class="icon-th-list"></i> 
+							<span class="title">Sales Call Entries</span>
+						<% end -%>
+					</li>												
+				<% end %>		
 <!-- 				<li class="<%= active_class('exporter_export_details') %>">
 					<%= link_to '/exporter_export_details' do -%>
 						<i class="icon-th-list"></i> 
 						<span class="title">Exporter Export Details</span>
 					<% end -%>
 				</li>					 -->
-				<li class="<%= active_class(emailers_path) %>">
-					<%= link_to emailers_path do -%>
-						<i class="icon-bar-chart"></i> 
-						<span class="title">Emailer</span>
-					<% end -%>
-				</li>				
+				<% if current_user.admin? %>
+					<li class="<%= active_class(emailers_path) %>">
+						<%= link_to emailers_path do -%>
+							<i class="icon-bar-chart"></i> 
+							<span class="title">Emailer</span>
+						<% end -%>
+					</li>				
+				<% end %>
 			</ul>
 			<!-- END SIDEBAR MENU -->
 		</div>
 		<!-- END SIDEBAR -->
 		<!-- BEGIN PAGE -->
-		<div id="body" style="width:100%;">
+		<div id="body">
 			<div class="container-fluid">
 				<div class="row-fluid">
 					<div class="span12">

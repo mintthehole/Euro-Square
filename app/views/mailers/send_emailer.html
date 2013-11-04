@@ -88,6 +88,7 @@
 </style>
 </head>
 <body>
+  <% @booking.customer_name %>
   <img src=<%= @emailer.header%> height="50%" width="100%">
   <br/><br/>
   <%= @emailer.body.html_safe %>
@@ -101,7 +102,13 @@
         </tr>
         <tr id="fr2" >
           <% @emailer.emailer_horizontals.each do |eh| %>
-            <td height = '40' class="td3"><%= eh.bottom %></td>
+            <td height = '40' class="td3">
+              <% if  eh.bottom.include?('#F') %>
+                <%= @booking[eh.bottom.gsub('#F')] %>
+              <% else %>
+                <%= eh.bottom %>
+              <% end %>
+            </td>
           <% end %>
         </tr>
       </table>

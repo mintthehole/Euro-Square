@@ -1,4 +1,15 @@
 EuroExim::Application.routes.draw do
+  
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  resources :sales_call_entries
+
+
+  resources :customers
+
+
   resources :bookings do as_routes end
   resources :cities do as_routes end
   resources :bookings
@@ -8,16 +19,17 @@ EuroExim::Application.routes.draw do
 
   resources :emailers
 
-
    devise_for :users do
+  ActiveAdmin.routes(self)
      get "users/sign_in", :to => "devise/sessions#new"
      get "users/sign_out", :to => "devise/sessions#destroy"
   end
   # get "home/index"
   match '/reports/fields'
+  root :to => 'home#index'
   resources :reports
   match '/add_booking' => 'booking_orders#booking'
-
+  mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -67,7 +79,7 @@ EuroExim::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  
 
   # See how all your routes lay out with "rake routes"
 

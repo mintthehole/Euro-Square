@@ -1,5 +1,6 @@
 <div id="search">
 <h4><%=  "Add Header to the table" %></h4>
+<% first = @booking_order.get_header.first.try(:id) || 0 %>
 <%= nested_form_for @booking_order  do |f| %>
 	<%= f.fields_for :magic_columns do |builder| %>
 		<% id1 = builder.object.id || 'new_magic_columns' %>
@@ -9,18 +10,25 @@
 				<%= builder.text_field :pretty_name, :class => 'pretty_name', :id => id1.to_s %>
 			</div>
 
-			<div class="span3">
+			<div class="span2">
 				<%= builder.label :machine_name %>
-				<%= builder.text_field :name, :readonly => true, :class => 'header_name', :id => "header_name_"+id1.to_s %>
+				<%= builder.text_field :name, :readonly => true, :class => 'header_name', :id => "header_name_"+id1.to_s ,:style =>'width:120px;'%>
 			</div>
 
 			<div class="span3">
 				<%= builder.label :data_type %>
 				<%= builder.select :datatype, options_for_select([['Date','date'],['Other','string']],[builder.object.datatype]), :include_blank => "Select" %>
 			</div>
-			<div class="span3">
+<!-- 			<div class="span2">
 				<%= builder.label "Is Requried on Create" %>
-				<%= builder.select :is_required, options_for_select([['Yes',true],['No',false]],[builder.object.is_required]), :include_blank => "Please Select" %>
+				<%= builder.select :is_required, options_for_select([['Yes',true],['No',false]],[builder.object.is_required]), {},:style =>'width:120px;', :include_blank => "Please Select" %>
+			</div> -->
+			<div class="span2">
+				<br>
+				<br>
+				<% unless builder.object.try(:id) == first %>
+					<%= builder.link_to_remove "Delete?", :title => 'Delete'%>
+				<% end %>
 			</div>
 		</div>
 	<% end %>

@@ -4,7 +4,7 @@
 <h3> Booking Order </h3>
 <% @pretty_headers = @booking_order.get_header.collect(&:pretty_name) %>
 <% @headers = @booking_order.get_header.collect(&:name) %>
-<div class="container-fluid">
+<div class="container-fluid" style ="width:<%= @headers.count * 300 %>px">
   <div class="widget-body">
     <div class="clearfix margin-bottom-10">
       <div class="btn-group">
@@ -51,7 +51,7 @@
 	      		<% if i % 2 == 0 %>
 	      			<% class1 = 'even' %>
 	      		<% end %>
-	      		<% order.email_id %>
+	      		<% order.try(:customer_name) %>
 	      	  <tr class="<%= class1 %>" id="<%= order.id %>">
 	      	  	<% @headers.each do |head| %>
                 <td class=" " >
@@ -78,5 +78,6 @@
    <script>
       jQuery(document).ready(function() {       
          TableEditable.init();
+         $('#body').css('width',"<%= @headers.count * 310 %>");
       });
    </script>     

@@ -1,0 +1,53 @@
+<%= form_for(@sales_call_entry) do |f| %>
+  <% if @sales_call_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sales_call_entry.errors.count, "error") %> prohibited this sales_call_entry from being saved:</h2>
+
+      <ul>
+      <% @sales_call_entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :shipper_name %>
+    <%= f.text_field :shipper_name %>
+  </div>
+  <div class="field">
+    <%= f.label :pic %>
+    <%= f.text_area :pic, :style =>'height:108px;width:700px', :class =>'span8' %>
+  </div>
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :point_discussed %>
+    <%= f.text_area :point_discussed, :style =>'height:108px;width:700px', :class =>'span8' %>
+  </div>
+  <div class="field">
+    <%= f.label :my_observation %>
+    <%= f.text_area :my_observation, :style =>'height:108px;width:700px', :class =>'span8' %>
+  </div>
+  <div class="field row">
+    <div class="span" style="margin-left:20px;">
+      <div class="span2"><%= f.label :enquiry_recieved %></div>
+      <div class="span2"><%= f.check_box :enquiry_recieved %></div>
+    </div>
+  </div>
+  <br>
+  <div class="field row">
+     <div class="span" style="margin-left:20px;">
+      <div class="span2"><%= f.label :escalation %></div>
+      <div class="span3"><%= f.check_box :escalation %></div>
+    </div>
+  </div>
+  <br>
+  <div class="actions">
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit "Create Sales Entry", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -11,7 +11,7 @@
           <!-- BEGIN FORM-->
           <form action="#" class="form-horizontal">
             <div class='pull-right'>
-              <b><%= link_to 'Report Field Names', '/reports/fields', :target =>'_blank' %></b>
+              <b><%= link_to 'Data Field Names', edit_booking_order_path(BookingOrder.first), :target =>'_blank' %></b>
             </div>
              <h3 class="form-section">Basic Info</h3>
               <div style="margin-left:20px;">
@@ -37,14 +37,27 @@
                   </div>
                   <!--/span-->
                </div>
-               <!--/row-->
+
+               <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Trigger Field</label>
+                        <div class="controls">
+                          <%= f.text_field :trigger_filed, :class=>"span6", :placeholder=>"Enter the Trigger Field" %>
+                          <span class="help-block">The change in mentioned field will trigger this email 
+                          </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                              <!--/row-->
                <div class="row-fluid">
                   <div class="span12 ">
                      <div class="control-group">
                         <label class="control-label">Subject</label>
                         <div class="controls">
                           <%= f.text_field :subject, :class=>"span12", :placeholder=>"Subject of Email" %>
-                          <span class="help-block">Example EURO EXIM - Mother Loading Confirmaion for #{from} to #{to}. #{address}  - from, to, address are the Column Names in the report. CHeck Column names?
+                          <span class="help-block">Example EURO EXIM - Mother Loading Confirmaion for #Ffrom to #Fto. #Faddress  - from, to, address are the Column Names in the report. CHeck Column names?
                           </span>
                         </div>
                      </div>
@@ -104,8 +117,8 @@
                      <div class="control-group">
                         <label class="control-label">Text</label>
                         <div class="controls">
-                           <%= f.text_area :body, :class => 'span12', :style => 'height:150px;', :value => get_header(f.object.body) %>
-                           <span class="help-block">Change filed_name give the field name,  replace SUBJECT with the subject
+                           <%= f.cktext_area :body, :class => 'span12', :style => 'height:150px;', :value => get_header(f.object.body), :cols => 40, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
+                           <span class="help-block">Change filed_name give the #Ffield name,  replace SUBJECT with the subject
                           </span>
                         </div>
                      </div>
@@ -115,7 +128,7 @@
                   <div class="span12 ">
                      <div class="control-group">
                         <label class="control-label">Horizontal Table for your mail</label>
-                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #{filed_name}.
+                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #Ffiled_name}.
                         <div class="controls">
                         <%= f.fields_for :emailer_horizontals do |builder| %>
                           <%= builder.text_field :top, :placeholder => 'Text....' %>
@@ -132,7 +145,7 @@
                   <div class="span12 ">
                      <div class="control-group">
                         <label class="control-label">Vertical Table for your mail</label>
-                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #{filed_name}.
+                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #Ffiled_name}.
                          <br>
                          For Gray Backround <b><%= "<gray>text or field_name</gray>"%></b>
                          <br>

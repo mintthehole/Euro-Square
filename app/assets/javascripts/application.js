@@ -5,3 +5,4 @@
 //= require_directory .
 //= require jquery_nested_form
 //= require active_scaffold
+//= require ckeditor/init

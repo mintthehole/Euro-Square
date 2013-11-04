@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @sales_call_entry.date %>
+</p>
+
+<p>
+  <b>Shipper name:</b>
+  <%= @sales_call_entry.shipper_name %>
+</p>
+
+<p>
+  <b>Pic:</b>
+  <%= @sales_call_entry.pic %>
+</p>
+
+<p>
+  <b>Point discussed:</b>
+  <%= @sales_call_entry.point_discussed %>
+</p>
+
+<p>
+  <b>My observation:</b>
+  <%= @sales_call_entry.my_observation %>
+</p>
+
+<p>
+  <b>Enquiry recieved:</b>
+  <%= @sales_call_entry.enquiry_recieved %>
+</p>
+
+<p>
+  <b>Escalation:</b>
+  <%= @sales_call_entry.escalation %>
+</p>
+
+
+<%= link_to 'Edit', edit_sales_call_entry_path(@sales_call_entry) %> |
+<%= link_to 'Back', sales_call_entries_path %>

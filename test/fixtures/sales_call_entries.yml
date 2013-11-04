@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-11-03
+  shipper_name: MyString
+  pic: MyString
+  point_discussed: MyString
+  my_observation: MyString
+  enquiry_recieved: false
+  escalation: false
+
+two:
+  date: 2013-11-03
+  shipper_name: MyString
+  pic: MyString
+  point_discussed: MyString
+  my_observation: MyString
+  enquiry_recieved: false
+  escalation: false

@@ -6,4 +6,11 @@ class BookingOrder < ActiveRecord::Base
   def get_header
   	magic_columns.order('id asc')
   end
+
+  def self.trigger_fields
+  	headers = BookingOrder.first.get_header
+	  	Emailer.pluck(:trigger_filed).each do ||
+
+  	end
+  end
 end

@@ -1,10 +1,8 @@
 class HomeController < ApplicationController
-	before_filter :authenticate_user!, :except => :index
+	before_filter :authenticate_user!
    # layout 'jbc'
 	def index
-		unless current_user
-			redirect_to "/users/sign_in"
- 		end
+
 	end
   def upload_epxorters
 
@@ -18,7 +16,7 @@ class HomeController < ApplicationController
   # end
 
   # def exporter_details
-  # 	@exporters = Shipper.all
+  # 	@exporters = Customer.all
   # end
 
   # def exporter_export_details
@@ -26,17 +24,17 @@ class HomeController < ApplicationController
   # end
 
   def upload_path
-  	if params[:upload_type] == Shipper::SELECT
+  	if params[:upload_type] == Customer::SELECT
 	  	redirect_to "/upload_epxorters", :notice => "Please Select the Upload type"
 	  elsif params[:attachment].blank?
 	  	redirect_to "/upload_epxorters?upload_type=#{params[:upload_type]}", :notice => "Please Select the file to Upload"
 	 	elsif File.extname(params[:attachment][:file].original_filename) != '.csv'
 	 		redirect_to "/upload_epxorters?upload_type=#{params[:upload_type]}", :notice => "Please Upload a CSV File"
-	  elsif params[:upload_type] == Shipper::EXPORTER
-	  	total,no = Shipper.upload_shipper(params[:attachment][:file].tempfile)
+	  elsif params[:upload_type] == Customer::EXPORTER
+	  	total,no = Customer.upload_customer(params[:attachment][:file].tempfile)
 	  	redirect_to "/upload_epxorters", :notice => "Sucessfully Uploaded, #{no} out of #{total}"
-	  elsif params[:upload_type] == Shipper::EXPORTER_REPORT
-	  	total,no = ShipperExportDetail.upload_shipper_export(params[:attachment][:file].tempfile)
+	  elsif params[:upload_type] == Customer::EXPORTER_REPORT
+	  	total,no = CustomerExportDetail.upload_Customer_export(params[:attachment][:file].tempfile)
 	  	redirect_to "/upload_epxorters", :notice => "Sucessfully Uploaded"
 	  end
   end
