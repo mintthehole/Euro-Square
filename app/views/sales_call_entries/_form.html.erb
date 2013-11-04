@@ -14,11 +14,11 @@
 
   <div class="field">
     <%= f.label :shipper_name %>
-    <%= f.text_field :shipper_name %>
+    <%= f.select :shipper_name, options_for_select(build_customer) %>
   </div>
   <div class="field">
     <%= f.label :pic %>
-    <%= f.text_area :pic, :style =>'height:108px;width:700px', :class =>'span8' %>
+    <%= f.text_field :pic %>
   </div>
   <div class="field">
     <%= f.label :date %>
@@ -35,10 +35,75 @@
   <div class="field row">
     <div class="span" style="margin-left:20px;">
       <div class="span2"><%= f.label :enquiry_recieved %></div>
-      <div class="span2"><%= f.check_box :enquiry_recieved %></div>
+      <div class="span2"><%= f.check_box :enquiry_recieved, :class => 'pollo' %></div>
     </div>
   </div>
+
   <br>
+  <div id='enquiry' style="margin-left:40px;display:none">
+     <div class='row'> <b> Enquiry Detials</b></div>
+      <div class='row'>
+        <div class="span5">
+          <div class="field">
+            <%= f.label :mode %>
+            <%= f.select :mode, options_for_select(SalesCallEntry::MODE, f.object.mode), :promot => "select" %>
+          </div>
+          <div class="field">
+              <%= f.label :pol %>
+              <%= f.text_field :pol %>
+          </div>
+        </div>
+        <div class="span5">
+          <div class="field">
+              <%= f.label :pod %>
+              <%= f.text_field :pod %>
+          </div>
+          <div class="field">
+              <%= f.label :cargo %>
+              <%= f.text_field :cargo %>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class="span5">
+          <div class="field">
+              <%= f.label :volume_idea %>
+              <%= f.text_field :volume_idea %>
+          </div>    
+          <div class="field">
+              <%= f.label :rate_indication %>
+              <%= f.text_field :rate_indication %>
+          </div>    
+        </div>
+        <div class="span5">
+          <div class="field">
+              <%= f.label :shipment_date %>
+              <%= f.date_select :shipment_date %>
+          </div>    
+ 
+        </div>
+      </div>
+      <div class='row'>
+        <div class="span5">
+          <div class="field">
+              <%= f.label :competitor %>
+              <%= f.text_field :competitor %>
+          </div>    
+          <div class="field">
+              <%= f.label :special_instruction %>
+              <%= f.text_field :special_instruction %>
+          </div> 
+        </div>
+        <div class="span5">
+            <div class="field">
+                <%= f.label :possibility_to_secure %>
+                <%= f.text_field :possibility_to_secure %>
+            </div>                
+        </div>
+        </div>
+      </div>
+  </div>
+    <br/>
   <div class="field row">
      <div class="span" style="margin-left:20px;">
       <div class="span2"><%= f.label :escalation %></div>
@@ -48,6 +113,21 @@
   <br>
   <div class="actions">
   <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.submit "Create Sales Entry", :class => 'btn btn-primary' %>
+    <%= f.submit "Save", :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+  jQuery(document).ready(function() {       
+   $('.pollo').live('click',function(event){
+    if ($(this).is(':checked'))
+    {
+      $('#enquiry').show();
+    }
+    else
+    {
+      $('#enquiry').hide(); 
+    }
+   });
+  });
+</script>   

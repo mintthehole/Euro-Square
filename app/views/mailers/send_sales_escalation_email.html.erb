@@ -1,22 +1,9 @@
-<table class='table'>
-  <tr>
-    <th>Date</th>
-    <th>Shipper name</th>
-    <th>Pic</th>
-    <th>Point discussed</th>
-    <th>My observation</th>
-    <th>Enquiry recieved</th>
-    <th>Escalation</th>
-  </tr>
-
-
-  <tr>
-    <td><%= @sales_entry.date %></td>
-    <td><%= @sales_entry.shipper_name %></td>
-    <td><%= @sales_entry.pic %></td>
-    <td><%= @sales_entry.point_discussed %></td>
-    <td><%= @sales_entry.my_observation %></td>
-    <td><%= @sales_entry.enquiry_recieved %></td>
-    <td><%= @sales_entry.escalation %></td>
-  </tr>
+<table class='table table-bordered table-hover'>
+  
+    <% SalesCallEntry.column_names.each do |cn| %>
+      <tr>
+        <td><%= cn.titlecase %></td>
+        <td><%= @sales_call_entry[cn]%></td>
+      </tr>
+    <% end %>
 </table>

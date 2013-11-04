@@ -1,8 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+
+
+<table class='table table-bordered table-hover'>
+  
+    <% SalesCallEntry.column_names.each do |cn| %>
+      <tr>
+        <td><%= cn.titlecase %></td>
+        <td><%= @sales_call_entry[cn]%></td>
+      </tr>
+    <% end %>
+</table>
+
+<!-- 
 <p>
   <b>Date:</b>
-  <%= @sales_call_entry.date %>
+  <%= @sales_call_entry.date.strftime('%d - %b - %Y') %>
 </p>
 
 <p>
@@ -35,6 +48,6 @@
   <%= @sales_call_entry.escalation %>
 </p>
 
+ -->
 
-<%= link_to 'Edit', edit_sales_call_entry_path(@sales_call_entry) %> |
 <%= link_to 'Back', sales_call_entries_path %>
