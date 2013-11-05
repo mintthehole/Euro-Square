@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104194323) do
+ActiveRecord::Schema.define(:version => 20131105165123) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -94,9 +94,10 @@ ActiveRecord::Schema.define(:version => 20131104194323) do
     t.string   "contact_person"
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "sales_person"
+    t.boolean  "approved",       :default => true
   end
 
   create_table "email_tables", :force => true do |t|
@@ -323,17 +324,7 @@ ActiveRecord::Schema.define(:version => 20131104194323) do
     t.datetime "updated_at",                  :null => false
   end
 
-  create_table "sales_call_entries", :force => true do |t|
-    t.date     "date"
-    t.string   "shipper_name"
-    t.text     "pic"
-    t.text     "point_discussed"
-    t.text     "my_observation"
-    t.boolean  "enquiry_recieved"
-    t.boolean  "escalation"
-    t.integer  "user_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+  create_table "sales_call_enquiries", :force => true do |t|
     t.string   "mode"
     t.string   "pol"
     t.string   "pod"
@@ -344,6 +335,29 @@ ActiveRecord::Schema.define(:version => 20131104194323) do
     t.string   "possibility_to_secure"
     t.string   "competitor"
     t.string   "special_instruction"
+    t.integer  "sales_call_entry_id"
+    t.integer  "user_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.date     "date"
+    t.string   "shipper_name"
+    t.string   "pic"
+  end
+
+  add_index "sales_call_enquiries", ["sales_call_entry_id"], :name => "index_sales_call_enquiries_on_sales_call_entry_id"
+  add_index "sales_call_enquiries", ["user_id"], :name => "index_sales_call_enquiries_on_user_id"
+
+  create_table "sales_call_entries", :force => true do |t|
+    t.date     "date"
+    t.string   "shipper_name"
+    t.text     "pic"
+    t.text     "point_discussed"
+    t.text     "my_observation"
+    t.boolean  "enquiry_recieved"
+    t.boolean  "escalation"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "shipper_export_details", :force => true do |t|

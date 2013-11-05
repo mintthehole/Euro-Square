@@ -1,0 +1,84 @@
+<style type="text/css">
+  .label1{
+    text-align:right;
+    margin-right: 10px;
+  }
+</style>
+
+<%= form_for(@sales_call_enquiry) do |f| %>
+  <% if @sales_call_enquiry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sales_call_enquiry.errors.count, "error") %> prohibited this sales_call_enquiry from being saved:</h2>
+
+      <ul>
+      <% @sales_call_enquiry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row well'>
+    <div class = 'span5'>
+      <div class="field">
+        <%= f.label :shipper_name, :class => 'span3 label1' %>
+        <%= f.select :shipper_name, options_for_select(build_customer) %>
+      </div>
+      <div class="field">
+        <%= f.label :pic, :class => 'span3 label1' %>
+        <%= f.text_field :pic %>
+      </div>
+      <div class="field">
+        <%= f.label :date, :class => 'span3 label1' %>
+        <%= f.text_field :date, :value => Time.zone.today.strftime('%m/%d/%Y'), :class => 'datepicker' %>
+      </div>
+      <div class="field">
+        <%= f.label :mode, :class => 'span3 label1'%>
+        <%= f.select :mode, options_for_select(SalesCallEnquiry::MODES), :include_blank => 'Please Select' %>
+      </div>
+      <div class="field">
+        <%= f.label :pol,:class => 'span3 label1' %>
+        <%= f.text_field :pol %>
+      </div>
+      <div class="field">
+        <%= f.label :pod,:class => 'span3 label1' %>
+        <%= f.text_field :pod %>
+      </div>
+      <div class="field">
+        <%= f.label :cargo,:class => 'span3 label1' %>
+        <%= f.text_field :cargo %>
+      </div>
+    </div>
+    <div class = 'span5'>
+      <div class="field">
+        <%= f.label :volume_idea,:class => 'span3 label1' %>
+        <%= f.text_field :volume_idea %>
+      </div>
+      <div class="field">
+        <%= f.label :rate_indication,:class => 'span3 label1' %>
+        <%= f.text_field :rate_indication %>
+      </div>
+      <div class="field">
+        <%= f.label :shipment_date,:class => 'span3 label1' %>
+        <%= f.text_field :shipment_date,  :class => 'datepicker' %>
+      </div>
+      <div class="field">
+        <%= f.label :possibility_to_secure,:class => 'span3 label1' %>
+        <%= f.text_field :possibility_to_secure %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :competitor,:class => 'span3 label1' %>
+        <%= f.text_field :competitor %>
+      </div>
+      <div class="field">
+        <%= f.label :special_instruction,:class => 'span3 label1' %>
+        <%= f.text_field :special_instruction %>
+      </div>
+      <br>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit "Save", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  mode: MyString
+  pol: MyString
+  pod: MyString
+  cargo: MyString
+  volume_idea: MyString
+  rate_indication: MyString
+  shipment_date: 2013-11-05
+  possibility_to_secure: MyString
+  competitor: MyString
+  special_instruction: MyString
+  sales_call_entry: 
+  user: 
+
+two:
+  mode: MyString
+  pol: MyString
+  pod: MyString
+  cargo: MyString
+  volume_idea: MyString
+  rate_indication: MyString
+  shipment_date: 2013-11-05
+  possibility_to_secure: MyString
+  competitor: MyString
+  special_instruction: MyString
+  sales_call_entry: 
+  user: 

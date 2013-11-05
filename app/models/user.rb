@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :user_role,:name
   has_many :sales_call_entries
+  has_many :sales_call_enquiries
   ROLES = ["Sales","Admin","Operation"]
 
   def sales?

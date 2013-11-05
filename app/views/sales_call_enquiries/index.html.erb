@@ -1,0 +1,36 @@
+<h3>Listing Sales Call Enquiry</h3>
+
+<table class='table table-striped table-bordered table-advance table-hover'>
+  <tr>
+    <th>Mode</th>
+    <th>Pol</th>
+    <th>Pod</th>
+    <th>Cargo</th>
+    <th>Volume idea</th>
+    <th>Rate indication</th>
+    <th>Shipment date</th>
+    <th>Possibility to secure</th>
+    <th>Competitor</th>
+    <th>Special instruction</th>
+
+  </tr>
+
+<% @sales_call_enquiries.each do |sales_call_enquiry| %>
+  <tr>
+    <td><%= sales_call_enquiry.mode %></td>
+    <td><%= sales_call_enquiry.pol %></td>
+    <td><%= sales_call_enquiry.pod %></td>
+    <td><%= sales_call_enquiry.cargo %></td>
+    <td><%= sales_call_enquiry.volume_idea %></td>
+    <td><%= sales_call_enquiry.rate_indication %></td>
+    <td><%= sales_call_enquiry.shipment_date %></td>
+    <td><%= sales_call_enquiry.possibility_to_secure %></td>
+    <td><%= sales_call_enquiry.competitor %></td>
+    <td><%= sales_call_enquiry.special_instruction %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sales call enquiry', new_sales_call_enquiry_path, :class => 'btn btn-large btn-info', :style =>'color:white' %>

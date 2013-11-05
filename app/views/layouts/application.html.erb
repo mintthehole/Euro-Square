@@ -20,7 +20,7 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery-1.8.3.min" %>
   <%= javascript_include_tag 'http://code.jquery.com/jquery-1.8.1.js'%>
-  
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <%= csrf_meta_tags %>
 
 </head>
@@ -118,8 +118,22 @@
 							<i class="icon-th-list"></i> 
 							<span class="title">Sales Call Entries</span>
 						<% end -%>
-					</li>												
+					</li>				
+					<li class="<%= active_class(sales_call_enquiries_path) %>">
+						<%= link_to sales_call_enquiries_path do -%>
+							<i class="icon-bar-chart"></i> 
+							<span class="title">Sales Call Enquiry</span>
+						<% end -%>
+					</li>								
 				<% end %>		
+				<% if current_user.sales? %>
+					<li class="<%= active_class(new_customer_path) %>">
+						<%= link_to new_customer_path do -%>
+							<i class="icon-bar-chart"></i> 
+							<span class="title">New Customer</span>
+						<% end -%>
+					</li>	
+				<% end %>
 <!-- 				<li class="<%= active_class('exporter_export_details') %>">
 					<%= link_to '/exporter_export_details' do -%>
 						<i class="icon-th-list"></i> 
@@ -160,6 +174,6 @@
 			<span class="go-top"><i class="icon-arrow-up"></i></span>
 		</div>
 	</div>							
-
+<script type="text/javascript">$( ".datepicker" ).datepicker();</script>
 </body>
 </html>

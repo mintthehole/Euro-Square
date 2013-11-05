@@ -1,6 +1,9 @@
 EuroExim::Application.routes.draw do
   
 
+  resources :sales_call_enquiries
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

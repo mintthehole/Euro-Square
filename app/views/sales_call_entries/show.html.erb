@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-
-
+<%= link_to 'Back to Sales Call Entries', sales_call_entries_path %>
+<br><br><br>
 <table class='table table-bordered table-hover'>
-  
-    <% SalesCallEntry.column_names.each do |cn| %>
+    <% SalesCallEntry.get_column_names.each do |cn| %>
       <tr>
         <td><%= cn.titlecase %></td>
         <td><%= @sales_call_entry[cn]%></td>
       </tr>
+    <% end %>
+    <% if @sales_call_entry.enquiry_recieved && @sales_call_entry.sales_call_enquiry %>
+      <% @sales_call_enq = @sales_call_entry.sales_call_enquiry %>
+      <% SalesCallEnquiry.get_column_names.each do |cn| %>
+        <tr>
+          <td><%= cn.titlecase %></td>
+          <td><%= @sales_call_enq[cn]%></td>
+        </tr>
+      <% end %>
     <% end %>
 </table>
 
