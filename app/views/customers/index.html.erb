@@ -1,5 +1,6 @@
 <h1>Listing customers</h1>
 <% if current_user.admin? %>
+    Total : <%= @customers.count %>
     <table class="table table-striped table-bordered table-advance table-hover">
       <tr>
         <th>Customer Name</th>
@@ -10,7 +11,7 @@
         <th>City</th>
         <th></th>
         <th></th>
-        <th></th>
+
       </tr>
 
     <% @customers.each do |customer| %>
@@ -23,7 +24,6 @@
         <td><%= customer.city %></td>
         <td><%= link_to 'Show', customer %></td>
         <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </table>

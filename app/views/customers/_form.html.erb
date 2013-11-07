@@ -15,10 +15,7 @@
     <%= f.label :customer_name %>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :sales_person %>
-    <%= f.text_field :sales_person %>
-  </div>
+
   <div class="field">
     <%= f.label :city %>
     <%= f.text_field :city %>
@@ -35,6 +32,10 @@
   <div class="field">
     <%= f.label :mobile %>
     <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :sales_person %>
+    <%= f.text_field :sales_person %>
   </div>
   <div class="actions">
     <% if current_user.sales? %>
