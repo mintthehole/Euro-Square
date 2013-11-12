@@ -29,7 +29,7 @@
       </div>
       <div class="field">
         <%= f.label :date, :class => 'span3 label1' %>
-        <%= f.text_field :date, :value => Time.zone.today.strftime('%m/%d/%Y'), :class => 'datepicker' %>
+        <%= f.text_field :date, :value => Time.zone.today.strftime('%d-%m-%Y'), :class => 'datepicker' %>
       </div>
       <div class="field">
         <%= f.label :mode, :class => 'span3 label1'%>
