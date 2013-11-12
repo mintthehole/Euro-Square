@@ -9,6 +9,7 @@ class SalesCallEntry < ActiveRecord::Base
   after_create :send_email
   belongs_to :user
   has_one :sales_call_enquiry
+  scope :user, order('user_id')
   def send_email
   	if escalation && !enquiry_recieved
   		EuroEximMailer.send_sales_escalation_email(self).deliver
