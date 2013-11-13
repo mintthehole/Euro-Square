@@ -8,6 +8,12 @@ class SalesCallEnquiry < ActiveRecord::Base
 		EuroEximMailer.send_sales_enquiry_email(self).deliver
   end
 
+  before_save :convert_date
+
+  def convert_date
+    self.date = self.date.to_date
+  end
+
   def self.get_column_names
   	d = ['id','created_at','updated_at','user_id']
   	a = self.column_names
