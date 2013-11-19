@@ -9,4 +9,24 @@ ActiveAdmin.register SalesCallEnquiry do
     end
     actions
   end
+
+  csv do
+    column :date
+    column("Sales Person") {|sc| sc.user.name }
+    column :shipper_name
+    column :pic
+    column :mode
+    column :volume_idea
+    column :pol
+    column :pod
+    column :cargo
+    column :rate_indication
+    column :shipment_date
+    column :possibility_to_secure
+    column :competitor
+    column :special_instruction
+  end
 end
+
+
+

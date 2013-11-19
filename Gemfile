@@ -19,6 +19,7 @@ gem 'nested_form'
 gem 'will_paginate',:git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 gem 'active_scaffold', '3.3.3'
 gem 'jquery-rails'
+gem 'delayed_job_active_record'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

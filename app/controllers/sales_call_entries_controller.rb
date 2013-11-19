@@ -2,7 +2,7 @@ class SalesCallEntriesController < InheritedResources::Base
 	before_filter :authenticate_user!
 
 	def index
-		@sales_call_entries = current_user.sales_call_entries.order('id desc')
+		@sales_call_entries = current_user.sales_call_entries.order('id desc').paginate(:per_page => 20, :page => params[:page])
 	end
 
 	def create

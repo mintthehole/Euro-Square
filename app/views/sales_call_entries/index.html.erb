@@ -1,5 +1,11 @@
 <h3>Listing Sales Call Entries</h3>
 
+<%= link_to 'New Sales call entry', new_sales_call_entry_path, :class => 'btn btn-large btn-info pull-right', :style =>'color:white' %>
+<br/>
+<br/>
+<b>
+<%= will_paginate(@sales_call_entries) %>
+</b>
 <table class='table table-striped table-bordered table-advance table-hover'>
 <thead>
   <tr>
@@ -33,4 +39,3 @@
 
 <br />
 
-<%= link_to 'New Sales call entry', new_sales_call_entry_path, :class => 'btn btn-large btn-info', :style =>'color:white' %>
