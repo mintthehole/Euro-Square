@@ -6,7 +6,8 @@ class SalesCallEnquiry < ActiveRecord::Base
   MODES = ["LCL Export","LCL Import","FCL Export","FCL Import","Air Export","Air Import"]
   
   def send_email
-    Delayed::Job.enqueue SalesCallEnquiryEmailJob.new(self.id)
+    EuroEximMailer.send_sales_enquiry_email(self).deliver
+    # Delayed::Job.enqueue SalesCallEnquiryEmailJob.new(self.id)
   end
 
   before_save :convert_date
