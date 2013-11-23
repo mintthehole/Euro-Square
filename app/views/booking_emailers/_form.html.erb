@@ -1,0 +1,33 @@
+<%= form_for(@booking_emailer) do |f| %>
+  <% if @booking_emailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking_emailer.errors.count, "error") %> prohibited this booking_emailer from being saved:</h2>
+
+      <ul>
+      <% @booking_emailer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :booking %><br />
+    <%= f.text_field :booking %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :emailer %><br />
+    <%= f.text_field :emailer %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

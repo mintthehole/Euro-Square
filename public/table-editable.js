@@ -53,6 +53,10 @@ var TableEditable = function () {
                 $.ajax({
                    type: "POST",
                    data: {values:booking},
+                   headers: {
+                         'X-Transaction': 'POST Example',
+                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                   },
                    url: "/add_booking?id="+id,
                    success: function(data){
                         oTable.fnUpdate(test[0].value, nRow, 0, false);

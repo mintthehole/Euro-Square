@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Booking:</b>
+  <%= @booking_emailer.booking %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @booking_emailer.user %>
+</p>
+
+<p>
+  <b>Emailer:</b>
+  <%= @booking_emailer.emailer %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @booking_emailer.state %>
+</p>
+
+
+<%= link_to 'Edit', edit_booking_emailer_path(@booking_emailer) %> |
+<%= link_to 'Back', booking_emailers_path %>

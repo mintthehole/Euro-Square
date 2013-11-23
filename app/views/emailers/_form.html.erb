@@ -118,7 +118,7 @@
                         <label class="control-label">Text</label>
                         <div class="controls">
                            <%= f.cktext_area :body, :class => 'span12', :style => 'height:150px;', :value => get_header(f.object.body), :cols => 40, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
-                           <span class="help-block">Change filed_name give the #Ffield name,  replace SUBJECT with the subject
+                           <span class="help-block">replace SUBJECT with the subject
                           </span>
                         </div>
                      </div>
@@ -128,7 +128,7 @@
                   <div class="span12 ">
                      <div class="control-group">
                         <label class="control-label">Horizontal Table for your mail</label>
-                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #Ffiled_name}.
+                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as %{field_name}.
                         <div class="controls">
                         <%= f.fields_for :emailer_horizontals do |builder| %>
                           <%= builder.text_field :top, :placeholder => 'Text....' %>
@@ -145,13 +145,13 @@
                   <div class="span12 ">
                      <div class="control-group">
                         <label class="control-label">Vertical Table for your mail</label>
-                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as #Ffiled_name}.
+                         <span class="help-block"> Standartd text - Just type, To get Data from Report get the filed name and type as %{field_name}.
                          <br>
-                         For Gray Backround <b><%= "<gray>text or field_name</gray>"%></b>
+                         Shipper Name Row is added as default
                          <br>
-                         For green background <b><%= "<green>text or field_name</green>"%></b>
+                         For Brown Backround <b><%= "<brown>text or field_name</brown>"%></b>
                          <br>
-                         To highlight a field <b><%= "<highlight>text or field_name</highlight>"%></b>
+                         To highlight a field <b><%= "<b>text or field_name</b>"%></b>
                           </span>
                         <div class="controls">
                         <%= f.fields_for :email_tables do |builder| %>
@@ -175,7 +175,7 @@
                      <div class="control-group">
                         <label class="control-label">Text</label>
                         <div class="controls">
-                           <%= f.text_area :footer, :class => 'span12', :style => 'height:100px;', :placeholder => 'Footer' %>
+                          <%= f.cktext_area :footer, :class => 'span12', :style => 'height:150px;', :value => get_footer(f.object.footer), :cols => 40, :ckeditor => {:uiColor => "#AADC6E", :toolbar => "mini"} %>
                         </div>
                      </div>
                   </div>

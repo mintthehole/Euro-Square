@@ -16,12 +16,15 @@ module ApplicationHelper
 	end
 	def get_header(val)
 		if val.blank?
-			return '<div class="first">
-  <p>Dear #{filed_name},</p>
-  <div class="frst">Good day form EURO EXIM. Thanks a lot for your support.We have given below our<b> SUBJECT</b>  for your shipment, Details as follows:</div>
-</div>
-<div class="secd">Current Mile Stone</div>
-'
+			return '<p><span style="font-family:calibri,sans-serif; font-size:11.0pt">Dear %{customer_name} , </span></p>				<p><span style="font-family:calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Good day form EURO EXIM. &nbsp; &nbsp; Thanks a lot for your support. We have given below our <strong><span style="color:#215868; font-family:calibri,sans-serif">&ldquo;&nbsp;SUBJECT&rdquo;</span></strong> for your shipment, Details as follows:</span></p>				<p>&nbsp;</p><p><strong><u><span style="font-family:calibri,sans-serif; font-size:11.0pt">Current Mile Stone Update:</span></u></strong></p>'
+		else
+			return val
+		end
+	end
+
+	def get_footer(val)
+		if val.blank?
+			return "<p>Looking forward to a long and strong relationship with you in the business</p><p>Whileour being true to our motto in <strong>Managing your cargo with care!</strong></p><p>&nbsp;</p><p><em>WarmRegards,</em><br /><span style='color:teal; font-family:monotype corsiva; font-size:18.0pt'>%{user_name}</span><br />Executive Customer Service</p><p><img alt='Footer Image' src='https://www.filepicker.io/api/file/nm2SN2RpSvmwS351HSyO' style='height:51px; width:250px' /><br /><em><span style='font-family:verdana,sans-serif; font-size:10.0pt'>__________________________________________</span></em></p><p>Tel&nbsp;&nbsp;&nbsp;&nbsp;:0091 421-2471882/2486833<br />Fax&nbsp;&nbsp;&nbsp;&nbsp; :0091 421-2471882&nbsp;<br />HP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :0091 99944 49506<br />Email&nbsp; :&nbsp;<a href='mailto:import@euroeximindia.com' target='_blank'>import@euroeximindia.com</a><br />E-Visit: <span style='color:#002060'><a href='http://www.euroeximindia.com/' target='_blank'><span style='color:black'>www.euroeximindia.com</span></a></span></p><p>E<span style='color:gray'>=</span><span style='color:navy'>MC</span><sup>2</sup></p><p>EURO EXIM = ManagingCargo with Care...</p><p>--------------------------------------------------------------------------------</p><p><strong>EURO EXIM </strong>has received the <strong>Award of Excellence-2012</strong> at Global Annual Conference, Singapore presented by<strong> </strong>WWPCCalifornia, USA<strong>.</strong></p>"		
 		else
 			return val
 		end

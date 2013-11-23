@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119171336) do
+ActiveRecord::Schema.define(:version => 20131123093756) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(:version => 20131119171336) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "booking_emailers", :force => true do |t|
+    t.integer  "booking_id"
+    t.integer  "user_id"
+    t.integer  "emailer_id"
+    t.string   "state"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "booking_emailers", ["booking_id"], :name => "index_booking_emailers_on_booking_id"
+  add_index "booking_emailers", ["emailer_id"], :name => "index_booking_emailers_on_emailer_id"
+  add_index "booking_emailers", ["user_id"], :name => "index_booking_emailers_on_user_id"
+
   create_table "booking_orders", :force => true do |t|
     t.string   "business_name"
     t.string   "email"
@@ -61,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20131119171336) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "booking_order_id"
+    t.integer  "user_id"
   end
 
   create_table "cities", :force => true do |t|

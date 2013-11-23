@@ -168,6 +168,10 @@ table td{
           <div align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></div>
           </td>
         </tr>
+         <tr>
+          <td width='216' height = '50' class="rw2 td1">Shiper name</td>
+          <td width="314" class="rw3 td2">Name</td>
+        </tr>
         <% @emailer.email_tables.each do |et| %>
           <tr>
            <td width='216' height = '50' class="rw2 td1"><%= et.left.titlecase %></td>
@@ -179,7 +183,7 @@ table td{
   <% end %>
   <br/>
   <div class='frst'>
-    <%= footer('field_name','field_name') %>
+    <%= @emailer.footer.html_safe %>
   </div>
 </div>
 <%= link_to 'Edit', edit_emailer_path(@emailer) %> |

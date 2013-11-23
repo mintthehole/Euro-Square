@@ -4,11 +4,19 @@ class EuroEximMailer < ActionMailer::Base
   default :reply_to => 'johnpollo88@gmail.com'
   default :template_path => 'mailers'
 
-	def send_emailer(emailer,booking)
+	def send_emailer(emailer,booking,user,be)
 		@emailer = emailer
 		@booking = booking
-		mail(:to => 'johnpollo88@gmail.com', :subject => @emailer.subject,
+		@be = be
+		mail(:to => user.email, :subject => @emailer.subject,
         :cc => 'js@euroeximindia.com')
+	end
+
+	def send_email_to_customer(booking,user,emailer)
+		@emailer = emailer
+		@booking = booking
+		mail(:to => booking.email, :subject => @emailer.subject,
+	      :cc => ['js@euroeximindia.com',user.email])
 	end
 
 	def send_sales_escalation_email(sales_entry)
