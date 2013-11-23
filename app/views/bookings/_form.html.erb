@@ -17,7 +17,7 @@
         <div class="field">
           <%= f.label header.pretty_name %>
           <% if header.name == 'customer_name' %>
-            <%= f.select header.name, options_for_select(build_customer(true))%>
+            <%= f.select header.name, options_for_select(build_customer(true)), {} ,:class=>"chosen-select"%>
           <% else %>
             <% class1 = '' %>
             <% if header.datatype == "date" %>

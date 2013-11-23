@@ -16,7 +16,7 @@
   <div class = 'span5'>
     <div class="field">
       <%= f.label :shipper_name %>
-      <%= f.select :shipper_name, options_for_select(build_customer) %>
+      <%= f.select :shipper_name, options_for_select(build_customer), {} ,:class=>"chosen-select" %>
     </div>
     <div class="field">
       <%= f.label :pic %>
