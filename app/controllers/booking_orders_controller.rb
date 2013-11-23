@@ -16,7 +16,7 @@ class BookingOrdersController < ApplicationController
 
 	def send_email_to_customer
 		be = BookingEmailer.find_by_id(params[:id])
-		if be && be.state == BookingEmailer::SEND_FOR_CONF
+		if be && be.state == BookingEmailer::CONFIRMED
 			EuroEximMailer.send_email_to_customer(be.booking,be.user,be.emailer)
 			be.state = BookingEmailer::CONFIRMED
 			be.save

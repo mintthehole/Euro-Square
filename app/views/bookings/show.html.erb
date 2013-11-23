@@ -1,0 +1,38 @@
+<h3>
+	Booking Order Details
+	</h3>
+
+<%= link_to 'All Bookings', booking_orders_path, :class => 'btn btn-success' %>
+
+<%= link_to 'New Booking', new_booking_path,:class => 'btn btn-success' %>
+
+<%= link_to 'Edit this Booking', edit_booking_path(@booking),:class => 'btn btn-success' %>
+<br><br><br>
+<h4>
+ Mile Stone Details
+</h4>
+<table class='table table-bordered table-hover'>
+	<tr>
+		<td>Mile Stone</td>
+		<td>Emailer Status</td>
+		<td>Date</td>
+	</tr>
+
+	<% @booking.booking_emailers.each do |be| %>
+		<tr>
+			<td><%= be.emailer.subject %></td>
+			<td><%= be.state %></td>
+			<td><%= be.updated_at.strftime('%d %b %Y') %></td>
+		</tr>
+	<% end %>
+</table>
+
+<table class='table table-bordered table-hover'>
+		<% @booking.customer_name #fix %>
+    <% @booking.booking_order.get_header.each do |header| %>
+      <tr>
+        <td><%= header.pretty_name %></td>
+        <td><%= @booking[header.name] %></td>
+      </tr>
+    <% end %>
+</table>

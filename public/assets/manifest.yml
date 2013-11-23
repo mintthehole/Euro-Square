@@ -613,12 +613,14 @@ social/twitter.v2.png: social/twitter.v2-4b1ccdfffa59f6a9e692e702f8d5edce.png
 social/twitter/index.v2.png: social/twitter.v2-4b1ccdfffa59f6a9e692e702f8d5edce.png
 social/youtube.png: social/youtube-c85775ddcb9dd0dfadc2b687019843d0.png
 social/youtube/index.png: social/youtube-c85775ddcb9dd0dfadc2b687019843d0.png
+soft_logo.jpg: soft_logo-65dbfa543ce5004e6a9547c566af0103.jpg
+soft_logo/index.jpg: soft_logo-65dbfa543ce5004e6a9547c566af0103.jpg
 sprite.png: sprite-24a37adc5435cd3cbd6e20202b5dc7ce.png
 sprite/index.png: sprite-24a37adc5435cd3cbd6e20202b5dc7ce.png
 active_admin.js: active_admin-59de761899c93312f9c9bdef635f9c70.js
 active_admin/index.js: active_admin-59de761899c93312f9c9bdef635f9c70.js
-application.js: application-045514e5938281fc3292c8b9ccc96690.js
-application/index.js: application-045514e5938281fc3292c8b9ccc96690.js
+application.js: application-0b43b0b87b7f8f5432ae01cf08e5dadd.js
+application/index.js: application-0b43b0b87b7f8f5432ae01cf08e5dadd.js
 active_admin.css: active_admin-f6eab3903eabe26e294bb5e070593cb6.css
 active_admin/index.css: active_admin-f6eab3903eabe26e294bb5e070593cb6.css
 application.css: application-aa7f53b10e7c04e79d19a3e68f2f3fc3.css

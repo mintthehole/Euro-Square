@@ -8,19 +8,11 @@
   <div class="widget-body">
     <div class="clearfix margin-bottom-10">
       <div class="btn-group">
-         <button id="sample_editable_1_new" class="btn btn-success", total = "<%= @headers.count %>">
+         <a href=<%= new_booking_path %> class="btn btn-success", total = "<%= @headers.count %>">
          Add New <i class="icon-plus"></i>
-         </button>
+         </a>
       </div>
-      <div class="btn-group pull-right">
-         <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
-         </button>
-         <ul class="dropdown-menu">
-            <li><a href="#">Print</a></li>
-            <li><a href="#">Save as PDF</a></li>
-            <li><a href="#">Export to Excel</a></li>
-         </ul>
-      </div>
+
     </div>
     
     
@@ -38,10 +30,8 @@
 		          </th>
 		        <% end %>
 	          <th aria-label="Edit: activate to sort column ascending" style="width: 87px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
-	          Edit
 	          </th>
 	          <th aria-label="Delete: activate to sort column ascending" style="width: 120px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
-	          Delete
 	          </th>
 	        </tr>
 	      </thead>
@@ -58,8 +48,8 @@
                 	<%= order[head.to_s] || " " %>
                 </td>
               <% end %>
-                <td class=" "><a class="edit" href="javascript:;">Edit</a></td>
-                <td class=" "><a class="delete" href="javascript:;">Delete</a></td>
+                <td class=" "><%= link_to 'Edit', edit_booking_path(order) %></td>
+                <td class=" "><%= link_to 'Show', booking_path(order) %></td>
 
          		</tr>
          	<% end %>	
