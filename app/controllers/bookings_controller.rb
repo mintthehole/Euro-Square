@@ -34,7 +34,9 @@ class BookingsController < ApplicationController
   		end
   	end
   	@booking.user_id = current_user.id
-  	@booking.email = Customer.find_by_name(@booking.customer_name).try(:email)
+    cus = Customer.find_by_name(@booking.customer_name)
+  	@booking.email = cus.try(:email)
+    @booking.customer_id = cus.try(:id)
   	saved = @booking.save
   	if saved
   		Emailer.all.each do |emailer|

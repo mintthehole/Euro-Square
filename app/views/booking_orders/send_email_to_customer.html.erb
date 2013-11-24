@@ -1,3 +1,8 @@
-<b>
+<h3>
+
 <%= @msg %>
-</b>
+</h3>
+<hr>
+<% if @booking %>
+	<%= render :partial => 'shared/booking_show' %>
+<% end %>

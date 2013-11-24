@@ -16,7 +16,7 @@ module ApplicationHelper
 	end
 	def get_header(val)
 		if val.blank?
-			return '<p><span style="font-family:calibri,sans-serif; font-size:11.0pt">Dear %{customer_name} , </span></p>				<p><span style="font-family:calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Good day form EURO EXIM. &nbsp; &nbsp; Thanks a lot for your support. We have given below our <strong><span style="color:#215868; font-family:calibri,sans-serif">&ldquo;&nbsp;SUBJECT&rdquo;</span></strong> for your shipment, Details as follows:</span></p>				<p>&nbsp;</p><p><strong><u><span style="font-family:calibri,sans-serif; font-size:11.0pt">Current Mile Stone Update:</span></u></strong></p>'
+			return '<p><span style="font-family:calibri,sans-serif; font-size:11.0pt">Dear %{customer_name} , </span></p>				<p><span style="font-family:calibri,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Good day form EURO EXIM. &nbsp; &nbsp; Thanks a lot for your support. We have given below our <strong><span style="color:#215868; font-family:calibri,sans-serif">&ldquo;&nbsp;%{subject}&rdquo;</span></strong> for your shipment, Details as follows:</span></p>				<p>&nbsp;</p><p><strong><u><span style="font-family:calibri,sans-serif; font-size:11.0pt">Current Mile Stone Update:</span></u></strong></p>'
 		else
 			return val
 		end

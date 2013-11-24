@@ -56,6 +56,7 @@ module EuroExim
     config.active_record.whitelist_attributes = false
     config.filepicker_rails.api_key = "AD75HNxFYSg2b3df3cXo5z"
     # Enable the asset pipeline
+    config.assets.precompile += Ckeditor.assets
     config.assets.enabled = true
     config.to_prepare do
         Devise::SessionsController.layout "devise"

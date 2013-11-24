@@ -11,7 +11,7 @@
           <!-- BEGIN FORM-->
           <form action="#" class="form-horizontal">
             <div class='pull-right'>
-              <b><%= link_to 'Data Field Names', edit_booking_order_path(BookingOrder.first), :target =>'_blank' %></b>
+              <b><%= link_to 'Field Names', edit_booking_order_path(BookingOrder.first), :target =>'_blank' %></b>
             </div>
              <h3 class="form-section">Basic Info</h3>
               <div style="margin-left:20px;">
@@ -57,14 +57,14 @@
                         <label class="control-label">Subject</label>
                         <div class="controls">
                           <%= f.text_field :subject, :class=>"span12", :placeholder=>"Subject of Email" %>
-                          <span class="help-block">Example EURO EXIM - Mother Loading Confirmaion for #Ffrom to #Fto. #Faddress  - from, to, address are the Column Names in the report. CHeck Column names?
+                          <span class="help-block">Example EURO EXIM - Mother Loading Confirmaion.
                           </span>
                         </div>
                      </div>
                   </div>
                </div>
                <!--/row-->        
-               <div class="row-fluid">
+<!--                <div class="row-fluid">
                   <div class="span6 ">
                      <div class="control-group">
                         <label class="control-label">CCs</label>
@@ -75,7 +75,6 @@
                         </div>
                      </div>
                   </div>
-                  <!--/span-->
                   <div class="span6 ">
                      <div class="control-group">
                         <label class="control-label">Bccs</label>
@@ -86,7 +85,7 @@
                         </div>
                      </div>
                   </div>
-                </div>
+                </div> -->
               <!--/row-->        
                <div class="row-fluid">
                   <div class="span12 ">

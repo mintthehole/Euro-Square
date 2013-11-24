@@ -16,16 +16,17 @@ class BookingOrdersController < ApplicationController
 
 	def send_email_to_customer
 		be = BookingEmailer.find_by_id(params[:id])
-		if be && be.state == BookingEmailer::CONFIRMED
-			EuroEximMailer.send_email_to_customer(be.booking,be.user,be.emailer)
+		if be && be.state == BookingEmailer::SEND_FOR_CONF
+			EuroEximMailer.send_email_to_customer(be.booking,be.user,be.emailer).deliver
 			be.state = BookingEmailer::CONFIRMED
 			be.save
-			@msg = "Mail has been Sucessfully Sent"
+			@msg = "Email has been Sucessfully Sent"
 		elsif be
-			@msg = 'Emailer is Already sent'
+			@msg = 'Email is Already sent'
 		else
-			@msg = 'No Emailer Found'
+			@msg = 'No Email Found'
 		end
+		@booking = be.try(:booking)
 	end
 
 	def booking

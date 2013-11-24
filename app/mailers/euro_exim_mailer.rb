@@ -16,7 +16,7 @@ class EuroEximMailer < ActionMailer::Base
 		@emailer = emailer
 		@booking = booking
 		mail(:to => booking.email, :subject => @emailer.subject,
-	      :cc => ['js@euroeximindia.com',user.email])
+	      :bcc => ['js@euroeximindia.com',user.email])
 	end
 
 	def send_sales_escalation_email(sales_entry)
