@@ -10,7 +10,7 @@ class EuroEximMailer < ActionMailer::Base
 		@be = be
 		@hash =  @booking.build_hash_for_mailer(@emailer)
 		mail(:to => user.email, :subject => @emailer.subject % @hash,
-        :cc => 'js@euroeximindia.com')
+        :cc => 'js@euroeximindia.com,johnpollo88@gmail.com')
 	end
 
 	def send_email_to_customer(booking,user,emailer)
@@ -28,6 +28,6 @@ class EuroEximMailer < ActionMailer::Base
 
 	def send_sales_enquiry_email(sales_enquiry)
 		@sales_enquiry = sales_enquiry
-		mail(:to => ['selvamj@euroeximindia.com','crm@euroeximindia.com','ns@euroeximindia.com'], :subject =>"Sales Enquiry by #{@sales_enquiry.user.name} a/c #{@sales_enquiry.shipper_name}",:cc =>'johnpollo88@gmail.com')
+		mail(:to => ['selvamj@euroeximindia.com','crm@euroeximindia.com','ns@euroeximindia.com'], :subject =>"Sales Enquiry by #{@sales_enquiry.user.name} a/c #{@sales_enquiry.shipper_name}")
 	end
 end
