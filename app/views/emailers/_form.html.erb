@@ -1,4 +1,15 @@
 <%= filepicker_js_include_tag %>
+  <% if @emailer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@emailer.errors.count, "error") %> prohibited this Emailer from being saved:</h2>
+
+      <ul>
+      <% @emailer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <%= nested_form_for(@emailer) do |f| %>
  <div class="tab-pane " id="tab_2">
     <div class="widget">
