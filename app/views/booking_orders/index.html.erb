@@ -64,10 +64,12 @@
 </div>
    <script type="text/javascript" src="/jquery_004.js"></script>
    <script type="text/javascript" src="/DT_bootstrap.js"></script>
-   <script src="/table-editable.js"></script>    
-   <script>
-      jQuery(document).ready(function() {       
-         TableEditable.init();
-         $('#body').css('width',"<%= @headers.count * 310 %>");
-      });
-   </script>     
+   <script src="/table-editable.js"></script>   
+   <% if  @headers.count > 3 %> 
+	   <script>
+	      jQuery(document).ready(function() {       
+	         TableEditable.init();
+	         $('#body').css('width',"<%= @headers.count * 310 %>");
+	      });
+	   </script>     
+   <% end %>
