@@ -1,4 +1,4 @@
-  <% hash = @booking.build_hash_for_mailer(@emailer) %>
+
   <p class="MsoNormal"><u></u>&nbsp;<u></u></p>
   
   <!-- Header Image -->
@@ -11,7 +11,7 @@
   </p>
   
   <!-- Body -->
-  <%= (@emailer.body % hash).html_safe %>
+  <%= (@emailer.body % @hash).html_safe %>
   
   <!-- Horizontal Tables -->
   <% if @emailer.emailer_horizontals.any? %>
@@ -23,7 +23,7 @@
             <td width="203" style="width:152.6pt;border:solid silver 1.0pt;background:#31849b;padding:0cm 0cm 0cm 0cm;">
             <p align="center" style="text-align:center" class="MsoNormal">
               <span style="color:white">
-                <%= eh.top % hash %>
+                <%= eh.top % @hash %>
                 <u></u><u></u>
               </span>
             </p>
@@ -34,7 +34,7 @@
           <% hors.each do |eh| %>
             <td width="203" style="width:152.6pt;border:solid silver 1.0pt;border-top:none;background:#ddd9c3;padding:0cm 0cm 0cm 0cm;">
             <p align="center" style="text-align:center" class="MsoNormal">
-            <%= eh.bottom % hash %>
+            <%= eh.bottom % @hash %>
             <span><u></u><u></u></span></p>
             </td>
           <% end %>
@@ -67,13 +67,13 @@
             <tr style="min-height:20.1pt">
               <td width="216" nowrap="" style="width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:32px;">
                 <p class="MsoNormal"><b><span style="color:white">
-                <%= et.left % hash %>
+                <%= et.left % @hash %>
                 </span></b><span style="color:white"><u></u><u></u></span>
                 </p>
               </td>
               <td width="314" nowrap="" style="width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:32px;">
               <p class="MsoNormal">
-                <%= (et.right % hash).html_safe %>
+                <%= (et.right % @hash).html_safe %>
               <u></u><u></u></p>
               </td>
             </tr>
@@ -83,5 +83,5 @@
     </table>
 
   <br/>
-  <%= (@emailer.footer % hash).html_safe %>
+  <%= (@emailer.footer % @hash).html_safe %>
 

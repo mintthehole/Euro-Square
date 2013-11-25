@@ -159,28 +159,30 @@ table td{
         </tr>
       </table>
     </div>
-    <div class="table1">
-      <table class="table2">
-        <tr>
-          <td  class="rw" rowspan=<%= 20%> >
-          <div align="center" style="text-align:center" class="MsoNormal"><b><span style="font-size:24.0pt;color:#215868">SHIPMENT</span></b><span style="font-size:24.0pt;color:#92cddc"> </span><span style="font-size:24.0pt;color:#1f497d"><u></u><u></u></span></div>
-          <br/>
-          <div align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></div>
-          </td>
-        </tr>
-         <tr>
-          <td width='216' height = '50' class="rw2 td1">Shiper name</td>
-          <td width="314" class="rw3 td2">Name</td>
-        </tr>
-        <% @emailer.email_tables.each do |et| %>
-          <tr>
-           <td width='216' height = '50' class="rw2 td1"><%= et.left.titlecase %></td>
-           <td width="314" class="rw3 td2"><%= et.right.titlecase %></td>
-         </tr>
-        <% end %>
-      </table>
-    </div>
+
   <% end %>
+  
+  <div class="table1">
+  <table class="table2">
+    <tr>
+      <td  class="rw" rowspan=<%= 20%> >
+      <div align="center" style="text-align:center" class="MsoNormal"><b><span style="font-size:24.0pt;color:#215868">SHIPMENT</span></b><span style="font-size:24.0pt;color:#92cddc"> </span><span style="font-size:24.0pt;color:#1f497d"><u></u><u></u></span></div>
+      <br/>
+      <div align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></div>
+      </td>
+    </tr>
+     <tr>
+      <td width='216' height = '50' class="rw2 td1">Shiper name</td>
+      <td width="314" class="rw3 td2">Name</td>
+    </tr>
+    <% @emailer.email_tables.each do |et| %>
+      <tr>
+       <td width='216' height = '50' class="rw2 td1"><%= et.left.titlecase %></td>
+       <td width="314" class="rw3 td2"><%= et.right.titlecase %></td>
+     </tr>
+    <% end %>
+  </table>
+    </div>
   <br/>
   <div class='frst'>
     <%= @emailer.footer.html_safe %>
