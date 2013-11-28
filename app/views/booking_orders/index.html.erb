@@ -31,7 +31,7 @@
 	        </th>
 		        <% @pretty_headers.each_with_index do |head,i| %>
 		          
-		          <th aria-label="Full Name: activate to sort column ascending" style="width:80px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
+		          <th aria-label="" style="width:80px;" aria-controls="" tabindex="0" role="columnheader" class="sorting">
 		          <%= head %>
 		          </th>
 		          
@@ -77,7 +77,7 @@
 	   <script>
 	      jQuery(document).ready(function() {       
 	         TableEditable.init();
-	         $('#body').css('width',"<%= @headers.count * 100 %>");
+	         $('#body').css('width',"<%= @headers.count * 250 %>");
 	      });
 	   </script>     
    <% end %>
