@@ -28,7 +28,8 @@ class BookingsController < ApplicationController
   	@booking.customer_name # need a fix
 
   	headers.each_with_index do |head,i|
-  		if @booking[head.name] != params[:booking][head.name]
+      
+  		if @booking[head.name] != params[:booking][head.name] && !params[:booking][head.name].blank?
   			changed << head.name
   			@booking[head.name] = params[:booking][head.name] 
   		end

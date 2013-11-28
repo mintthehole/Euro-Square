@@ -5,6 +5,7 @@ class Booking < ActiveRecord::Base
 	has_magic_columns :through => :booking_order
 	has_many :booking_emailers
 	validates :customer_id, :presence => true
+	
 	def build_hash_for_mailer(emailer)
 		self.customer_name #fix me
 		headers = booking_order.get_header.collect(&:name)

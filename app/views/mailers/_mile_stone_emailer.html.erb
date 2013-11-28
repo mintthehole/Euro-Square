@@ -18,7 +18,7 @@
     <table width="731" border="0" cellspacing="0" cellpadding="0" style="width:548.6pt;border-collapse:collapse;font-size:14px;">
       <tbody>
         <% hors = @emailer.emailer_horizontals %>
-        <tr style="height:32px">
+        <tr style="height:25px">
           <% hors.each do |eh| %>
             <td width="203" style="width:152.6pt;border:solid silver 1.0pt;background:#31849b;padding:0cm 0cm 0cm 0cm;">
             <p align="center" style="text-align:center" class="MsoNormal">
@@ -30,7 +30,7 @@
             </td>
           <% end %>
         </tr>
-        <tr style="height:32px">
+        <tr style="height:25px">
           <% hors.each do |eh| %>
             <td width="203" style="width:152.6pt;border:solid silver 1.0pt;border-top:none;background:#ddd9c3;padding:0cm 0cm 0cm 0cm;">
             <p align="center" style="text-align:center" class="MsoNormal">
@@ -53,10 +53,10 @@
             <p align="center" style="text-align:center" class="MsoNormal"><b><span style="font-size:24.0pt;color:#215868">SHIPMENT</span></b><span style="font-size:24.0pt;color:#92cddc"> </span><span style="font-size:24.0pt;color:#1f497d"><u></u><u></u></span></p>
             <p align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></p>
           </td>
-          <td width="216" nowrap="" style="width:162.0pt;border:solid #95b3d7 1.0pt;border-left:none;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:32px;">
+          <td width="216" nowrap="" style="width:162.0pt;border:solid #95b3d7 1.0pt;border-left:none;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
           <p class="MsoNormal"><span style="color:white">Shipper Name<u></u><u></u></span></p>
           </td>
-          <td width="314" nowrap="" style="width:235.5pt;border:solid white 1.0pt;border-left:none;background:#c4bc96;padding:0cm 5.4pt 0cm 5.4pt;height:32px;">
+          <td width="314" nowrap="" style="width:235.5pt;border:solid white 1.0pt;border-left:none;background:#c4bc96;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
           <p class="MsoNormal">
             <%= @booking.customer.contact_person rescue 'Contact Person' %>
           <u></u><u></u></p>
@@ -65,13 +65,13 @@
         <% if @emailer.email_tables.any? %>
           <% @emailer.email_tables.each do |et| %>
             <tr style="min-height:20.1pt">
-              <td width="216" nowrap="" style="width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:32px;">
+              <td width="216" nowrap="" style="width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
                 <p class="MsoNormal"><b><span style="color:white">
                 <%= et.left % @hash rescue et.left %>
                 </span></b><span style="color:white"><u></u><u></u></span>
                 </p>
               </td>
-              <td width="314" nowrap="" style="width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:32px;">
+              <td width="314" nowrap="" style="width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
               <p class="MsoNormal">
                 <%= (et.right % @hash).html_safe rescue et.right.html_safe %>
               <u></u><u></u></p>
