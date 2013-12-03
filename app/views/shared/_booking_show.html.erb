@@ -20,7 +20,7 @@
 
 	<% @booking.booking_emailers.each do |be| %>
 		<tr>
-			<td><%= be.emailer.subject %></td>
+			<td><%= be.emailer.name %></td>
 			<td><%= be.state %></td>
 			<td><%= be.updated_at.strftime('%d %b %Y') %></td>
 		</tr>
