@@ -14,13 +14,29 @@ class Emailer < ActiveRecord::Base
 
 
   def emailer_template
-  	if self.subject.include? "%{"
-  		start = self.subject.index('{').to_i ==  0 ? 0 : self.subject.index('{') + 1
-  		a_end = self.subject.index('}').to_i ==  0 ? self.subject.count : self.subject.index('}') - 1
-  		val = self.subject[start..a_end] rescue self.subject
-  		if BookingOrder.first.magic_columns.where(:name => val).empty?
-  			errors.add(:subject," : No Field named #{val} in booking order. Plz Correct ")
-  		end
-  	end
+    if self.subject.include? "%{"
+      start = self.subject.index('{').to_i ==  0 ? 0 : self.subject.index('{') + 1
+      a_end = self.subject.index('}').to_i ==  0 ? self.subject.count : self.subject.index('}') - 1
+      val = self.subject[start..a_end] rescue self.subject
+      if BookingOrder.first.magic_columns.where(:name => val).empty?
+        errors.add(:subject," : No Field named #{val} in booking order. Plz Correct ")
+      end
+    end
   end
+
+  def email_template_tables(hash)
+    string = ''
+    no = 2
+     if email_tables.any? 
+       email_tables.each do |et| 
+         value = (et.right % hash).html_safe || '' rescue '' 
+         if !value.blank? 
+          no +=1
+          string = string +  "<tr style='min-height:20.1pt'><td width='216' nowrap='' style='width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>             <p class='MsoNormal'><b><span style='color:white'>              #{et.left % hash rescue et.left}             </span></b><span style='color:white'><u></u><u></u></span>              </p>           </td>            <td width='314' nowrap='' style='width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>            <p class='MsoNormal'>             #{value}           <u></u><u></u></p>            </td>          </tr>"
+         end 
+       end 
+     end 
+    [string,no]
+  end
+
 end

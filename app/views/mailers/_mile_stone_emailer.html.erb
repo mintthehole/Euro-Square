@@ -45,11 +45,11 @@
   <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u>&nbsp;<u></u></span></p>
   <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u>&nbsp;<u></u></span></p>
   <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u>&nbsp;<u></u></span></p>
- 
+    <% string,no = @emailer.email_template_tables(@hash) %>
     <table width="735" border="0" cellspacing="0" cellpadding="0" style="width:551.35pt;border-collapse:collapse">
       <tbody>
         <tr style="min-height:20.1pt">
-          <td width="205" valign="bottom" style="width:153.85pt;border:solid white 1.0pt;border-right:solid #95b3d7 1.0pt;background:#31849b;padding:0cm 5.4pt 0cm 5.4pt;min-height:20.1pt" rowspan=<%= @emailer.email_tables.count + 2 %> >
+          <td width="205" valign="bottom" style="width:153.85pt;border:solid white 1.0pt;border-right:solid #95b3d7 1.0pt;background:#31849b;padding:0cm 5.4pt 0cm 5.4pt;min-height:20.1pt" rowspan=<%= no %> >
             <p align="center" style="text-align:center" class="MsoNormal"><b><span style="font-size:24.0pt;color:#215868">SHIPMENT</span></b><span style="font-size:24.0pt;color:#92cddc"> </span><span style="font-size:24.0pt;color:#1f497d"><u></u><u></u></span></p>
             <p align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></p>
           </td>
@@ -62,28 +62,7 @@
           <u></u><u></u></p>
           </td>
         </tr>
-        <% if @emailer.email_tables.any? %>
-          <% @emailer.email_tables.each do |et| %>
-            <%= et.right %>
-
-            <% value = (et.right % @hash).html_safe || '' rescue '' %>
-            <% if !value.blank? %>
-              <tr style="min-height:20.1pt">
-                <td width="216" nowrap="" style="width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
-                  <p class="MsoNormal"><b><span style="color:white">
-                  <%= et.left % @hash rescue et.left %>
-                  </span></b><span style="color:white"><u></u><u></u></span>
-                  </p>
-                </td>
-                <td width="314" nowrap="" style="width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
-                <p class="MsoNormal">
-                  <%= value  %>
-                <u></u><u></u></p>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= string.html_safe %>
       </tbody>
     </table>
 
