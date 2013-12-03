@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   # active_scaffold :booking do |conf|
   # end
 
+
   def new
   	@booking_order = BookingOrder.first
   	@booking = Booking.new

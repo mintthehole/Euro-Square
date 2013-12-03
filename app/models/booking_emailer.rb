@@ -7,4 +7,12 @@ class BookingEmailer < ActiveRecord::Base
   	SEND_FOR_CONF = "Sent For Confirmation",
   	CONFIRMED = 'Confirmed'
   ]
+  after_save :update_booking
+
+  def update_booking
+  	if state == CONFIRMED
+  		booking.state = emailer.name
+  		booking.save
+  	end
+  end
 end

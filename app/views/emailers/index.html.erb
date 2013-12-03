@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Stage</th>
+    <th>Trigger Field</th>
     <th>Subject</th>
     <th></th>
     <th></th>
@@ -13,7 +14,9 @@
   <tr>
     <td><%= emailer.name %></td>
     <td><%= emailer.stage %></td>
+    <td><%= emailer.trigger_filed %></td>
     <td><%= emailer.subject %></td>
+
     <td><%= link_to 'Show', emailer %></td>
     <td><%= link_to 'Edit', edit_emailer_path(emailer) %></td>
   </tr>

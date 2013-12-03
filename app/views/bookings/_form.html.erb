@@ -1,3 +1,4 @@
+<% trigger_fields = Emailer.pluck(:trigger_filed) %>
 <div class="span12"> 
   <%= form_for(@booking) do |f| %>
     <% if @booking.errors.any? %>
@@ -20,10 +21,19 @@
             <%= f.select header.name, options_for_select(build_customer(true),f.object.customer_name), {} ,:class=>"chosen-select"%>
           <% else %>
             <% class1 = '' %>
+            <% class2 = '' %>
             <% if header.datatype == "date" %>
               <% class1 = 'datepicker' %>
             <% end %>
-            <%= f.text_field header.name, :class => class1 %>
+            <% if trigger_fields.include?(header.name)%>
+              <% emailer = Emailer.find_by_trigger_filed(header.name) %>
+              <% class2 = 'background-color:#c6cbe1;color:black' %>
+              Trigger Filed for :
+              <%= emailer.name %>
+              <br>
+            <% end %>
+
+            <%= f.text_field header.name, :class => class1, :style => class2 %>
           <% end %>
         </div>
       </div>

@@ -3,9 +3,10 @@
 	<%= link_to "Add New Header", edit_booking_order_path(BookingOrder.first), :class => 'btn btn-warning' %>
 </div>
 <h3> Booking Order </h3>
-<% @pretty_headers = @booking_order.get_header.collect(&:pretty_name) %>
-<% @headers = @booking_order.get_header.collect(&:name) %>
-<div class="container-fluid" style ="width:<%= @headers.count * 300 %>px">
+<% head = @booking_order.get_header(3) %>
+<% @pretty_headers = head.collect(&:pretty_name) %>
+<% @headers = head.collect(&:name) %>
+<div class="container-fluid">
   <div class="widget-body">
     <div class="clearfix margin-bottom-10">
       <div class="btn-group">
@@ -25,10 +26,9 @@
 	    <table aria-describedby="sample_editable_1_info" class="table table-striped table-hover table-bordered dataTable" id="sample_editable_1">
 	      <thead>
 	        <tr role="row">
-	        <th aria-label="Edit: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
-	        </th>
-	        <th aria-label="Delete: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
-	        </th>
+	        	<th aria-label="" style="width:80px;" aria-controls="" tabindex="0" role="columnheader" class="sorting">
+	        		State
+	        	</th>
 		        <% @pretty_headers.each_with_index do |head,i| %>
 		          
 		          <th aria-label="" style="width:80px;" aria-controls="" tabindex="0" role="columnheader" class="sorting">
@@ -36,11 +36,15 @@
 		          </th>
 		          
 		        <% end %>
-
+		        <th style="width:40px;">Updated At</th>
+		        <th aria-label="Edit: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
+		        </th>
+		        <th aria-label="Delete: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
+		        </th>
 	        </tr>
 	      </thead>
 	      <tbody aria-relevant="all" aria-live="polite" role="alert">
-	      	<% @booking_order.bookings.each_with_index do |order,i| %>
+	      	<% @booking_order.bookings.where(:user_id => current_user.id).order('id desc').each_with_index do |order,i| %>
 	      		<% class1 = 'odd' %>
 	      		<% if i % 2 == 0 %>
 	      			<% class1 = 'even' %>
@@ -48,16 +52,19 @@
 	      		<% order.try(:customer_name) %>
 
 	      	  <tr class="<%= class1 %>" id="<%= order.id %>">
-	      	  <td class=" "><%= link_to 'Edit', edit_booking_path(order) %></td>
-	      	  <td class=" "><%= link_to 'Show', booking_path(order) %></td>
+	      	  <td class="">
+	      	  	<%= order.state %>
+	      	  </td>
 	      	  	<% @headers.each_with_index do |head,i| %>
-	      	  	
+	      	  		
                 <td class=" " >
                 	<%= order[head.to_s] || " " %>
                 </td>
                
               <% end %>
-
+              <td><%= order.updated_at.strftime('%d-%b-%y') %> </td>
+              <td class=" "><%= link_to 'Edit', edit_booking_path(order) %></td>
+              <td class=" "><%= link_to 'Show', booking_path(order) %></td>
 
          		</tr>
          	<% end %>	
@@ -73,11 +80,9 @@
    <script type="text/javascript" src="/jquery_004.js"></script>
    <script type="text/javascript" src="/DT_bootstrap.js"></script>
    <script src="/table-editable.js"></script>   
-   <% if  @headers.count > 3 %> 
 	   <script>
 	      jQuery(document).ready(function() {       
 	         TableEditable.init();
-	         $('#body').css('width',"<%= @headers.count * 330 %>");
+	         // $('#body').css('width',"<%= @headers.count * 330 %>");
 	      });
 	   </script>     
-   <% end %>
