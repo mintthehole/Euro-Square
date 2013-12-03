@@ -64,8 +64,10 @@
         </tr>
         <% if @emailer.email_tables.any? %>
           <% @emailer.email_tables.each do |et| %>
+            <%= et.right %>
+
             <% value = (et.right % @hash).html_safe || '' rescue '' %>
-            <% if !value.blank? || !value.nil? %>
+            <% if !value.blank? %>
               <tr style="min-height:20.1pt">
                 <td width="216" nowrap="" style="width:162.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;">
                   <p class="MsoNormal"><b><span style="color:white">
