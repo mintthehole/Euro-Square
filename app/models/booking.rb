@@ -5,7 +5,6 @@ class Booking < ActiveRecord::Base
 	has_magic_columns :through => :booking_order
 	has_many :booking_emailers
 	validates :customer_id, :presence => true
-	
 	before_create :set_defaults
 
 	def set_defaults
