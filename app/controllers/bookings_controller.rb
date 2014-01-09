@@ -71,8 +71,9 @@ class BookingsController < ApplicationController
   	saved = @booking.save
   	if saved
   		Emailer.all.each do |emailer|
-  			if changed.include?(emailer.trigger_filed)
+  			if changed.include?(emailer.trigger_filed) && !@booking.booking_emailers.collect(&:emailer_id).include?(emailer.id)
   				emailer.send_email(@booking,current_user)
+          break
   			end
   		end
   		redirect_to @booking
