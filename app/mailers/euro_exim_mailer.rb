@@ -4,10 +4,11 @@ class EuroEximMailer < ActionMailer::Base
   default :reply_to => 'johnpollo88@gmail.com'
   default :template_path => 'mailers'
 
-	def send_emailer(emailer,booking,user,be)
-		@emailer = emailer
-		@booking = booking
+	def send_emailer(be)
+		@emailer = be.emailer
+		@booking = be.booking
 		@be = be
+		user = be.user
 		@hash =  @booking.build_hash_for_mailer(@emailer)
 		mail(:to => user.email, :subject => @emailer.subject % @hash,
         :cc => 'js@euroeximindia.com,johnpollo88@gmail.com')

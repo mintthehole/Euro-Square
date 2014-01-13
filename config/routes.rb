@@ -36,6 +36,7 @@ EuroExim::Application.routes.draw do
   resources :reports
   match '/add_booking' => 'booking_orders#booking'
   match '/send_email_to_customer' => 'booking_orders#send_email_to_customer'
+  match '/send_email_to_user' => 'booking_orders#send_email_to_user'
   mount Ckeditor::Engine => '/ckeditor'
   # The priority is based upon order of creation:
   # first created -> highest priority.

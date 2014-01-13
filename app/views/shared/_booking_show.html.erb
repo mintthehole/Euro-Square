@@ -13,7 +13,10 @@
 		<% @booking.booking_emailers.each do |be| %>
 			<tr >
 				<td><%= be.emailer.name %></td>
-				<td><%= be.state %></td>
+				<td>
+					<%= be.state %>
+					<%= link_to "Resend?", "/send_email_to_user?id=#{be.id}" %>
+				</td>
 				<td><%= be.updated_at.strftime('%d %b %Y') %></td>
 			</tr>
 		<% end %>

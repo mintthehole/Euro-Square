@@ -5,8 +5,17 @@
   
   <%= "If you want to send the below email to customer(#{@booking.customer.email}). click" %>
   <b><%= link_to 'Here', "http://www.jseuroexim.com/send_email_to_customer?id=#{@be.id}" %></b>
+  <br>
+  <%= "If you want to edit the below email to customer(#{@booking.customer.email}). click" %>
+  <b><%= link_to 'Here', "http://www.jseuroexim.com/bookings/#{@booking.id}/edit" %></b>
   <hr>
   <br>
-  <%= render :partial => 'mailers/mile_stone_emailer' %>
+  <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => @emailer} %>
+  <% @booking.booking_emailers.order('id desc').each_with_index do |be,i| %>
+  	<% if i > 0 %>
+  		<hr>
+  		<%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => be.emailer} %>
+  	<% end %>
+  <% end %>
 </body>
 </html>

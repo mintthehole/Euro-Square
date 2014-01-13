@@ -9,7 +9,7 @@ class Emailer < ActiveRecord::Base
 
   def send_email(booking,user)
   	be = BookingEmailer.create(:booking_id => booking.id, :user_id => user.id,:emailer_id => self.id, :state => BookingEmailer::SEND_FOR_CONF )
-  	EuroEximMailer.send_emailer(self,booking,user,be).deliver
+  	EuroEximMailer.delay.send_emailer(be)
   end
 
 

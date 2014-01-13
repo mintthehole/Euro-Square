@@ -29,6 +29,15 @@ class BookingOrdersController < ApplicationController
 		@booking = be.try(:booking)
 	end
 
+	def send_email_to_user
+		be = BookingEmailer.find_by_id(params[:id])
+		EuroEximMailer.delay.send_emailer(be)
+		be.state = BookingEmailer::SEND_FOR_CONF
+		be.save
+		@msg = "Email has been Sucessfully Sent"
+		redirect_to be.booking
+	end
+
 	def booking
 		@booking_order = BookingOrder.first
 		headers = @booking_order.get_header

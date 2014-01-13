@@ -4,20 +4,20 @@
   <!-- Header Image -->
   <p style="margin:0cm;margin-bottom:.0001pt">
     <span lang="EN-US">
-      <img width="933" height="233" alt="Header Image" src= <%= @emailer.header %> >
+      <img width="933" height="233" alt="Header Image" src= <%= emailer.header %> >
     </span>
     <span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u><u></u>
     </span>
   </p>
   
   <!-- Body -->
-  <%= (@emailer.body % @hash).html_safe rescue @emailer.body.html_safe %>
+  <%= (emailer.body % @hash).html_safe rescue emailer.body.html_safe %>
   
   <!-- Horizontal Tables -->
-  <% if @emailer.emailer_horizontals.any? %>
+  <% if emailer.emailer_horizontals.any? %>
     <table width="731" border="0" cellspacing="0" cellpadding="0" style="width:548.6pt;border-collapse:collapse;font-size:14px;">
       <tbody>
-        <% hors = @emailer.emailer_horizontals %>
+        <% hors = emailer.emailer_horizontals %>
         <tr style="height:25px">
           <% hors.each do |eh| %>
             <td width="203" style="width:152.6pt;border:solid silver 1.0pt;background:#31849b;padding:0cm 0cm 0cm 0cm;">
@@ -45,7 +45,7 @@
   <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u>&nbsp;<u></u></span></p>
   <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u>&nbsp;<u></u></span></p>
   <p style="margin:0cm;margin-bottom:.0001pt"><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#002060"><u></u>&nbsp;<u></u></span></p>
-    <% string,no = @emailer.email_template_tables(@hash) %>
+    <% string,no = emailer.email_template_tables(@hash) %>
     <table width="735" border="0" cellspacing="0" cellpadding="0" style="width:551.35pt;border-collapse:collapse">
       <tbody>
         <tr style="min-height:20.1pt">
@@ -67,5 +67,5 @@
     </table>
 
   <br/>
-  <%= (@emailer.footer % @hash).html_safe  rescue @emailer.footer.html_safe %>
+  <%= (emailer.footer % @hash).html_safe  rescue emailer.footer.html_safe %>
 
