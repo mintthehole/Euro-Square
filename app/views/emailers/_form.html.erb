@@ -167,6 +167,7 @@
                         <%= f.fields_for :email_tables do |builder| %>
                           <%= builder.text_field :left, :placeholder => 'Text....' %>
                           <%= builder.text_field :right, :placeholder => 'Field Name' %>
+                          <%= builder.text_field :order_no, :placeholder => 'Order NO', :style =>'width:100px;' %>  
                           <%= builder.link_to_remove "Remove" %>
                         <% end %>
                         </div>

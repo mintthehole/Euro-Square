@@ -1,5 +1,5 @@
 class EmailTable < ActiveRecord::Base
-  attr_accessible :emailer_id, :left, :right
+  attr_accessible :emailer_id, :left, :right, :order_no
   belongs_to :emailer
   validate :emailer_template
 

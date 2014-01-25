@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140125065957) do
+ActiveRecord::Schema.define(:version => 20140125105348) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20140125065957) do
     t.string   "right"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "order"
+    t.integer  "order_no"
   end
 
   create_table "emailer_horizontals", :force => true do |t|

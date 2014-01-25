@@ -175,7 +175,7 @@ table td{
       <td width='216' height = '50' class="rw2 td1">Shiper name</td>
       <td width="314" class="rw3 td2">Name</td>
     </tr>
-    <% @emailer.email_tables.each do |et| %>
+    <% @emailer.email_tables.order('order_no').each do |et| %>
       <tr>
        <td width='216' height = '50' class="rw2 td1"><%= et.left.titlecase %></td>
        <td width="314" class="rw3 td2"><%= et.right.titlecase %></td>
