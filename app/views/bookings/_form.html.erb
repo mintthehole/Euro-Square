@@ -14,7 +14,7 @@
     <% end %>
     <% @headers = @booking_order.get_header %>
     <% @headers.each do |header| %>
-      <div class='span5'>
+      <div class='span3'>
         <div class="field">
           <%= f.label header.pretty_name %>
           <% if header.name == 'customer_name' %>

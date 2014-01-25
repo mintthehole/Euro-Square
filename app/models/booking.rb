@@ -25,4 +25,7 @@ class Booking < ActiveRecord::Base
 		hash
 	end
 
+	def get_emailers
+		booking_emailers.joins(:emailer).order('emailers.stage desc')
+	end
 end
