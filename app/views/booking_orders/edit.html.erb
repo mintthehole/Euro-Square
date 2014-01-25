@@ -23,7 +23,7 @@
 
 				<div class="span2 pollo">
 					<%= builder.label :data_type %>
-					<%= builder.select :datatype, options_for_select([['Date','date'],['Other','string']],[builder.object.datatype]), :style =>'width:100px;',:include_blank => "Select",  %>
+					<%= builder.select :datatype, options_for_select([['Date','date'],['Other','string']],[builder.object.datatype]),:include_blank => "Select" %>
 				</div>
 				<div class="span3">
 					<%= builder.label :emailer_stage %>
