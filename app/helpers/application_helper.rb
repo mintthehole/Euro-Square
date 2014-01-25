@@ -29,4 +29,10 @@ module ApplicationHelper
 			return val
 		end
 	end
+
+	def build_stage
+		options ={'Select Stage' => ''}
+		Emailer.all.each{|email| options = options.merge({email.name => email.id})}
+		options
+	end
 end

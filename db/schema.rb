@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131203171656) do
+ActiveRecord::Schema.define(:version => 20140125065957) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20131203171656) do
     t.boolean  "allow_other",   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "stage"
   end
 
   create_table "magic_options", :force => true do |t|

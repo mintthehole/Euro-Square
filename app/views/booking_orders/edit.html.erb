@@ -1,3 +1,8 @@
+<style>
+	.pollo select{
+		width:100px !important;
+	}
+</style>
 <div id="search">
 <h4><%=  "Add Header to the table" %></h4>
 <% first = @booking_order.get_header.first.try(:id) || 0 %>
@@ -16,9 +21,13 @@
 					<%= builder.text_field :name, :readonly => true, :class => 'header_name', :id => "header_name_"+id1.to_s ,:style =>'width:120px;'%>
 				</div>
 
-				<div class="span3">
+				<div class="span2 pollo">
 					<%= builder.label :data_type %>
-					<%= builder.select :datatype, options_for_select([['Date','date'],['Other','string']],[builder.object.datatype]), :include_blank => "Select" %>
+					<%= builder.select :datatype, options_for_select([['Date','date'],['Other','string']],[builder.object.datatype]), :style =>'width:100px;',:include_blank => "Select",  %>
+				</div>
+				<div class="span3">
+					<%= builder.label :emailer_stage %>
+					<%= builder.select :stage, options_for_select(build_stage,[builder.object.stage]), :include_blank => "Select" %>
 				</div>
 	<!-- 			<div class="span2">
 					<%= builder.label "Is Requried on Create" %>
