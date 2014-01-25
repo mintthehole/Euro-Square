@@ -1,8 +1,4 @@
-<style>
-	.pollo select{
-		width:100px !important;
-	}
-</style>
+
 <div id="search">
 <h4><%=  "Add Header to the table" %></h4>
 <% first = @booking_order.get_header.first.try(:id) || 0 %>
@@ -29,10 +25,6 @@
 					<%= builder.label :emailer_stage %>
 					<%= builder.select :stage, options_for_select(build_stage,[builder.object.stage]), :include_blank => "Select" %>
 				</div>
-	<!-- 			<div class="span2">
-					<%= builder.label "Is Requried on Create" %>
-					<%= builder.select :is_required, options_for_select([['Yes',true],['No',false]],[builder.object.is_required]), {},:style =>'width:120px;', :include_blank => "Please Select" %>
-				</div> -->
 				<div class="span2">
 					<br>
 					<br>
