@@ -161,8 +161,25 @@ table td{
     </div>
 
   <% end %>
-
+  <br>
   <div class="table1">
+  <u> Events </u>
+  <table class="table2">
+     <tr>
+      <td width='216' height = '50' class="rw2 td1">Shiper name</td>
+      <td width="314" class="rw3 td2">Name</td>
+    </tr>
+    <% @emailer.emailer_middles.order('order_no').each do |et| %>
+      <tr>
+       <td width='216' height = '50' class="rw2 td1"><%= et.left.titlecase %></td>
+       <td width="314" class="rw3 td2"><%= et.right.titlecase %></td>
+     </tr>
+    <% end %>
+  </table>
+    </div>
+  <br>
+  <div class="table1">
+
   <table class="table2">
     <tr>
       <td  class="rw" rowspan=<%= @emailer.email_tables.count + 2%> >
@@ -170,10 +187,6 @@ table td{
       <br/>
       <div align="center" style="text-align:center" class="MsoNormal"><span style="font-size:24.0pt;color:#92cddc">DETAILS</span><span style="font-size:10.0pt;color:#92cddc"><u></u><u></u></span></div>
       </td>
-    </tr>
-     <tr>
-      <td width='216' height = '50' class="rw2 td1">Shiper name</td>
-      <td width="314" class="rw3 td2">Name</td>
     </tr>
     <% @emailer.email_tables.order('order_no').each do |et| %>
       <tr>

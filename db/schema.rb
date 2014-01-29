@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140125105348) do
+ActiveRecord::Schema.define(:version => 20140129173545) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -151,6 +151,17 @@ ActiveRecord::Schema.define(:version => 20140125105348) do
   end
 
   add_index "emailer_horizontals", ["emailer_id"], :name => "index_emailer_horizontals_on_emailer_id"
+
+  create_table "emailer_middles", :force => true do |t|
+    t.string   "left"
+    t.string   "right"
+    t.integer  "emailer_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "order_no"
+  end
+
+  add_index "emailer_middles", ["emailer_id"], :name => "index_emailer_middles_on_emailer_id"
 
   create_table "emailers", :force => true do |t|
     t.string   "name"
