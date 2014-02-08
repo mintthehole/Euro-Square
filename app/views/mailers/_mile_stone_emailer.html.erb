@@ -48,7 +48,7 @@
                 <% hors.each do |eh| %>
                   <td width="203" style="width:152.6pt;border:solid silver 1.0pt;border-top:none;background:#ddd9c3;padding:0cm 0cm 0cm 0cm;">
                     <p align="center" style="text-align:center" class="MsoNormal">
-                      <%= eh.bottom % @hash rescue eh.bottom %>
+                      <%= (eh.bottom % @hash).html_safe rescue eh.bottom.html_safe %>
                         <span>
                           <u>
                           </u>
@@ -95,10 +95,10 @@
                 <table width="735" border="0" cellspacing="0" cellpadding="0" style="width:551.35pt;border-collapse:collapse">
                   <tbody>
                       <% emailer.emailer_middles.order('order_no asc').each do |et| %>
-                        <% value = (et.right % hash).html_safe || '' rescue '' %>
+                        <% value = (et.right % @hash).html_safe || '' rescue '' %>
                         <% if !value.blank?  %>
                            <tr style='min-height:20.1pt'><td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>             <p class='MsoNormal'><b><span style='color:white'>              
-                           <%= et.left % hash rescue et.left %>      
+                           <%= et.left % @hash rescue et.left %>      
                            </span></b><span style='color:white'><u></u><u></u></span>              
                            </p>           </td>            <td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>            <p class='MsoNormal'>             <%= value%>           <u></u><u></u></p>            </td>          
                            </tr>
