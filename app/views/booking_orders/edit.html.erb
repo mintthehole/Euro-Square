@@ -1,7 +1,7 @@
 
 <div id="search">
 <h4><%=  "Add Header to the table" %></h4>
-<% first = @booking_order.magic_columns.where(:machine_name => 'customer_name').first.try(:id) %>
+<% first = @booking_order.magic_columns.where(:name => 'customer_name').first.try(:id) %>
 <%= nested_form_for @booking_order  do |f| %>
 	<%= f.fields_for :magic_columns do |builder| %>
 		<% id1 = builder.object.id || 'new_magic_columns' %>
