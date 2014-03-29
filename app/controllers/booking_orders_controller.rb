@@ -31,7 +31,7 @@ class BookingOrdersController < ApplicationController
 
 	def send_email_to_user
 		be = BookingEmailer.find_by_id(params[:id])
-		EuroEximMailer.delay.send_emailer(be)
+		EuroEximMailer.send_emailer(be).deliver
 		be.state = BookingEmailer::SEND_FOR_CONF
 		be.save
 		@msg = "Email has been Sucessfully Sent"
@@ -53,7 +53,7 @@ class BookingOrdersController < ApplicationController
 		headers.each_with_index do |head,i|
 			if booking[head.name] != params[:values][i]
 				changed << head.name
-				booking[head.name] = params[:values][i] 
+				booking[head.name] = params[:values][i]
 			end
 		end
 		booking.user_id = current_user.id

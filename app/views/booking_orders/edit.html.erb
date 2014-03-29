@@ -28,9 +28,9 @@
 				<div class="span2">
 					<br>
 					<br>
-					
+
 						<%= builder.link_to_remove "Delete?", :title => 'Delete'%>
-					
+
 				</div>
 
 			</div>
@@ -64,11 +64,11 @@
 <% end %>
 </div>
 <script>
-  jQuery(document).ready(function() {       
+  jQuery(document).ready(function() {
 	 	$('.pretty_name').live('keyup',function(event){
 	 		var id = $(this).attr('id');
-	 		var str = $(this).val(); 
+	 		var str = $(this).val();
 		  $('#header_name_'+id).val(str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_').toLowerCase());
 		});
   });
-</script>   
+</script>

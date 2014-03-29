@@ -1,49 +1,71 @@
 <% trigger_fields = Emailer.pluck(:trigger_filed) %>
-<div class="span12"> 
-  <%= form_for(@booking) do |f| %>
-    <% if @booking.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this sales_call_entry from being saved:</h2>
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for(@booking) do |f| %>
+      <% if @booking.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this sales_call_entry from being saved:</h2>
 
-        <ul>
-        <% @booking.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <% @headers = @booking_order.get_header %>
-    <% @headers.each do |header| %>
-      <div class='span3'>
-        <div class="field">
-          <%= f.label header.pretty_name %>
-          <% if header.name == 'customer_name' %>
-            <%= f.select header.name, options_for_select(build_customer(true),f.object.customer_name), {} ,:class=>"chosen-select"%>
-          <% else %>
-            <% class1 = '' %>
-            <% class2 = '' %>
-            <% if header.datatype == "date" %>
-              <% class1 = 'datepicker' %>
-            <% end %>
-            <% if trigger_fields.include?(header.name)%>
-              <% emailer = Emailer.find_by_trigger_filed(header.name) %>
-              <% class2 = 'background-color:#c6cbe1;color:black' %>
-              Trigger Filed for :
-              <%= emailer.name %>
-              <br>
-              Stage : 
-              <%= emailer.stage %>
-              <br>
-            <% end %>
-
-            <%= f.text_field header.name, :class => class1, :style => class2 %>
+          <ul>
+          <% @booking.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
           <% end %>
+          </ul>
         </div>
+      <% end %>
+      <% stages = @booking_order.magic_columns.collect(&:stage).uniq %>
+      <% stages.each do |stage| %>
+        <% @headers = @booking_order.get_header.where(:stage => stage) %>
+        <div class="row-fluid">
+          <div class="span12">
+            <% emailer = Emailer.find_by_id(stage) %>
+
+            <h4>
+              <b>Stage :</b>
+              <%= emailer.try(:stage) || "Unknown" %>
+              ,
+              <b> Emailer :</b>
+              <%= emailer.try(:name) || "Unknown" %>
+            </h4>
+            <% @headers.each do |header| %>
+              <div class='span5'>
+                <div class="field">
+                  <%= f.label header.pretty_name %>
+                  <% if header.name == 'customer_name' %>
+                    <%= f.select header.name, options_for_select(build_customer(true),f.object.customer_name), {} ,:class=>"chosen-select"%>
+                  <% else %>
+                    <% class1 = '' %>
+                    <% class2 = '' %>
+                    <% if header.datatype == "date" %>
+                      <% class1 = 'datepicker' %>
+                    <% end %>
+                    <% if trigger_fields.include?(header.name)%>
+                      <% emailer = Emailer.find_by_trigger_filed(header.name) %>
+                      <% class2 = 'background-color:#c6cbe1;color:black' %>
+                      (Trigger Filed for :
+                      <%= emailer.name %>
+                      )
+                      <br>
+                    <% end %>
+
+                    <%= f.text_field header.name, :class => class1, :style => class2 %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+          <div class="span10">
+            <hr/>
+          </div>
+        </div>
+      <% end %>
+
+
+      <div class="actions span10">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.submit "Save", :class => 'btn btn-primary' %>
       </div>
     <% end %>
-    <div class="actions span10">
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.submit "Save", :class => 'btn btn-primary' %>
-    </div>
-  <% end %>
+  </div>
 </div>

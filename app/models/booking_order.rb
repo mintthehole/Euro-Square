@@ -1,13 +1,13 @@
 class BookingOrder < ActiveRecord::Base
   has_many :bookings
-  has_magic_columns
+  has_magic_columns  :order => 'stage asc'
   accepts_nested_attributes_for :magic_columns, :allow_destroy => true
 
   def get_header(no = nil)
     if no
-      magic_columns.order('id asc').limit(no)
+      magic_columns.order('stage asc').limit(no)
     else
-  	 magic_columns.order('id asc')
+  	 magic_columns.order('stage asc')
     end
   end
 
