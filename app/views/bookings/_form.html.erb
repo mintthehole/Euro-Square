@@ -13,7 +13,7 @@
           </ul>
         </div>
       <% end %>
-      <% stages = @booking_order.magic_columns.collect(&:stage).uniq %>
+      <% stages = @booking_order.magic_columns.order('stage asc').collect(&:stage).uniq %>
       <% stages.each do |stage| %>
         <% @headers = @booking_order.get_header.where(:stage => stage) %>
         <div class="row-fluid">
