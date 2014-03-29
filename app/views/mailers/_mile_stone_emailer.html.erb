@@ -97,10 +97,23 @@
                       <% emailer.emailer_middles.order('order_no asc').each do |et| %>
                         <% value = (et.right % @hash).html_safe || '' rescue '' %>
                         <% if !value.blank?  %>
-                           <tr style='min-height:20.1pt'><td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>             <p class='MsoNormal'><b><span style='color:white'>
+                           <tr style='min-height:20.1pt'>
+                           <td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>             <p class='MsoNormal'><b><span style='color:white'>
                            <%= et.left % @hash rescue et.left %>
                            </span></b><span style='color:white'><u></u><u></u></span>
-                           </p>           </td>            <td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>            <p class='MsoNormal'>             <%= value%>           <u></u><u></u></p>            </td>
+                           </p>           </td>
+                           <td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>            <p class='MsoNormal'>
+                           <%= value%>
+                           <u>
+                           </u>
+                           <u></u></p>
+                           </td>
+                           <td width='60' nowrap='' style='border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>            <p class='MsoNormal'>
+                           Confirmed
+                           <u>
+                           </u>
+                           <u></u></p>
+                           </td>
                            </tr>
                         <% end  %>
                       <% end  %>
