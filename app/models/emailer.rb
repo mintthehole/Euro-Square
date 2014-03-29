@@ -30,7 +30,7 @@ class Emailer < ActiveRecord::Base
     string = ''
     no = 2
      if email_tables.any?
-       email_tables.each do |et|
+       email_tables.order('order_no asc').each do |et|
          value = (et.right % hash).html_safe || '' rescue ''
          if !value.blank?
           no +=1
