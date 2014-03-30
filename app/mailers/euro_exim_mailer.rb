@@ -1,7 +1,7 @@
 class EuroEximMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
-  default :from => 'johnpollo88@gmail.com'
-  default :reply_to => 'johnpollo88@gmail.com'
+  default :from => 'system@euroeximindia.com'
+  default :reply_to => 'system@euroeximindia.com'
   default :template_path => 'mailers'
 
 	def send_emailer(be)
