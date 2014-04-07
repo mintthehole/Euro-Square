@@ -44,7 +44,7 @@
     <br>
     <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => @emailer} %>
     <% @booking.booking_emailers.order('id desc').each_with_index do |be,i| %>
-      <% if i > 0 %>
+      <% if i > 1 %>
         <hr>
         <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => be.emailer} %>
       <% end %>

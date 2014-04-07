@@ -1,46 +1,48 @@
 <html>
-	<head>
-		<style type="text/css">
-		  body, td {
-		    color:#000000;
-		    font-size:14px;
-		    font-family:Verdana,Helvetica,Arial;
-		  }
-		  .divider {
-		    background-color:#555555;
-		    height:2px;
-		  }
-		  .episode h2 {
-		    margin-top:0;
-		    margin-bottom:8px;
-		    font-size:18px;
-		  }
-		  .episode p {
-		    margin:8px 0;
-		  }
-		  .episode img {
-		    border:solid 1px #777777;
-		  }
-		  .episode .duration {
-		    font-size:11px;
-		    color:#555555;
-		  }
-		  #footer {
-		    font-size:11px;
-		    color:#555555;
-		  }
-		  #footer a {
-		    color:#555555;
-		  }
-		</style>
-	</head>
-	<body>
-	  <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => @emailer} %>
-	  <% @booking.booking_emailers.order('id desc').each_with_index do |be,i| %>
-	  	<% if i > 0 %>
-	  		<hr>
-	  		<%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => be.emailer} %>
-	  	<% end %>
-	  <% end %>
-	</body>
+  <head>
+    <style type="text/css">
+      body, td {
+        color:#000000;
+        font-size:11px;
+        font-family:"Calibri";
+      }
+      .divider {
+        background-color:#555555;
+        height:2px;
+      }
+      .episode h2 {
+        margin-top:0;
+        margin-bottom:8px;
+        font-size:18px;
+      }
+      .episode p {
+        margin:8px 0;
+      }
+      .episode img {
+        border:solid 1px #777777;
+      }
+      .episode .duration {
+        font-size:11px;
+        color:#555555;
+      }
+      #footer {
+        font-size:11px;
+        color:#555555;
+      }
+      #footer a {
+        color:#555555;
+      }
+    </style>
+  </head>
+  <body>
+    <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => @emailer} %>
+    <% @booking.booking_emailers.order('id desc').each_with_index do |be,i| %>
+      <% if i > 1 %>
+        <hr>
+        <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => be.emailer} %>
+      <% end %>
+    <% end %>
+  </body>
 </html>
+
+

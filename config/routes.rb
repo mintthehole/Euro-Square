@@ -1,6 +1,9 @@
 EuroExim::Application.routes.draw do
   
 
+  resources :booking_reports
+
+
   resources :booking_emailers
 
 
