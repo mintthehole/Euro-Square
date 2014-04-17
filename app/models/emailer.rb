@@ -34,7 +34,7 @@ class Emailer < ActiveRecord::Base
          value = (et.right % hash).html_safe || '' rescue ''
          if !value.blank?
           no +=1
-          string = string +  "<tr style='min-height:20.1pt'>  <td width='216' nowrap='' style='width:233.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;color:white;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>    #{et.left % hash rescue et.left}  </td>  <td width='314' nowrap='' style='width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>    #{value}  </td></tr>"
+          string = string +  "<tr style='min-height:20.1pt'>  <td width='216'  style='width:233.0pt;border-top:none;border-left:none;border-bottom:solid #95b3d7 1.0pt;border-right:solid #95b3d7 1.0pt;background:#215868;color:white;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>    #{et.left % hash rescue et.left}  </td>  <td width='314'  style='width:235.5pt;border-top:none;border-left:none;border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#eeece1;padding:0cm 5.4pt 0cm 5.4pt;height:25px;'>    #{value}  </td></tr>"
          end
        end
      end
