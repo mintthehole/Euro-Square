@@ -1,5 +1,8 @@
 EuroExim::Application.routes.draw do
-  
+
+  match '/bo_reports/manage' => 'bo_reports#manage'
+  resources :bo_reports
+
 
   resources :booking_reports
 
@@ -90,7 +93,7 @@ EuroExim::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  
+
 
   # See how all your routes lay out with "rake routes"
 

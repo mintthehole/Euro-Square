@@ -1,3 +1,10 @@
+$(document).ready(function() {
+  $('.choosen').live('click',function(event){
+    $('.chosen-select').chosen();
+  });
+});
+
+
 // $(document).ready(function() {
 // 	initBase();
 // 	initHorizontalBarChart();
@@ -22,7 +29,7 @@
 // 		placement: 'right'
 // 	});
 // 	$('.top_tooltip').tooltip();
-	
+
 // 	$('.alert-message a.close').live('click', function(){
 // 		$(this).parent().parent('.c-alert').slideUp('slow');
 // 	});
@@ -45,13 +52,13 @@
 // 		var nilai = eval($('#horizontal-bar-div').attr('data-value'));
 // 		var warna = eval($('#horizontal-bar-div').attr('data-colors'));
 // 		var penanda = eval($('#horizontal-bar-div').attr('data-labels'));
-		
-// 		var plot2 = $.jqplot('horizontal-bar-div', nilai, {			
+
+// 		var plot2 = $.jqplot('horizontal-bar-div', nilai, {
 // 			seriesColors: warna,
 // 			seriesDefaults: {
 // 				renderer:$.jqplot.BarRenderer,
-// 				pointLabels: { show: true, location: 'e', edgeTolerance: -15 },	
-// 				rendererOptions: {						
+// 				pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
+// 				rendererOptions: {
 // 					barPadding: 0,
 // 					barMargin: 10,
 // 					barDirection: 'horizontal',
@@ -95,7 +102,7 @@
 // 		var ticks = eval($('#vertical-bar-div').attr('data-ticks'));
 // 		var warna = eval($('#vertical-bar-div').attr('data-colors'));
 // 		var penanda = eval($('#vertical-bar-div').attr('data-labels'));
-		 
+
 // 		var plot1 = $.jqplot('vertical-bar-div', s1, {
 // 			seriesColors: warna,
 // 			seriesDefaults:{
@@ -148,7 +155,7 @@
 // 	  var s1 = eval($('#donut-pie-div').attr('data-value'));
 // 	  var s2 = eval($('#donut-pie-div').attr('data-value2'));
 // 	  var warna = eval($('#donut-pie-div').attr('data-colors'));
-	   
+
 // 	  var plot3 = $.jqplot('donut-pie-div', [s1,s2], {
 // 		seriesColors: warna,
 // 		seriesDefaults: {
@@ -168,7 +175,7 @@
 // 			borderWidth: 0,
 // 			gridLineColor: '#cdcdcd',
 // 			background: 'transparent',
-// 			shadow: false		
+// 			shadow: false
 // 		},
 // 		legend: {
 // 			//show: true
@@ -185,21 +192,21 @@
 // 	if (document.getElementById('pie-div')) {
 // 	  var data = eval($('#pie-div').attr('data-content'));
 // 	  var dataColors = eval($('#pie-div').attr('data-colors'));
-// 	  var plot1 = jQuery.jqplot ('pie-div', [data], 
+// 	  var plot1 = jQuery.jqplot ('pie-div', [data],
 // 		{
 // 		seriesColors: dataColors,
 // 		  seriesDefaults: {
-// 			renderer: jQuery.jqplot.PieRenderer, 
+// 			renderer: jQuery.jqplot.PieRenderer,
 // 			rendererOptions: {
 // 			  showDataLabels: true
 // 			}
-// 		  }, 
+// 		  },
 // 		  legend: { show:true, placement: 'insideGrid', location: 'e' },
 // 			grid: {
 // 				borderWidth: 0,
 // 				gridLineColor: '#cdcdcd',
 // 				background: 'rgba(255,255,255,0.1)',
-// 				shadow: false		
+// 				shadow: false
 // 			}
 // 		}
 // 	  );
@@ -210,15 +217,15 @@
 // 	  var cosPoints = eval($('#line-chart-div').attr('data-content'));
 // 	  var judul = $('#line-chart-div').attr('data-title');
 // 	  var warna = eval($('#line-chart-div').attr('data-colors'));
-	 
-// 	  var plot3 = $.jqplot('line-chart-div', cosPoints, 
-// 		{ 
+
+// 	  var plot3 = $.jqplot('line-chart-div', cosPoints,
+// 		{
 // 		  title:judul,
 // 			grid: {
 // 				borderWidth: 0,
 // 				gridLineColor: '#cdcdcd',
 // 				background: 'rgba(255,255,255,0.1)',
-// 				shadow: false		
+// 				shadow: false
 // 			},
 // 			seriesColors: warna
 // 		}
@@ -231,7 +238,7 @@
 // 		var warna = eval($('#area-chart-div').attr('data-colors'));
 // 		var dataFill = $('#area-chart-div').attr('data-fill').split('|');
 // 		var dataFillColor = $('#area-chart-div').attr('data-fill-color');
-		 
+
 // 		var plot1 = $.jqplot("area-chart-div", ab, {
 // 			axesDefaults: {
 // 				pad: 1.05
@@ -247,7 +254,7 @@
 // 				borderWidth: 0,
 // 				gridLineColor: '#cdcdcd',
 // 				background: 'rgba(255,255,255,0.1)',
-// 				shadow: false		
+// 				shadow: false
 // 			},
 // 			seriesColors: warna,
 // 			seriesDefaults: {
@@ -268,7 +275,7 @@
 // 			orientation: "horizontal"
 // 		});
 // 	});
-	
+
 // 	$( "#eq2 > span" ).each(function() {
 // 		// read initial values from markup and remove that
 // 		var value = parseInt( $( this ).text(), 10 );
@@ -289,7 +296,7 @@
 // 				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 // 			}
 // 		});
-		
+
 // 		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
 // 			" - $" + $( "#slider-range" ).slider( "values", 1 ) );
 // 	}
@@ -325,7 +332,7 @@
 // 	$( ".chzn-select-deselect" ).each(function(){
 // 		$(this).chosen({allow_single_deselect:true});
 // 	});
-	
+
 // 	$( ".datePicker" ).each(function(){
 // 		$(this).datepicker({
 // 			 dateFormat: 'yy-mm-dd'
@@ -337,7 +344,7 @@
 // 		separator:'.',
 // 		step: 5});
 // 		$('.time-picker').width($(this).width()+12);
-// 	});	
+// 	});
 // }
 
 // $('#sample_editable_1_new').live

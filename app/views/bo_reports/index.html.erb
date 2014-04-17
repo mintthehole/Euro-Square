@@ -1,0 +1,50 @@
+<style type="text/css">
+  .well{
+    height:100px;
+  }
+  .stats-overview .display{
+    margin-right: 12px;
+  }
+  .title a:hover{
+    text-decoration: none;
+    background-color: #fff;
+  }
+</style>
+
+<h1>Booking Reports</h1>
+<br>
+<br>
+<div class="row-fluid">
+  <% @bo_reports.each do |bo_report| %>
+    <div class="span2">
+    <div class="stats-overview stat-block well">
+      <div class="display stat bad huge">
+        <span class="line-chart" style="display: inline;font-size:22px;">
+          <i class="icon-bar-chart"></i>
+        </span>
+        <div class="percent">
+           +6
+        </div>
+      </div>
+      <div class="details">
+        <div class="title">
+           <%= link_to bo_report.name,bo_report, :style => "color: #2A6496;font-size: 14px;" %>
+        </div>
+        <div class="numbers">
+           509
+        </div>
+        <div class="progress">
+        </div>
+        <div class="desc">
+        <%= bo_report.try(:description) || "description" %>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  <% end %>
+</div>
+<br/>
+<br />
+
+

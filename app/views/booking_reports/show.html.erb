@@ -1,15 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @booking_report.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @booking_report.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_booking_report_path(@booking_report) %> |
-<%= link_to 'Back', booking_reports_path %>
+<div class="row">
+        <div class="col-md-12">
+          <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+          <h3 class="page-title">
+          Dashboard <small>statistics and more</small>
+          </h3>
+          <ul class="page-breadcrumb breadcrumb">
+            <li>
+              <i class="fa fa-home"></i>
+              <a href="index.html">Home</a>
+              <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="pull-right">
+              <div data-original-title="Change dashboard date range" data-placement="top" class="dashboard-date-range tooltips" id="dashboard-report-range" style="display: block;">
+                <i class="fa fa-calendar"></i>
+                <span>March 19, 2014 - April 17, 2014</span>
+                <i class="fa fa-angle-down"></i>
+              </div>
+            </li>
+          </ul>
+          <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+      </div>

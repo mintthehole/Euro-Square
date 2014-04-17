@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bo_report: 
+  magic_column: 
+
+two:
+  bo_report: 
+  magic_column: 

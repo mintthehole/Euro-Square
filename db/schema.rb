@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140129173545) do
+ActiveRecord::Schema.define(:version => 20140417052516) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,23 @@ ActiveRecord::Schema.define(:version => 20140129173545) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "bo_report_fields", :force => true do |t|
+    t.integer  "bo_report_id"
+    t.integer  "magic_column_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "bo_report_fields", ["bo_report_id"], :name => "index_bo_report_fields_on_bo_report_id"
+  add_index "bo_report_fields", ["magic_column_id"], :name => "index_bo_report_fields_on_magic_column_id"
+
+  create_table "bo_reports", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+  end
+
   create_table "booking_emailers", :force => true do |t|
     t.integer  "booking_id"
     t.integer  "user_id"
@@ -65,6 +82,13 @@ ActiveRecord::Schema.define(:version => 20140129173545) do
     t.string   "phone"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "booking_reports", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "bookings", :force => true do |t|

@@ -1,0 +1,29 @@
+<h1>Booking Reports</h1>
+<br>
+<br>
+<div class="row-fluid">
+  <table class="table">
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <% BoReport.all.each do |bo_report| %>
+      <tr>
+        <td><%= bo_report.name%></td>
+        <td><%= bo_report.description %></td>
+        <td><%= link_to 'Show', bo_report %></td>
+        <td><%= link_to 'Edit', edit_bo_report_path(bo_report) %></td>
+        <td><%= link_to 'Destroy', bo_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>
+
+<div class="row-fluid">
+  <%= link_to 'New Booking report', new_bo_report_path %>
+</div>
