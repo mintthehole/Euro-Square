@@ -110,7 +110,7 @@
                   </td>
                   <% headers.each do |header| %>
                     <td>
-                      <%= booking[header.name] || Random.new.rand(100000..1000000) %>
+                      <%= booking[header.name] %>
                     </td>
                   <% end %>
                 </tr>
