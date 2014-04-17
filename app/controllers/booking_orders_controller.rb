@@ -17,7 +17,7 @@ class BookingOrdersController < ApplicationController
 	def send_email_to_customer
 		be = BookingEmailer.find_by_id(params[:id])
 		if be && be.state == BookingEmailer::SEND_FOR_CONF
-			EuroEximMailer.send_email_to_customer(be.booking,be.user,be.emailer).deliver
+			EuroEximMailer.delay.send_email_to_customer(be.booking,be.user,be.emailer)
 			be.state = BookingEmailer::CONFIRMED
 			be.save
 			@msg = "Email has been Sucessfully Sent"
@@ -31,7 +31,7 @@ class BookingOrdersController < ApplicationController
 
 	def send_email_to_user
 		be = BookingEmailer.find_by_id(params[:id])
-		EuroEximMailer.send_emailer(be).deliver
+		EuroEximMailer.delay.send_emailer(be)
 		be.state = BookingEmailer::SEND_FOR_CONF
 		be.save
 		@msg = "Email has been Sucessfully Sent"

@@ -12,7 +12,7 @@ class SalesCallEntry < ActiveRecord::Base
   scope :user, order('user_id')
   def send_email
   	if escalation && !enquiry_recieved
-  		EuroEximMailer.send_sales_escalation_email(self).deliver
+  		EuroEximMailer.delay.send_sales_escalation_email(self)
   	end
   end
 
@@ -24,5 +24,5 @@ class SalesCallEntry < ActiveRecord::Base
     end
     a
   end
-  
+
 end

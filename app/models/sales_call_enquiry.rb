@@ -4,9 +4,9 @@ class SalesCallEnquiry < ActiveRecord::Base
   after_create :send_email
   # attr_accessible :cargo, :competitor, :mode, :pod, :pol, :possibility_to_secure, :rate_indication, :shipment_date, :special_instruction, :volume_idea
   MODES = ["LCL Export","LCL Import","FCL Export","FCL Import","Air Export","Air Import"]
-  
+
   def send_email
-    EuroEximMailer.send_sales_enquiry_email(self).deliver
+    EuroEximMailer.delay.send_sales_enquiry_email(self)
     # Delayed::Job.enqueue SalesCallEnquiryEmailJob.new(self.id)
   end
 
