@@ -12,7 +12,7 @@ gem 'rake' , '>= 0.9.2'
 gem 'filepicker-rails'
 gem 'activeadmin'
 gem "devise", "1.5.0"
-gem "i18n","~> 0.4" 
+gem "i18n","~> 0.4"
 gem 'capistrano'
 gem "bcrypt-ruby"
 gem 'nested_form'
@@ -59,3 +59,6 @@ end
 
 gem 'ckeditor', '4.0.6'
 gem "paperclip"
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-ui-rails'
+gem 'thin'

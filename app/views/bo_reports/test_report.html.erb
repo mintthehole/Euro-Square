@@ -1,0 +1,256 @@
+<style type="text/css">
+  .dashboard-date-range {
+    background-color: #D12610;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: none;
+    height: 20px;
+    margin-right: -30px;
+    padding: 10px 9px 7px;
+    position: relative;
+    top: -9px;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: 'Open Sans',sans-serif;
+  }
+  body{
+    overflow-y:hidden;
+  }
+  .row-id1{
+    width:40px !important;
+  }
+  .row-id{
+    width:30px !important;
+  }
+</style>
+
+<style type="text/css">
+<!--
+/* Terence Ordona, portal[AT]imaputz[DOT]com         */
+/* http://creativecommons.org/licenses/by-sa/2.0/    */
+
+/* begin some basic styling here                     */
+body {
+  background: #FFF;
+  color: #000;
+  font: normal normal 12px Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin: 10px;
+  padding: 0
+}
+
+table, td, a {
+  color: #000;
+  font: normal normal 12px Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+
+h1 {
+  font: normal normal 18px Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin: 0 0 5px 0
+}
+
+h2 {
+  font: normal normal 16px Verdana, Geneva, Arial, Helvetica, sans-serif;
+  margin: 0 0 5px 0
+}
+
+h3 {
+  font: normal normal 13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+  color: #008000;
+  margin: 0 0 15px 0
+}
+/* end basic styling                                 */
+
+/* define height and width of scrollable area. Add 16px to width for scrollbar          */
+div.tableContainer {
+  clear: both;
+  height: 100%;
+  overflow: auto;
+  width: auto;
+  margin-left: -20px;
+  margin-right:-20px;
+}
+
+/* Reset overflow value to hidden for all non-IE browsers. */
+html>body div.tableContainer {
+  overflow: hidden;
+}
+
+/* define width of table. IE browsers only                 */
+div.tableContainer table {
+  float: left;
+  width: 100%;
+}
+
+/* define width of table. Add 16px to width for scrollbar.           */
+/* All other non-IE browsers.                                        */
+html>body div.tableContainer table {
+  width: 100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr {
+  position: relative
+}
+
+/* set THEAD element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+html>body thead.fixedHeader tr {
+  display: block
+}
+
+/* make the TH elements pretty */
+thead.fixedHeader th {
+  background: #ccc;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-top: 1px solid #fff;
+  font-weight: normal;
+  padding: 6px 3px 6px 4px;
+  text-align: left
+}
+
+/* make the A elements pretty. makes for nice clickable headers                */
+thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
+  color: #FFF;
+  display: block;
+  text-decoration: none;
+  width: 100%
+}
+
+/* make the A elements pretty. makes for nice clickable headers                */
+/* WARNING: swapping the background on hover may cause problems in WinIE 6.x   */
+thead.fixedHeader a:hover {
+  color: #FFF;
+  display: block;
+  text-decoration: underline;
+  width: 100%
+}
+
+/* define the table content to be scrollable                                              */
+/* set TBODY element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+/* induced side effect is that child TDs no longer accept width: auto                     */
+html>body tbody.scrollContent {
+  display: block;
+  height: 100%;
+  overflow: auto;
+  width: 100%
+}
+
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+  background: #FFF;
+  border-bottom: none;
+  border-left: none;
+  border-right: 1px solid #CCC;
+  border-top: 1px solid #DDD;
+  padding: 2px 6px 3px 4px
+}
+
+tbody.scrollContent tr.alternateRow td {
+  background: #EEE;
+  border-bottom: none;
+  border-left: none;
+  border-right: 1px solid #CCC;
+  border-top: 1px solid #DDD;
+  padding: 2px 3px 3px 4px
+}
+
+/* define width of TH elements: 1st, 2nd, and 3rd respectively.          */
+/* Add 16px to last TH for scrollbar padding. All other non-IE browsers. */
+/* http://www.w3.org/TR/REC-CSS2/selector.html#adjacent-selectors        */
+/*html>body thead.fixedHeader th {
+  width: 170px
+}
+
+html>body tbody.scrollContent td {
+  width: 200px
+}*/
+
+</style>
+
+<script type="text/javascript">
+  function setheight () {
+    $('.scrollContent').css('height',screen.height-300);
+  }
+  window.onload = function() { setheight(); }
+</script>
+</script>
+<div class="row-fluid">
+  <div class="span12">
+    <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+    <h3 class="page-title">
+    Booking Report <%= @bo_report.name %><small> <%= @bo_report.description || "description"%></small>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="icon-home"></i>
+        <a href="/bo_reports">All Reports</a>
+        <i class="icon-angle-right"></i>
+      </li>
+      <li>
+        <a href="#"><%= @bo_report.name %></a>
+      </li>
+      <li class="pull-right">
+        <div data-original-title="Change dashboard date range" data-placement="top" class="dashboard-date-range tooltips" id="dashboard-report-range" style="display: block;">
+          <i class="icon-calendar"></i>
+          <%= Time.zone.today.strftime("%B %d, %Y") %>
+          -
+          <%= (Time.zone.today-1.month).strftime("%B %d, %Y") %>
+          </span>
+          <i class="icon-angle-down"></i>
+        </div>
+      </li>
+    </ul>
+    <!-- END PAGE TITLE & BREADCRUMB-->
+  </div>
+</div>
+
+
+<div class="row-fluid">
+  <div class="span12">
+
+  <% headers = @bo_report.bo_report_fields.collect(&:magic_column) %>
+  <% bookings = Booking.paginate(:per_page => 30, :page => params[:page] || 1) %>
+  <% tw = 98.to_f/headers.count.to_f %>
+    <div id="tableContainer" class="tableContainer" style="min-width:100%;width:<%=headers.count * 20%>%">
+      <table class="grid-fixed-table scrollTable"  style="min-width:100%;width:<%=headers.count * 20%>%">
+        <thead class="fixedHeader">
+          <tr>
+            <th class="row-id">
+              ID
+            </th>
+            <% headers.each do |mf| %>
+              <th style="min-width:20%;">
+              <%= mf.pretty_name %>
+              </th>
+
+            <% end %>
+        </thead>
+          <tbody class="scrollContent">
+            <% bookings.each_with_index do |booking,i| %>
+              <% booking.customer_name %>
+              <tr>
+                <td class="row-id1">
+                  <%= i+1 %>
+                </td>
+                <% headers.each do |header| %>
+                  <td style="min-width:20%;">
+                    <%= booking[header.name] %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
