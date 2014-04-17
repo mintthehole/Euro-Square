@@ -16,8 +16,8 @@
       </div>
 
     </div>
-    
-    
+
+
     <% if @headers.empty? %>
     	No Headers Found. Plz add header.
     <% else %>
@@ -30,11 +30,11 @@
 	        		State
 	        	</th>
 		        <% @pretty_headers.each_with_index do |head,i| %>
-		          
+
 		          <th aria-label="" style="width:80px;" aria-controls="" tabindex="0" role="columnheader" class="sorting">
 		          <%= head %>
 		          </th>
-		          
+
 		        <% end %>
 		        <th style="width:40px;">Updated At</th>
 		        <th aria-label="Edit: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
@@ -44,7 +44,7 @@
 	        </tr>
 	      </thead>
 	      <tbody aria-relevant="all" aria-live="polite" role="alert">
-	      	<% @booking_order.bookings.where(:user_id => current_user.id).order('id desc').each_with_index do |order,i| %>
+	      	<% @booking_order.bookings.order('id desc').each_with_index do |order,i| %>
 	      		<% class1 = 'odd' %>
 	      		<% if i % 2 == 0 %>
 	      			<% class1 = 'even' %>
@@ -56,18 +56,18 @@
 	      	  	<%= order.state %>
 	      	  </td>
 	      	  	<% @headers.each_with_index do |head,i| %>
-	      	  		
+
                 <td class=" " >
                 	<%= order[head.to_s] || " " %>
                 </td>
-               
+
               <% end %>
               <td><%= order.updated_at.strftime('%d-%b-%y') %> </td>
               <td class=" "><%= link_to 'Edit', edit_booking_path(order) %></td>
               <td class=" "><%= link_to 'Show', booking_path(order) %></td>
 
          		</tr>
-         	<% end %>	
+         	<% end %>
 	      </tbody>
 	   	</table>
 	  </div>
@@ -79,10 +79,10 @@
 </div>
    <script type="text/javascript" src="/jquery_004.js"></script>
    <script type="text/javascript" src="/DT_bootstrap.js"></script>
-   <script src="/table-editable.js"></script>   
+   <script src="/table-editable.js"></script>
 	   <script>
-	      jQuery(document).ready(function() {       
+	      jQuery(document).ready(function() {
 	         TableEditable.init();
 	         // $('#body').css('width',"<%= @headers.count * 330 %>");
 	      });
-	   </script>     
+	   </script>
