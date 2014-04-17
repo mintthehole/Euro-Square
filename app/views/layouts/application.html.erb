@@ -4,7 +4,8 @@
   <title>Euro Exim</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-
+  <%= javascript_include_tag "http://code.jquery.com/jquery-1.8.1.js" %>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
   <%= csrf_meta_tags %>
   <style>
 	.pollo select{
@@ -190,10 +191,12 @@
     for (var selector in config) {
       $(selector).chosen(config[selector]);
     }
-    $.noConflict( true );
     jQuery(document).ready(function($) {
-
-		  $('.date-picker').datepicker();
+		  $( ".datepicker" ).each(function(){
+		  	$(this).datepicker({
+		  		dateFormat: 'dd-mm-yy'
+		  	});
+		  });
 		});
   </script>
 </body>

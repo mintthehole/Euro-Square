@@ -3,8 +3,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.uniform.js
-//= require dataTables/jquery.dataTables
 //= require chosen.jquery.min.js
 //= require jquery_nested_form
-
-
+//= require wice_grid
+//= require jquery.ui.datepicker
+//= require_tree .
