@@ -49,7 +49,7 @@
 	        </tr>
 	      </thead>
 	      <tbody aria-relevant="all" aria-live="polite" role="alert">
-	      	<% @booking_order.bookings.order('id desc').each_with_index do |order,i| %>
+	      	<% @booking_order.bookings.where(:user_id => current_user.id).order('id desc').each_with_index do |order,i| %>
 	      		<% class1 = 'odd' %>
 	      		<% if i % 2 == 0 %>
 	      			<% class1 = 'even' %>
@@ -88,6 +88,6 @@
 	   <script>
 	      jQuery(document).ready(function() {
 	         TableEditable.init();
-	         $('#body').css('width',"<%= @headers.count * 90 %>");
+	         $('#body').css('width',1200);
 	      });
 	   </script>
