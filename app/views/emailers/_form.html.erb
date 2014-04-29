@@ -55,12 +55,25 @@
                         <label class="control-label">Trigger Field</label>
                         <div class="controls">
                           <%= f.text_field :trigger_filed, :class=>"span6", :placeholder=>"Enter the Trigger Field" %>
-                          <span class="help-block">The change in mentioned field will trigger this email 
+                          <span class="help-block">The change in mentioned field will trigger this email
                           </span>
                         </div>
                      </div>
                   </div>
                </div>
+               <div class="row-fluid">
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Ccs</label>
+                        <div class="controls">
+                          <%= f.text_field :cc, :class=>"span6", :placeholder=>"comma separeted emails" %>
+                          <span class="help-block">The change in mentioned field will trigger this email
+                          </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
                               <!--/row-->
                <div class="row-fluid">
                   <div class="span12 ">
@@ -74,7 +87,7 @@
                      </div>
                   </div>
                </div>
-               <!--/row-->        
+               <!--/row-->
 <!--                <div class="row-fluid">
                   <div class="span6 ">
                      <div class="control-group">
@@ -89,7 +102,7 @@
                   <div class="span6 ">
                      <div class="control-group">
                         <label class="control-label">Bccs</label>
-                        <div class="controls">                                                
+                        <div class="controls">
                           <%= f.text_field :bcc, :class=>"span12", :placeholder=>"12@123.com,test@12.com" %>
                           <span class="help-block">comma separate Email Ids
                           </span>
@@ -97,7 +110,7 @@
                      </div>
                   </div>
                 </div> -->
-              <!--/row-->        
+              <!--/row-->
                <div class="row-fluid">
                   <div class="span12 ">
                      <div class="control-group">
@@ -108,18 +121,18 @@
                           <% end %>
                           <br>
                           <%= f.filepicker_field :header %>
-                          
+
                           <span class="help-block">Upload a Header Image
                           </span>
                         </div>
                      </div>
                   </div>
 
-                  
+
                   <!--/span-->
                </div>
               </div>
-             <!--/row-->                               
+             <!--/row-->
              <h3 class="form-section">Body</h3>
              <div style="margin-left:20px;">
                <div class="row-fluid">
@@ -163,7 +176,7 @@
                         <%= f.fields_for :emailer_middles do |builder| %>
                           <%= builder.text_field :left, :placeholder => 'Text....' %>
                           <%= builder.text_field :right, :placeholder => 'Field Name' %>
-                          <%= builder.text_field :order_no, :placeholder => 'Order NO', :style =>'width:100px;' %>  
+                          <%= builder.text_field :order_no, :placeholder => 'Order NO', :style =>'width:100px;' %>
                           <%= builder.link_to_remove "Remove" %>
                         <% end %>
                         </div>
@@ -189,7 +202,7 @@
                         <%= f.fields_for :email_tables do |builder| %>
                           <%= builder.text_field :left, :placeholder => 'Text....' %>
                           <%= builder.text_field :right, :placeholder => 'Field Name' %>
-                          <%= builder.text_field :order_no, :placeholder => 'Order NO', :style =>'width:100px;' %>  
+                          <%= builder.text_field :order_no, :placeholder => 'Order NO', :style =>'width:100px;' %>
                           <%= builder.link_to_remove "Remove" %>
                         <% end %>
                         </div>
@@ -197,8 +210,8 @@
                   </div>
                   <%= f.link_to_add "Add Table Fields?", :email_tables, :class => ["btn-small", "btn-info"]   %>
                </div>
-                
-                
+
+
             </div>
 
              <h3 class="form-section">Footer</h3>
@@ -213,14 +226,14 @@
                      </div>
                   </div>
                </div>
-              </div>                                        
+              </div>
              <!--/row-->
              <div class="form-actions">
                 <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Save</button>
                 <button type="button" class="btn">Cancel</button>
              </div>
           </form>
-          <!-- END FORM-->                
+          <!-- END FORM-->
        </div>
     </div>
  </div>

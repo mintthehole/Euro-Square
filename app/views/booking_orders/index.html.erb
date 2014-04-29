@@ -1,9 +1,14 @@
+<style type="text/css">
+  tr{
+    width: 100px !important;
+  }
+</style>
 <div class="pollo">
 <br>
 	<%= link_to "Add New Header", edit_booking_order_path(BookingOrder.first), :class => 'btn btn-warning' %>
 </div>
 <h3> Booking Order </h3>
-<% head = @booking_order.get_header(3) %>
+<% head = BoReport.find(1).bo_report_fields.collect(&:magic_column) %>
 <% @pretty_headers = head.collect(&:pretty_name) %>
 <% @headers = head.collect(&:name) %>
 <div class="container-fluid">
@@ -83,6 +88,6 @@
 	   <script>
 	      jQuery(document).ready(function() {
 	         TableEditable.init();
-	         // $('#body').css('width',"<%= @headers.count * 330 %>");
+	         $('#body').css('width',"<%= @headers.count * 90 %>");
 	      });
 	   </script>

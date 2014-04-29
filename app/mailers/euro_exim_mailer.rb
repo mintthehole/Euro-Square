@@ -19,6 +19,7 @@ class EuroEximMailer < ActionMailer::Base
 		@booking = booking
 		@hash =  @booking.build_hash_for_mailer(@emailer)
 		mail(:to => booking.email, :subject => @emailer.subject % @hash,
+				 :cc => @emailer.cc,
 	      :bcc => ['js@euroeximindia.com',user.email])
 	end
 
