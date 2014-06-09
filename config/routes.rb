@@ -31,6 +31,10 @@ EuroExim::Application.routes.draw do
 
   resources :emailers
 
+    devise_scope :user do
+      post '/users' => 'users/registrations#create'
+    end
+
    devise_for :users do
   ActiveAdmin.routes(self)
      get "users/sign_in", :to => "devise/sessions#new"
