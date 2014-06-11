@@ -21,62 +21,6 @@
       </div>
 
     </div>
-
-<!--
-    <% if @headers.empty? %>
-    	No Headers Found. Plz add header.
-    <% else %>
-	    <div id="sample_editable_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
-
-	    <table aria-describedby="sample_editable_1_info" class="table table-striped table-hover table-bordered dataTable" id="sample_editable_1">
-	      <thead>
-	        <tr role="row">
-	        	<th aria-label="" style="width:80px;" aria-controls="" tabindex="0" role="columnheader" class="sorting">
-	        		State
-	        	</th>
-		        <% @pretty_headers.each_with_index do |head,i| %>
-
-		          <th aria-label="" style="width:80px;" aria-controls="" tabindex="0" role="columnheader" class="sorting">
-		          <%= head %>
-		          </th>
-
-		        <% end %>
-		        <th style="width:40px;">Updated At</th>
-		        <th aria-label="Edit: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
-		        </th>
-		        <th aria-label="Delete: activate to sort column ascending" style="width:40px;" colspan="1" rowspan="1" aria-controls="sample_editable_1" tabindex="0" role="columnheader" class="sorting">
-		        </th>
-	        </tr>
-	      </thead>
-	      <tbody aria-relevant="all" aria-live="polite" role="alert">
-	      	<% @booking_order.bookings.order('id desc').each_with_index do |order,i| %>
-	      		<% class1 = 'odd' %>
-	      		<% if i % 2 == 0 %>
-	      			<% class1 = 'even' %>
-	      		<% end %>
-	      		<% order.try(:customer_name) %>
-
-	      	  <tr class="<%= class1 %>" id="<%= order.id %>">
-	      	  <td class="">
-	      	  	<%= order.state %>
-	      	  </td>
-	      	  	<% @headers.each_with_index do |head,i| %>
-
-                <td class=" " >
-                	<%= order[head.to_s] || " " %>
-                </td>
-
-              <% end %>
-              <td><%= order.updated_at.strftime('%d-%b-%y') %> </td>
-              <td class=" "><%= link_to 'Edit', edit_booking_path(order) %></td>
-              <td class=" "><%= link_to 'Show', booking_path(order) %></td>
-
-         		</tr>
-         	<% end %>
-	      </tbody>
-	   	</table>
-	  </div>
-	  <% end %> -->
 	</div>
 </div>
 
