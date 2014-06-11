@@ -8,18 +8,31 @@
 	<%= link_to "Add New Header", edit_booking_order_path(BookingOrder.first), :class => 'btn btn-warning' %>
 </div>
 <h3> Booking Order </h3>
-<% head = BoReport.find(1).bo_report_fields.collect(&:magic_column) %>
-<% @pretty_headers = head.collect(&:pretty_name) %>
-<% @headers = head.collect(&:name) %>
 <div class="container-fluid">
   <div class="widget-body">
     <div class="clearfix margin-bottom-10">
       <div class="btn-group">
-         <a href=<%= new_booking_path %> class="btn btn-success", total = "<%= @headers.count %>">
+         <a href=<%= new_booking_path %> class="btn btn-success">
          Add New <i class="icon-plus"></i>
          </a>
       </div>
+      <hr>
+      <center class="find center">
+        <% if params[:msg] %>
+          <div style="color:red;">
+            <%= "No Booking Found with this id #{params[:msg]}" %>
+          </div>
 
+        <% end %>
+        <h4> Find Booking By Id </h4>
+        Get Booking id from this report.
+        <%= link_to "Booking Report", "/bo_reports/1", :target => "_blank" %>
+        <%= form_tag "/find_booking" do %>
+          <%= text_field_tag :id %>
+          <br>
+          <%= submit_tag :find ,:class => 'btn btn-info'%>
+        <% end %>
+      </div>
     </div>
 	</div>
 </div>

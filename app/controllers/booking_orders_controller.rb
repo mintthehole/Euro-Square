@@ -8,6 +8,16 @@ class BookingOrdersController < ApplicationController
 		@booking_order = BookingOrder.first
 	end
 
+	def find_booking
+		@bo = Booking.find_by_id(params[:id])
+		if @bo
+			redirect_to @bo
+		else
+			flash[:notice] = "No Booking found with this id"
+			redirect_to booking_orders_path(:msg =>params[:id])
+		end
+	end
+
 	def update
 		@booking_order = BookingOrder.find_by_id(params[:id])
 		@booking_order.update_attributes(params[:booking_order])
