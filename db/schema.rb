@@ -449,19 +449,6 @@ ActiveRecord::Schema.define(:version => 20140417052516) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "shippers", :force => true do |t|
-    t.string   "name"
-    t.string   "address_1"
-    t.string   "address_2"
-    t.string   "city"
-    t.integer  "zip_code"
-    t.string   "contact_person"
-    t.string   "email"
-    t.integer  "phone"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
