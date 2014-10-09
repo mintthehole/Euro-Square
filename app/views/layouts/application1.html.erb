@@ -1,7 +1,7 @@
   <!DOCTYPE html>
 <html>
 <head>
-  <title>Euro Exim</title>
+  <title>Euro Square</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application1" %>
 
@@ -34,6 +34,7 @@
         <!-- END RESPONSIVE MENU TOGGLER -->
         <div class="top-nav">
           <div class="nav pull-right">
+            <span class="user-and-role"><%=current_user.name%> (<%=current_user.user_role%>)
             <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
           </div>
           <!-- END TOP NAVIGATION MENU -->

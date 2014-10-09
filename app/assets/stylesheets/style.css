@@ -1886,4 +1886,8 @@ ul.item-list li .label {
   border-top: 2px solid transparent; 
 }
 
+.user-and-role {
+  font-weight: bold;
+  color: white;
+}
 
