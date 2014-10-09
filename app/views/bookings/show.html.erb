@@ -1,11 +1,19 @@
-<h3>
-	Booking Order Details - <%= @booking.id %> <%# [ES14-0013] - Joel - Displaying booking ID %>
-</h3>
+<% if @booking %> <%# [ES14-0013] - Joel - Displaying booking ID %>
+	<h3>
+		Booking Order Details - <%= @booking.id %>
+	</h3>
 
-<%= link_to 'All Bookings', booking_orders_path, :class => 'btn btn-success' %>
+	<%= link_to 'All Bookings', booking_orders_path, :class => 'btn btn-success' %>
 
-<%= link_to 'New Booking', new_booking_path,:class => 'btn btn-success' %>
+	<%= link_to 'New Booking', new_booking_path,:class => 'btn btn-success' %>
 
-<%= link_to 'Edit this Booking', edit_booking_path(@booking),:class => 'btn btn-success' %>
-<br><br><br>
-<%= render :partial => 'shared/booking_show' %>
+	<%= link_to 'Edit this Booking', edit_booking_path(@booking),:class => 'btn btn-success' %>
+	<br><br><br>
+	<%= render :partial => 'shared/booking_show' %>
+
+<% else %>
+	<h3>Sorry, the booking you are looking for is not found in the system!</h3>
+	<%= link_to 'All Bookings', booking_orders_path, :class => 'btn btn-success' %>
+	<%= link_to 'New Booking', new_booking_path,:class => 'btn btn-success' %>
+
+ <% end %>
