@@ -10,7 +10,7 @@
   }
 
 </style>
-<h3>New Booking</h3>
+<h3>New <% if current_user.nomination? %>Nominated<% else %>Free-hand<% end %> Booking</h3>
 
 <%= render 'form' %>
 

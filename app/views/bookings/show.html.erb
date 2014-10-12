@@ -8,7 +8,10 @@
 	<%= link_to 'New Booking', new_booking_path,:class => 'btn btn-success' %>
 
 	<%= link_to 'Edit this Booking', edit_booking_path(@booking),:class => 'btn btn-success' %>
-	<br><br><br>
+	<br><br>
+	Nominated Booking: <%= @booking.is_nomination%>
+	<br>
+
 	<%= render :partial => 'shared/booking_show' %>
 
 <% else %>

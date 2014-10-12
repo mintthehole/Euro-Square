@@ -14,6 +14,11 @@
         </div>
       <% end %>
       <% stages = @booking_order.magic_columns.order('stage asc').collect(&:stage).uniq %>
+
+      <% if current_user.nomination? %>
+          <div class="span3"><%= f.hidden_field :is_nomination, value: 1 %></div>
+      <%end%>
+
       <% stages.each do |stage| %>
         <% @headers = @booking_order.get_header.where(:stage => stage) %>
         <div class="row-fluid">

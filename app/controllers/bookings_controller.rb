@@ -39,6 +39,7 @@ class BookingsController < ApplicationController
     cus = Customer.find_by_name(@booking.customer_name)
   	@booking.email = cus.try(:email)
     @booking.customer_id = cus.try(:id)
+    @booking.is_nomination = params[:booking][:is_nomination]
   	saved = @booking.save
   	if saved
   		Emailer.all.each do |emailer|
@@ -67,6 +68,7 @@ class BookingsController < ApplicationController
   		end
   	end
   	@booking.user_id = current_user.id
+    @booking.is_nomination = params[:booking][:is_nomination]
   	@booking.email = Customer.find_by_name(@booking.customer_name).try(:email)
   	saved = @booking.save
   	if saved

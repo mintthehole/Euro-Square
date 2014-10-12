@@ -66,7 +66,7 @@
             <span class="title">Dashboard</span>
           <% end -%>
         </li>
-        <% if current_user.admin? %>
+        <% if current_user.admin? || current_user.nomination? %>
           <li class="<%= active_class('upload_epxorters') %>">
             <%= link_to '/upload_epxorters' do -%>
               <i class="icon-user"></i>
@@ -80,7 +80,7 @@
             <% end -%>
           </li>
         <% end %>
-        <% if current_user.admin? || current_user.operation? %>
+        <% if current_user.admin? || current_user.operation? || current_user.nomination? %>
           <li class="<%= active_class('/booking_orders') %>">
             <%= link_to '/booking_orders' do -%>
               <i class="icon-file"></i>

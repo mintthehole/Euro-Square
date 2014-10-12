@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :user_role,:name
   has_many :sales_call_entries
   has_many :sales_call_enquiries
-  ROLES = ["Sales","Admin","Operation"]
+  ROLES = ["Sales","Admin","Operation", "Nomination"]
 
   def sales?
   	user_role == "Sales"
@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
   def operation?
   	user_role == "Operation"
   end
+
+  def nomination?
+    user_role == "Nomination"
+  end
+
 end

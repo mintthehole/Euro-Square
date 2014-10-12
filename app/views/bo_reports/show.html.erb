@@ -121,6 +121,9 @@
               </th>
 
             <% end %>
+              <th>
+              Nomination
+              </th>
         </thead>
           <tbody>
             <% bookings.each_with_index do |booking,i| %>
@@ -134,6 +137,9 @@
                       <%= booking[header.name] %>
                     </td>
                   <% end %>
+                    <td>
+                      <%= booking.is_nomination %>
+                    </td>
                 </tr>
               <% end %>
           </tbody>
