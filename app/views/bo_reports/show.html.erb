@@ -127,7 +127,7 @@
                 <% booking.customer_name %>
                 <tr>
                   <td class="row-id" style="width:30px;">
-                    <%= link_to booking.id, booking %>
+                    <%= link_to booking.id, booking %> <%= link_to "Edit", edit_booking_path(booking.id) %>
                   </td>
                   <% headers.each do |header| %>
                     <td>
