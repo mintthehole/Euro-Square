@@ -7,6 +7,8 @@
 <%= define_grid(@tasks_grid, hide_submit_button: true, hide_reset_button: true) do |g|
   g.column name:  'Name', attribute: 'name', detach_with_id: :name_filter
   g.column name:  'City', attribute: 'city', detach_with_id: :city_filter
+  g.column name:  'Address1', attribute: 'address_1', detach_with_id: :address_1_filter
+  g.column name:  'Address2', attribute: 'address_2', detach_with_id: :address_2_filter
   g.column name:  'PIC', attribute: 'contact_person', detach_with_id: :contact_person_filter
   g.column name:  'Sales Person', attribute: 'sales_person', detach_with_id: :sales_person_filter
   g.column name:  'Email', attribute: 'email', detach_with_id: :email_filter
