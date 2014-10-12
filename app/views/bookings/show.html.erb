@@ -1,6 +1,6 @@
 <% if @booking %> <%# [ES14-0013] - Joel - Displaying booking ID %>
 	<h3>
-		Booking Order Details - <%= @booking.id %>
+		Booking Order Details (<%= @booking.id %>)
 	</h3>
 
 	<%= link_to 'All Bookings', booking_orders_path, :class => 'btn btn-success' %>
