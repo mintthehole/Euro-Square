@@ -17,6 +17,8 @@
 
       <% if current_user.nomination? %>
           <div class="span3"><%= f.hidden_field :is_nomination, value: 1 %></div>
+      <%else%>
+          <div class="span3"><%= f.hidden_field :is_nomination, value: 0 %></div>
       <%end%>
 
       <% stages.each do |stage| %>
