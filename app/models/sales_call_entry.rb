@@ -4,6 +4,7 @@ class SalesCallEntry < ActiveRecord::Base
   validates :my_observation, :presence => true
   validates :pic, :presence => true
   validates :point_discussed, :presence => true
+  validates :date, :presence => true
   validates :shipper_name, :presence => true
   attr_accessor :sales_call_entires
   after_create :send_email
