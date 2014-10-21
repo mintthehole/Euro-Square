@@ -14,7 +14,7 @@ class BoReportsController < InheritedResources::Base
     elsif current_user.nomination?
       @bookings = Booking.where(:created_at => start..d_end.end_of_day, :is_nomination => true, :user_id => current_user.id).paginate(:per_page => 100, :page => params[:page])
     else
-      @bookings = Booking.where(:created_at => start..d_end.end_of_day, :is_nomination => false, :user_id => current_user.id).paginate(:per_page => 100, :page => params[:page])
+      @bookings = Booking.where(:created_at => start..d_end.end_of_day, :is_nomination => false).paginate(:per_page => 100, :page => params[:page])
     end
     respond_to do |format|
       format.html {render :layout => 'application1'}
