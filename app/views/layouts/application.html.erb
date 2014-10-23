@@ -81,14 +81,13 @@
 						<% end -%>
 					</li>
 				<% end %>
-				<% if current_user.admin? || current_user.operation?  || current_user.nomination? %>
-					<li class="<%= active_class('/booking_orders') %>">
-						<%= link_to '/booking_orders' do -%>
-							<i class="icon-file"></i>
-							<span class="title">Bookings</span>
-						<% end -%>
-					</li>
-				<% end %>
+				<%# All users get to see the Bookings link %>
+				<li class="<%= active_class('/booking_orders') %>">
+					<%= link_to '/booking_orders' do -%>
+						<i class="icon-file"></i>
+						<span class="title">Bookings</span>
+					<% end -%>
+				</li>
 				<% if current_user.admin? || current_user.sales? %>
 					<li class="<%= active_class(sales_call_entries_path) %>">
 						<%= link_to sales_call_entries_path do -%>

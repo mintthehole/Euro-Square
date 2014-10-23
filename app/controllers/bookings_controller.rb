@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_filter :authenticate_user!
+  helper_method :get_emailer_stages
   # active_scaffold :booking do |conf|
   # end
 
@@ -8,12 +9,16 @@ class BookingsController < ApplicationController
   	@booking_order = BookingOrder.first
   	@booking = Booking.new
   	@booking.booking_order = @booking_order
+    
+    @stages = get_emailer_stages(@booking_order)
   end
 
   def edit
   	@booking_order = BookingOrder.first
   	@booking = Booking.find_by_id(params[:id])
   	@booking.booking_order = @booking_order
+
+    @stages = get_emailer_stages(@booking_order)
   end
   
   def show
@@ -82,5 +87,24 @@ class BookingsController < ApplicationController
   	else
   		render :edit
   	end
+  end
+
+  #--------HELPER METHODS----------------
+  def get_emailer_stages(booking_order)
+    if current_user.sales?
+      #Only the Booking Confirmation Fields to "Sales" users
+      booking_conf_emailer_id = 3 #default value
+
+      bcemailer = Emailer.find_by_name('Booking Confirmation')
+      if bcemailer
+         booking_conf_emailer_id = bcemailer.id
+      end
+      
+      stages = []
+      stages << booking_conf_emailer_id
+    else
+      stages = booking_order.magic_columns.order('stage asc').collect(&:stage).uniq
+    end
+    stages
   end
 end 
