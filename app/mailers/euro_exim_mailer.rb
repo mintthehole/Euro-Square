@@ -10,8 +10,17 @@ class EuroEximMailer < ActionMailer::Base
 		@be = be
 		user = be.user
 		@hash =  @booking.build_hash_for_mailer(@emailer)
-		mail(:to => user.email, :subject => @emailer.subject % @hash,
-        :cc => 'js@euroeximindia.com,johnpollo88@gmail.com')
+
+		to_ids = [user.email]
+		cc_ids = ["js@euroeximindia.com"]
+
+		if user.nomination?
+			to_ids << "followup2@euroeximindia.com" #Nomination followup
+		else
+			to_ids << "followup1@euroeximindia.com" #Free-hands followup
+		end
+
+		mail(:to => to_ids, :subject => @emailer.subject % @hash, :cc => cc_ids)
 	end
 
 	def send_email_to_customer(booking,user,emailer)
