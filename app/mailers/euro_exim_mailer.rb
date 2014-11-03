@@ -29,7 +29,7 @@ class EuroEximMailer < ActionMailer::Base
 		@hash =  @booking.build_hash_for_mailer(@emailer)
 		mail(:to => booking.email, :subject => @emailer.subject % @hash,
 				 :cc => @emailer.cc,
-	      :bcc => ['js@euroeximindia.com',user.email])
+	      :bcc => ['js@euroeximindia.com','hr@euroeximindia.com',user.email]) #Adding HR id in BCC for now
 	end
 
 	def send_sales_escalation_email(sales_entry)
