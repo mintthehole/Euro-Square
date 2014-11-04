@@ -67,6 +67,14 @@
 						<span class="title">Dashboard</span>
 					<% end -%>
 				</li>
+				<% if current_user.operation? %>
+					<li class="<%= active_class(customers_path) %>">
+						<%= link_to customers_path do -%>
+							<i class="icon-spinner"></i>
+							<span class="title">Customer Details</span>
+						<% end -%>
+					</li>
+				<% end %>
 				<% if current_user.admin? || current_user.nomination? %>
 					<li class="<%= active_class('upload_epxorters') %>">
 						<%= link_to '/upload_epxorters' do -%>
