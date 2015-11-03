@@ -115,15 +115,17 @@
             <th class="row-id" style="width:30px;">
               ID
             </th>
+            <% if current_user.admin? %>
+              <td>
+                Is Nomination?
+              </td>
+            <% end %>
             <% headers.each do |mf| %>
               <th>
               <%= mf.pretty_name %>
               </th>
 
             <% end %>
-              <th>
-              Nomination
-              </th>
         </thead>
           <tbody>
             <% bookings.each_with_index do |booking,i| %>
@@ -132,14 +134,17 @@
                   <td class="row-id" style="width:30px;">
                     <%= link_to booking.id, booking %> <%= link_to "Edit", edit_booking_path(booking.id) %>
                   </td>
+                  <% if current_user.admin? %>
+                    <td>
+                      <%= booking.is_nomination %>
+                    </td>
+                  <% end %>
                   <% headers.each do |header| %>
                     <td>
                       <%= booking[header.name] %>
                     </td>
                   <% end %>
-                    <td>
-                      <%= booking.is_nomination %>
-                    </td>
+
                 </tr>
               <% end %>
           </tbody>
