@@ -11,6 +11,9 @@
 	<br><br>
 	Nominated Booking: <%= @booking.is_nomination%>
 	<br>
+	Agency: <%= @booking.try(:agency).try(:name) %>
+	<br>
+	<br>
 
 	<%= render :partial => 'shared/booking_show' %>
 

@@ -1,5 +1,8 @@
 EuroExim::Application.routes.draw do
 
+  resources :agencies
+
+
   match '/bo_reports/manage' => 'bo_reports#manage'
   match '/find_booking' => "booking_orders#find_booking"
   resources :bo_reports

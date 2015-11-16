@@ -36,6 +36,9 @@
             <% @headers.each do |header| %>
               <div class='span5'>
                 <div class="field">
+                  <% if current_user.nomination? %>
+                    <%= f.select :agency_id, options_for_select(build_agency,f.object.agency_id), {} ,:class=>"chosen-select a"%>
+                  <% end %>
                   <%= f.label header.pretty_name %>
                   <% if header.name == 'customer_name' %>
                     <%= f.select header.name, options_for_select(build_customer(current_user.nomination?, true),f.object.customer_name), {} ,:class=>"chosen-select"%>

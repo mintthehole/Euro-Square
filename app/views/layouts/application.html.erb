@@ -96,6 +96,12 @@
 						<span class="title">Bookings</span>
 					<% end -%>
 				</li>
+				<% if current_user.admin? || current_user.nomination? %>
+					<%= link_to '/agencies' do -%>
+						<i class="icon-file"></i>
+						<span class="title">Agency</span>
+					<% end -%>
+				<% end %>
 				<% if current_user.admin? || current_user.sales? %>
 					<li class="<%= active_class(sales_call_entries_path) %>">
 						<%= link_to sales_call_entries_path do -%>

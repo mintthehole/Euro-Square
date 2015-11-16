@@ -2,6 +2,7 @@ class Booking < ActiveRecord::Base
 	belongs_to :booking_order
 	belongs_to :user
 	belongs_to :customer
+	belongs_to :agency
 	has_magic_columns :through => :booking_order
 	has_many :booking_emailers
 	validates :customer_id, :presence => true
