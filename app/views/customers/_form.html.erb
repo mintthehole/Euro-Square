@@ -51,6 +51,11 @@
     <% if current_user.sales? %>
       <%= f.hidden_field :approved, :value => false %>
     <% end %>
+    <% if current_user.is_nomination? %>
+      <%= f.hidden_field :nomination, :value => true %>
+    <% else %>
+      <%= f.hidden_field :nomination, :value => false %>
+    <% end %> 
     <%= f.submit "save", :class => 'btn btn-info'%>
   </div>
 <% end %>

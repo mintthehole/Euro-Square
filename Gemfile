@@ -16,7 +16,7 @@ gem "i18n","~> 0.4"
 gem 'capistrano'
 gem "bcrypt-ruby"
 gem 'nested_form'
-gem 'will_paginate',:git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
+gem 'will_paginate'
 gem 'active_scaffold', '3.3.3'
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
@@ -61,6 +61,6 @@ end
 
 gem 'ckeditor', '4.0.6'
 gem "paperclip"
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails.git'
 gem 'jquery-ui-rails'
 gem 'thin'
