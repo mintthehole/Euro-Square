@@ -38,7 +38,7 @@
                 <div class="field">
                   <%= f.label header.pretty_name %>
                   <% if header.name == 'customer_name' %>
-                    <%= f.select header.name, options_for_select(build_customer(true),f.object.customer_name), {} ,:class=>"chosen-select"%>
+                    <%= f.select header.name, options_for_select(build_customer(current_user.nomination?, true),f.object.customer_name), {} ,:class=>"chosen-select"%>
                   <% else %>
                     <% class1 = '' %>
                     <% class2 = '' %>
