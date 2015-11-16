@@ -20,13 +20,14 @@
         <th>Name</th>
         <th>Description</th>
       </tr>
-  </table>
-  <% @bo_reports.each do |bo_report| %>
-    <tr>
-    <td><%= link_to bo_report.name,bo_report%></td>
-    <td><%= bo_report.try(:description) || "description" %></td>
-    </tr>
-  <% end %>
+ 
+    <% @bo_reports.each do |bo_report| %>
+      <tr>
+        <td><%= link_to bo_report.name,bo_report%></td>
+        <td><%= bo_report.try(:description) || "description" %></td>
+      </tr>
+    <% end %>
+   </table>
 </div>
 <br/>
 <br />
