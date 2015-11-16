@@ -16,7 +16,7 @@ gem "i18n","~> 0.4"
 gem 'capistrano'
 gem "bcrypt-ruby"
 gem 'nested_form'
-gem 'will_paginate'
+gem 'will_paginate', "3.0.pre2"
 gem 'active_scaffold', '3.3.3'
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
