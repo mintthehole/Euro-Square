@@ -97,10 +97,12 @@
 					<% end -%>
 				</li>
 				<% if current_user.admin? || current_user.nomination? %>
-					<%= link_to '/agencies' do -%>
-						<i class="icon-file"></i>
-						<span class="title">Agency</span>
-					<% end -%>
+					<li class="<%= active_class('/agencies') %>">
+						<%= link_to '/agencies' do -%>
+							<i class="icon-file"></i>
+							<span class="title">Agency</span>
+						<% end -%>
+					</li>
 				<% end %>
 				<% if current_user.admin? || current_user.sales? %>
 					<li class="<%= active_class(sales_call_entries_path) %>">
