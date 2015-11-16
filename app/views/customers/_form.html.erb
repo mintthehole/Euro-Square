@@ -51,7 +51,7 @@
     <% if current_user.sales? %>
       <%= f.hidden_field :approved, :value => false %>
     <% end %>
-    <% if current_user.is_nomination? %>
+    <% if current_user.nomination? %>
       <%= f.hidden_field :nomination, :value => true %>
     <% else %>
       <%= f.hidden_field :nomination, :value => false %>
