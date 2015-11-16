@@ -20,7 +20,7 @@ gem 'will_paginate', "3.0.7"
 gem 'active_scaffold', '3.3.3'
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
-gem "wice_grid", '3.2.1'
+gem "wice_grid", '3.4.5'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
