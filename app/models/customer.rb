@@ -13,7 +13,7 @@ class Customer < ActiveRecord::Base
 	]
 
 	validates :name, :presence => true
-	def self.upload_customer(file)
+	def self.upload_customer(file,nomination)
 		column_names = Customer.column_names
 		csv_text = File.read(file)
 		csv = CSV.parse(csv_text, :headers => true)
@@ -30,6 +30,7 @@ class Customer < ActiveRecord::Base
 		  	new_hash[cn] = hash[cn]
 		  end
 		  shipper = Customer.new(new_hash.symbolize_keys)
+		  shipper.nomination = nomination
 		  shippers = Customer.find(:all, :conditions => ["UPPER(name) like ?", "%#{shipper.name}%"])
 		  if shippers.empty?
 		  	if shipper.save

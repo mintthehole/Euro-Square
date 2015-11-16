@@ -31,7 +31,7 @@ class HomeController < ApplicationController
 	 	elsif File.extname(params[:attachment][:file].original_filename) != '.csv'
 	 		redirect_to "/upload_epxorters?upload_type=#{params[:upload_type]}", :notice => "Please Upload a CSV File"
 	  elsif params[:upload_type] == Customer::EXPORTER
-	  	total,no = Customer.upload_customer(params[:attachment][:file].tempfile)
+	  	total,no = Customer.upload_customer(params[:attachment][:file].tempfile,current_user.nomination?)
 	  	redirect_to "/upload_epxorters", :notice => "Sucessfully Uploaded, #{no} out of #{total}"
 	  elsif params[:upload_type] == Customer::EXPORTER_REPORT
 	  	total,no = CustomerExportDetail.upload_Customer_export(params[:attachment][:file].tempfile)
