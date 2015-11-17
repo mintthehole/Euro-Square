@@ -34,9 +34,11 @@
               <%= emailer.try(:name) || "Unknown" %>
             </h4>
             <% if current_user.nomination? %>
-              <b>Agency:</b>
-              <br/>
-              <%= f.select :agency_id, options_for_select(build_agency,f.object.agency_id), {} ,:class=>"chosen-select a"%>
+              <div class="span12">                
+                <b>Agency:</b>
+                <br/>
+                <%= f.select :agency_id, options_for_select(build_agency,f.object.agency_id), {} ,:class=>"chosen-select a"%>
+              </div>
             <% end %>
 
             <% @headers.each do |header| %>
