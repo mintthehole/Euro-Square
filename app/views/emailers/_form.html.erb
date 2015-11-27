@@ -46,6 +46,15 @@
                         </div>
                      </div>
                   </div>
+                  <div class="span12 ">
+                     <div class="control-group">
+                        <label class="control-label">Type</label>
+                        <div class="controls">
+                           <%= f.select :email_type, options_for_select(Emailer::EMAILTYES), :class=>"span12" %>
+                           <span class="help-block">for nomination/free hand</span>
+                        </div>
+                     </div>
+                  </div>
                   <!--/span-->
                </div>
 

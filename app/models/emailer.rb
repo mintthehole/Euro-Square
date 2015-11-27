@@ -1,19 +1,32 @@
 class Emailer < ActiveRecord::Base
-  attr_accessible :bcc, :body, :cc, :footer, :header, :name, :stage, :subject,:email_tables_attributes,:emailer_horizontals_attributes,:trigger_filed, :emailer_middles_attributes
+  attr_accessible :bcc, :body, :cc, :footer, :header, :name, :stage, :subject,:email_tables_attributes,:emailer_horizontals_attributes,:trigger_filed, :emailer_middles_attributes, :email_type
   has_many :email_tables
   has_many :emailer_horizontals
   has_many :emailer_middles
   validate :emailer_template
   validates_uniqueness_of :stage
+  validates_presence_of :email_type
   attr_accessor :email_tables_attributes, :emailer_horizontals_attributes,:emailer_middles_attributes
   accepts_nested_attributes_for :email_tables, :emailer_horizontals,:emailer_middles, :allow_destroy => true
 
+  EMAILTYES =[
+    BOTH = "Both",
+    NOMINATION = "Nomination",
+    FREE = "Free-hand"
+  ]
 
   def send_email(booking,user)
   	be = BookingEmailer.create(:booking_id => booking.id, :user_id => user.id,:emailer_id => self.id, :state => BookingEmailer::SEND_FOR_CONF )
   	EuroEximMailer.delay.send_emailer(be)
   end
 
+  def get_emails(nomination)
+    if nomination
+      Emailer.where(:email_type => [Emailer::Both, Emailer::NOMINATION])
+    else 
+      Emailer.where(:email_type => [Emailer::Both, Emailer::FREE])
+    end
+  end
 
   def emailer_template
     if self.subject.include? "%{"

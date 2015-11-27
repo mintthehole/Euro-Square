@@ -47,7 +47,7 @@ class BookingsController < ApplicationController
     @booking.is_nomination = params[:booking][:is_nomination]
   	saved = @booking.save
   	if saved
-  		Emailer.all.each do |emailer|
+  		Emailer.get_emails(@booking.is_nomination).each do |emailer|
   			if changed.include?(emailer.trigger_filed)
   				emailer.send_email(@booking,current_user)
   			end
@@ -77,7 +77,7 @@ class BookingsController < ApplicationController
   	@booking.email = Customer.find_by_name(@booking.customer_name).try(:email)
   	saved = @booking.save
   	if saved
-  		Emailer.all.each do |emailer|
+  		Emailer.get_emails(@booking.is_nomination).each do |emailer|
   			if changed.include?(emailer.trigger_filed) && !@booking.booking_emailers.collect(&:emailer_id).include?(emailer.id)
   				emailer.send_email(@booking,current_user)
           break

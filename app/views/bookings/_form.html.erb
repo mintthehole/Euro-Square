@@ -19,7 +19,14 @@
       <%else%>
           <div class="span3"><%= f.hidden_field :is_nomination, value: 0 %></div>
       <%end%>
-
+      <% if current_user.nomination? %>
+        <div class="span12">                
+          <b>Agency:</b>
+          <br/>
+          <%= f.select :agency_id, options_for_select(build_agency,f.object.agency_id), {} ,:class=>"chosen-select a"%>
+          <br>
+        </div>
+      <% end %>
       <% @stages.each do |stage| %>
         <% @headers = @booking_order.get_header.where(:stage => stage) %>
         <div class="row-fluid">
@@ -33,13 +40,7 @@
               <b> Emailer :</b>
               <%= emailer.try(:name) || "Unknown" %>
             </h4>
-            <% if current_user.nomination? %>
-              <div class="span12">                
-                <b>Agency:</b>
-                <br/>
-                <%= f.select :agency_id, options_for_select(build_agency,f.object.agency_id), {} ,:class=>"chosen-select a"%>
-              </div>
-            <% end %>
+
 
             <% @headers.each do |header| %>
               <div class='span5'>
