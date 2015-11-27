@@ -22,9 +22,9 @@ class Emailer < ActiveRecord::Base
 
   def self.get_emails(nomination)
     if nomination
-      Emailer.where(:email_type => [Emailer::Both, Emailer::NOMINATION])
+      Emailer.where(:email_type => [Emailer::BOTH, Emailer::NOMINATION])
     else 
-      Emailer.where(:email_type => [Emailer::Both, Emailer::FREE])
+      Emailer.where(:email_type => [Emailer::BOTH, Emailer::FREE])
     end
   end
 
