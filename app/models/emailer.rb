@@ -20,7 +20,7 @@ class Emailer < ActiveRecord::Base
   	EuroEximMailer.delay.send_emailer(be)
   end
 
-  def get_emails(nomination)
+  def self.get_emails(nomination)
     if nomination
       Emailer.where(:email_type => [Emailer::Both, Emailer::NOMINATION])
     else 
