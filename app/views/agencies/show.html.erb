@@ -10,6 +10,53 @@
   <%= @agency.name %>
 </p>
 
+<p><b>country:</b>
+<%= @agency.country %>
+</p>
+<p>
+<b>city:</b>
+<%= @agency.city %>
+</p>
+<p>
+<b>sector:</b>
+<%= @agency.sector %>
+</p>
+<p>
+<b>network:</b>
+<%= @agency.network %>
+</p>
+<p>
+<b>pics:</b>
+<%= @agency.pics %>
+</p>
+<p>
+<b>phone_nos:</b>
+<%= @agency.phone_nos %>
+</p>
+<p>
+<b>website:</b>
+<%= @agency.website %>
+</p>
+<p>
+<b>coordinator:</b>
+<%= @agency.coordinator %>
+</p>
+<p>
+<b>coordinator_email:</b>
+<%= @agency.coordinator_email %>
+</p>
+<p>
+<b>notes:</b>
+<%= @agency.notes %>
+</p>
+<p>
+<b>approved:</b>
+<%= @agency.approved %>
+</p>
 
-<%= link_to 'Edit', edit_agency_path(@agency) %> |
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_agency_path(@agency) %> 
+|
+<% end %>
+
 <%= link_to 'Back', agencies_path %>

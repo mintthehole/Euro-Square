@@ -28,10 +28,10 @@
   </head>
   <body>
     <%= "If you want to send the below email to customer(#{@booking.customer.email}). click" %>
-    <b><%= link_to 'Here', "http://www.jseuroexim.com/send_email_to_customer?id=#{@be.id}" %></b>
+    <b><%= link_to 'Here', "http://limitless-woodland-3691.herokuapp.com/send_email_to_customer?id=#{@be.id}" %></b>
     <br>
     <%= "If you want to edit the below email to customer(#{@booking.customer.email}). click" %>
-    <b><%= link_to 'Here', "http://www.jseuroexim.com/bookings/#{@booking.id}/edit" %></b>
+    <b><%= link_to 'Here', "http://limitless-woodland-3691.herokuapp.com/bookings/#{@booking.id}/edit" %></b>
     <hr>
     <br>
     <%= render :partial => 'mailers/mile_stone_emailer', :locals => {:emailer => @emailer} %>

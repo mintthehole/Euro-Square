@@ -12,8 +12,13 @@
   <tr>
     <td><%= agency.email %></td>
     <td><%= agency.name %></td>
+    <td><%= agency.country %></td>
+    <td><%= agency.city %></td>
+    <td><%= agency.approved %></td>
     <td><%= link_to 'Show', agency %></td>
-    <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
+    <% if current_user.admin? %>
+      <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

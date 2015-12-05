@@ -14,12 +14,6 @@ class EuroEximMailer < ActionMailer::Base
 		to_ids = [user.email]
 		cc_ids = ["js@euroeximindia.com"]
 
-		if user.nomination?
-			to_ids << "followup2@euroeximindia.com" #Nomination followup
-		else
-			to_ids << "followup1@euroeximindia.com" #Free-hands followup
-		end
-
 		mail(:to => to_ids, :subject => @emailer.subject % @hash, :cc => cc_ids)
 	end
 
@@ -27,17 +21,29 @@ class EuroEximMailer < ActionMailer::Base
 		@emailer = emailer
 		@booking = booking
 		@hash =  @booking.build_hash_for_mailer(@emailer)
+		if @booking.is_nomination
+			cc_ids = ["followup2@euroeximindia.com"]
+		else
+			cc_ids = ["followup1@euroeximindia.com"]
+		end
 		mail(:to => booking.email, :subject => @emailer.subject % @hash,
-				 :cc => @emailer.cc,
+				 :cc => cc_ids,
 	      :bcc => ['js@euroeximindia.com','hr@euroeximindia.com',user.email]) #Adding HR id in BCC for now
 	end
 
 	def send_email_to_agency(booking,user,emailer)
 		@emailer = emailer
 		@booking = booking
+		
+		if @booking.is_nomination
+			cc_ids = ["followup2@euroeximindia.com"]
+		else
+			cc_ids = ["followup1@euroeximindia.com"]
+		end
+
 		@hash =  @booking.build_hash_for_mailer(@emailer)
 		mail(:to => bookingtry(:agency).try(:email), :subject => @emailer.subject % @hash,
-				 :cc => @emailer.cc,
+				 :cc => cc_ids,
 	      :bcc => ['js@euroeximindia.com','hr@euroeximindia.com',user.email]) #Adding HR id in BCC for now
 	end
 

@@ -2,7 +2,7 @@ module EmailersHelper
 
 	def build_agency
 		options = {'-- Please Select -- ' => ''}
-		Agency.order('name asc').each {|v| options = options.merge({v.name => v.name})}
+		Agency.where(:approved => true).order('name asc').each {|v| options = options.merge({v.name => v.name})}
 		options
 	end
 

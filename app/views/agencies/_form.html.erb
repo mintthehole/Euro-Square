@@ -19,6 +19,52 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :sector %><br />
+    <%= f.text_field :sector %>
+  </div>
+  <div class="field">
+    <%= f.label :network %><br />
+    <%= f.text_field :network %>
+  </div>
+  <div class="field">
+    <%= f.label :pics %><br />
+    <%= f.text_field :pics %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_nos %><br />
+    <%= f.text_field :phone_nos %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
+  <div class="field">
+    <%= f.label :coordinator %><br />
+    <%= f.text_field :coordinator %>
+  </div>
+  <div class="field">
+    <%= f.label :coordinator_email %><br />
+    <%= f.text_field :coordinator_email %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_field :notes %>
+  </div>
+  <% if current_user.admin? %>
+    <div class="field">
+      <%= f.label :approved %><br />
+      <%= f.check_box :approved %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
